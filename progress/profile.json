@@ -11,13 +11,13 @@
   "conversion": 0.8599999999999999,
   "hangingPiece": 0.7099999999999997,
   "fork": 0.7299999999999999,
-  "mateThreats": 0.5699999999999997,
+  "mateThreats": 0.49999999999999967,
   "f7f2": 0.8,
   "openingD4": 0.9500000000000001,
   "openingE4": 0.55,
   "endgameTechnique": 0.9099999999999999,
-  "timeUsage": 0.78,
-  "castling": 0.76,
+  "timeUsage": 0.8200000000000001,
+  "castling": 0.75,
   "boardVision": 0.7,
   "coordinates": 0.5700000000000001
  },
@@ -742,6 +742,90 @@
    "passes": 0,
    "fails": 3,
    "lastAt": 1784710413996
+  },
+  "puzzle:0vSU3": {
+   "level": 1,
+   "dueAt": 1784821825166,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735425166
+  },
+  "puzzle:1neAu": {
+   "level": 1,
+   "dueAt": 1784821837346,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735437346
+  },
+  "puzzle:0wuSu": {
+   "level": 1,
+   "dueAt": 1784821841098,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735441098
+  },
+  "puzzle:0SyGE": {
+   "level": 1,
+   "dueAt": 1784821844649,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735444649
+  },
+  "puzzle:0LkeS": {
+   "level": 1,
+   "dueAt": 1784821847934,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735447934
+  },
+  "puzzle:0PPPx": {
+   "level": 1,
+   "dueAt": 1784821852235,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735452235
+  },
+  "puzzle:1oSUb": {
+   "level": 1,
+   "dueAt": 1784821857601,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735457601
+  },
+  "puzzle:1cP6D": {
+   "level": 1,
+   "dueAt": 1784821864501,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735464501
+  },
+  "puzzle:0oFz0": {
+   "level": 1,
+   "dueAt": 1784821879541,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735479541
+  },
+  "puzzle:03QVV": {
+   "level": 1,
+   "dueAt": 1784821886655,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735486655
+  },
+  "puzzle:0AyLC": {
+   "level": 1,
+   "dueAt": 1784821896758,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735496758
+  },
+  "puzzle:0bG3Z": {
+   "level": 1,
+   "dueAt": 1784821902194,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735502194
   }
  },
  "games": [
@@ -2328,8 +2412,8 @@
    "correct": 29
   },
   "mateIn1": {
-   "attempts": 12,
-   "correct": 12
+   "attempts": 24,
+   "correct": 24
   },
   "mateIn2": {
    "attempts": 12,
@@ -2357,6 +2441,6 @@
   "days": 1
  },
  "focusWeek": "conversion",
- "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784734752102
+ "lastBriefingId": "2026-07-22",
+ "updatedAt": 1784735512033
 }
