@@ -1,7 +1,15 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useSyncExternalStore } from 'react'
 import { fetchRecentGames } from '../../lib/chesscom'
 import { update, bumpWeakness } from '../../store/profile'
 import { useProfile } from '../../hooks/useProfile'
+import {
+  getSyncStatus,
+  getToken,
+  pushProgress,
+  restoreFromCloud,
+  setToken,
+  subscribeSyncStatus,
+} from '../../lib/sync'
 import { scanGame } from './scan'
 
 // PGNs are big; keep them in memory only for the session.
@@ -115,7 +123,9 @@ export function Review() {
         </div>
       )}
 
-      <div className="panel">
+      <SyncPanel />
+
+      <div className="panel" style={{ marginTop: '0.9rem' }}>
         <div className="eyebrow">Imported games ({profile.imported.length})</div>
         {profile.imported.length === 0 && (
           <p className="muted">Nothing imported yet.</p>
@@ -146,6 +156,77 @@ export function Review() {
           ))}
         </div>
       </div>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------- cloud sync
+
+function SyncPanel() {
+  const status = useSyncExternalStore(subscribeSyncStatus, getSyncStatus)
+  const [tokenInput, setTokenInput] = useState(getToken())
+  const [busy, setBusy] = useState(false)
+  const profile = useProfile()
+  const hasToken = getToken().length > 0
+
+  return (
+    <div className="panel" style={{ marginTop: '0.9rem' }}>
+      <div className="eyebrow">Cloud sync — your progress, everywhere</div>
+      <p className="muted small" style={{ maxWidth: 680 }}>
+        Pushes your training progress to <span className="mono">progress/profile.json</span> in your
+        GitHub repo. The daily coach routine reads it (alongside your chess.com games) to adapt the
+        plan, and any device you open the app on can load it. Create a{' '}
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">
+          fine-grained token
+        </a>{' '}
+        restricted to the <span className="mono">chess</span> repo with Contents read &amp; write only.
+        The token stays in THIS browser — it is never uploaded anywhere.
+      </p>
+      <div className="row" style={{ margin: '0.6rem 0' }}>
+        <input
+          type="password"
+          placeholder="github_pat_…"
+          value={tokenInput}
+          onChange={(e) => setTokenInput(e.target.value)}
+          style={{ minWidth: 260 }}
+        />
+        <button
+          onClick={() => {
+            setToken(tokenInput)
+            setTokenInput(getToken())
+          }}
+        >
+          Save token
+        </button>
+        <button
+          className="primary"
+          disabled={!hasToken || busy}
+          onClick={async () => {
+            setBusy(true)
+            await pushProgress()
+            setBusy(false)
+          }}
+        >
+          Push progress now
+        </button>
+        <button
+          disabled={busy}
+          onClick={async () => {
+            if (!window.confirm('Overwrite THIS device with the cloud copy?')) return
+            setBusy(true)
+            const ok = await restoreFromCloud()
+            setBusy(false)
+            if (!ok) window.alert('No cloud progress found yet — push from your main device first.')
+          }}
+        >
+          Load cloud progress
+        </button>
+      </div>
+      <p className="small muted">
+        {hasToken ? 'Auto-sync is on: changes push ~90s after your last action. ' : 'No token saved — sync is off. '}
+        <span className={status.state === 'error' ? 'mono' : 'mono muted'}>{status.message}</span>
+        {profile.updatedAt ? ` · last local change ${new Date(profile.updatedAt).toLocaleTimeString()}` : ''}
+      </p>
     </div>
   )
 }

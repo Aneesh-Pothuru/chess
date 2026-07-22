@@ -13,6 +13,14 @@ program attacks the three measured leaks, in order:
 
 ## Running it
 
+**Hosted:** https://aneesh-pothuru.github.io/chess/ — deployed automatically from `main` by
+GitHub Actions (including every daily coach-briefing commit). Progress lives in each browser's
+localStorage; the **Cloud sync** panel in *My games* pushes it to `progress/profile.json` in this
+repo (via a fine-grained PAT you keep in the browser), so the daily routine can read your
+training data and any device can load your progress.
+
+**Local:**
+
 ```bash
 npm install     # also copies the Stockfish WASM into public/ (postinstall)
 npm run dev     # open http://localhost:5173

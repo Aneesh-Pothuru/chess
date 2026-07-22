@@ -6,6 +6,15 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
 1. **Fetch** recent rapid games for `pots1125` from the chess.com public API
    (`https://api.chess.com/pub/player/pots1125/games/YYYY/MM` — fetch serially, never in
    parallel; months are zero-padded). Analyze games newer than the last briefing date.
+
+1b. **Read the training data** at `progress/profile.json` (pushed by the app; may be absent if
+   sync is not set up yet — proceed without it). It contains: weakness weights, coached-game
+   report cards (`games`: blunders, castle move, time usage, motifs, won-game conversion),
+   drill progress (`drills`: endgame/conversion attempts, coordinate-sprint best, board-math
+   accuracy), puzzle stats per bucket, spaced-repetition state (`srs`), and streak. Use it:
+   praise real improvements, call out avoided training ("three days since any conversion
+   drill — and you just lost another won endgame"), and weigh adjustments with BOTH sources.
+   This file is app-owned: NEVER write to it.
 2. **Analyze** each new game (PGN is embedded in the API response):
    - Result, color, opening (parse `[ECOUrl]` from the PGN) and whether it matches the
      repertoire: London as White; Caro-Kann vs 1.e4 and King's Indian otherwise as Black.
@@ -21,7 +30,14 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
 3. **Write** two things and commit them to `main`:
    - `coach-log/YYYY-MM-DD.md` — the full analysis: per-game notes, patterns, honest coaching
      commentary. This is the long-term memory; read the last few entries before writing so
-     advice builds instead of repeating.
+     advice builds instead of repeating. **Include one fully annotated game**: pick the most
+     instructive game of the day (a lost won-position beats a clean win; a repertoire game
+     beats an offbeat one) and annotate it move by move in prose — not every move needs a
+     paragraph, but every critical moment does: name the moment the game turned, what the
+     right plan was, what the player was probably thinking, and the one lesson to carry into
+     tomorrow. Use evals sparingly; use ideas generously. Write at the level of a coach
+     talking to a ~750 player: concrete squares and pieces, no engine jargon. If no games
+     were played, annotate one instructive position from a previous game instead.
    - `public/coach/briefing.json` — REPLACE with today's briefing. The app fetches this from
      GitHub raw and shows it on the dashboard. Schema (all four top fields required):
 
@@ -56,7 +72,8 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
 - JSON must validate against the schema above — the app silently ignores malformed briefings.
 - `id` must be unique per briefing (use the date; suffix `-2` if re-running the same day).
 - Do not modify app source code, tests, or puzzle data. The routine's write surface is exactly
-  `coach-log/` and `public/coach/briefing.json`.
+  `coach-log/` and `public/coach/briefing.json`. `progress/profile.json` is read-only for the
+  routine (the app owns it).
 - If tests exist and you touched anything beyond the write surface by mistake, run `npm test`
   and revert whatever broke.
 - Commit message format: `Coach briefing YYYY-MM-DD (N games analyzed)`.

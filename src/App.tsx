@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { initAutoSync, offerRestoreIfNewer } from './lib/sync'
 import { Dashboard } from './features/dashboard/Dashboard'
 import { Play } from './features/play/Play'
 import { Openings } from './features/openings/Openings'
@@ -22,6 +23,11 @@ const NAV: Array<{ route: Route; label: string }> = [
 export default function App() {
   const [route, setRoute] = useState<Route>('dashboard')
   const [target, setTarget] = useState<string | undefined>()
+
+  useEffect(() => {
+    void offerRestoreIfNewer()
+    return initAutoSync()
+  }, [])
 
   function go(r: Route, t?: string) {
     setRoute(r)

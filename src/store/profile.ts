@@ -72,6 +72,8 @@ export interface Profile {
   focusWeek: 'conversion' | 'openings'
   /** Coach-briefing id whose adjustments were already applied. */
   lastBriefingId?: string
+  /** Last local mutation, epoch ms — used by cloud sync to pick the newer copy. */
+  updatedAt?: number
 }
 
 // Seeded from the improvement report + the 162-game baseline analysis.
@@ -135,10 +137,22 @@ function load(): Profile {
 }
 
 function persist(): void {
+  profile.updatedAt = Date.now()
   try {
     localStorage.setItem(KEY, JSON.stringify(profile))
   } catch {
     // Storage full or unavailable; keep running in-memory.
+  }
+  for (const fn of listeners) fn()
+}
+
+/** Replace the whole profile (cloud restore). */
+export function replaceProfile(next: Profile): void {
+  profile = next
+  try {
+    localStorage.setItem(KEY, JSON.stringify(profile))
+  } catch {
+    // ignore
   }
   for (const fn of listeners) fn()
 }
