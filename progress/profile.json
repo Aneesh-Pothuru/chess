@@ -3,23 +3,23 @@
  "createdAt": 1784699495918,
  "settings": {
   "username": "pots1125",
-  "opponentPresetId": "challenger",
+  "opponentPresetId": "sparring",
   "strictMode": true,
   "tenSecondFloor": true
  },
  "weakness": {
-  "conversion": 0.7999999999999998,
-  "hangingPiece": 1,
-  "fork": 0.7299999999999999,
-  "mateThreats": 0.15999999999999936,
+  "conversion": 0.8899999999999999,
+  "hangingPiece": 0.95,
+  "fork": 0.85,
+  "mateThreats": 0.92,
   "f7f2": 0.8,
-  "openingD4": 0.9700000000000001,
+  "openingD4": 0.9400000000000001,
   "openingE4": 0.55,
-  "endgameTechnique": 0.9099999999999999,
-  "timeUsage": 0.8700000000000001,
-  "castling": 0.75,
+  "endgameTechnique": 0.8,
+  "timeUsage": 0.74,
+  "castling": 0.74,
   "boardVision": 0.7,
-  "coordinates": 0.5700000000000001
+  "coordinates": 0.55
  },
  "srs": {
   "puzzle:Cfv1F": {
@@ -56,1212 +56,10 @@
    "passes": 1,
    "fails": 0,
    "lastAt": 1784699644775
-  },
-  "puzzle:32yQk": {
-   "level": 1,
-   "dueAt": 1784788684687,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702284687
-  },
-  "puzzle:8q6MT": {
-   "level": 1,
-   "dueAt": 1784788687171,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702287171
-  },
-  "puzzle:4wHWi": {
-   "level": 1,
-   "dueAt": 1784788691721,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702291721
-  },
-  "puzzle:3SU6J": {
-   "level": 1,
-   "dueAt": 1784788693654,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702293654
-  },
-  "puzzle:Bd0T9": {
-   "level": 1,
-   "dueAt": 1784788696038,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702296038
-  },
-  "puzzle:BoUt5": {
-   "level": 1,
-   "dueAt": 1784788697855,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702297855
-  },
-  "puzzle:CPnrr": {
-   "level": 1,
-   "dueAt": 1784788699856,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702299856
-  },
-  "puzzle:6h1sT": {
-   "level": 1,
-   "dueAt": 1784788702405,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702302405
-  },
-  "puzzle:4dPhe": {
-   "level": 1,
-   "dueAt": 1784788705840,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702305840
-  },
-  "puzzle:6ZLeB": {
-   "level": 1,
-   "dueAt": 1784788712591,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702312591
-  },
-  "puzzle:BrssB": {
-   "level": 1,
-   "dueAt": 1784788715475,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702315475
-  },
-  "puzzle:9j0SG": {
-   "level": 1,
-   "dueAt": 1784788718474,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702318474
-  },
-  "puzzle:187jC": {
-   "level": 1,
-   "dueAt": 1784788728514,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702328514
-  },
-  "puzzle:0YJ1s": {
-   "level": 1,
-   "dueAt": 1784788735679,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702335679
-  },
-  "puzzle:1gizL": {
-   "level": 1,
-   "dueAt": 1784788738483,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702338483
-  },
-  "puzzle:1SklX": {
-   "level": 1,
-   "dueAt": 1784788742548,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702342548
-  },
-  "puzzle:041Bo": {
-   "level": 1,
-   "dueAt": 1784788750001,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702350001
-  },
-  "puzzle:1CWC4": {
-   "level": 1,
-   "dueAt": 1784788754632,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702354632
-  },
-  "puzzle:0XPAx": {
-   "level": 1,
-   "dueAt": 1784788780902,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702380902
-  },
-  "puzzle:1rtLh": {
-   "level": 1,
-   "dueAt": 1784788786768,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702386768
-  },
-  "puzzle:11eDp": {
-   "level": 1,
-   "dueAt": 1784788794322,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702394322
-  },
-  "puzzle:1s4Ag": {
-   "level": 1,
-   "dueAt": 1784788801470,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702401470
-  },
-  "puzzle:0vdKM": {
-   "level": 1,
-   "dueAt": 1784788806655,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702406655
-  },
-  "puzzle:0m1gQ": {
-   "level": 1,
-   "dueAt": 1784788811206,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702411206
-  },
-  "puzzle:1yy9U": {
-   "level": 1,
-   "dueAt": 1784788843300,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702443300
-  },
-  "puzzle:1b2AC": {
-   "level": 1,
-   "dueAt": 1784788847034,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702447034
-  },
-  "puzzle:1Kqlt": {
-   "level": 1,
-   "dueAt": 1784788852668,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702452668
-  },
-  "puzzle:1ISXF": {
-   "level": 1,
-   "dueAt": 1784788856684,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702456684
-  },
-  "puzzle:1dw3d": {
-   "level": 1,
-   "dueAt": 1784788862373,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702462373
-  },
-  "puzzle:1xOHF": {
-   "level": 1,
-   "dueAt": 1784788866821,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702466821
-  },
-  "puzzle:0vrQv": {
-   "level": 1,
-   "dueAt": 1784788871054,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702471054
-  },
-  "puzzle:25iUy": {
-   "level": 1,
-   "dueAt": 1784788875912,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702475912
-  },
-  "puzzle:1DkCB": {
-   "level": 1,
-   "dueAt": 1784788880673,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702480673
-  },
-  "puzzle:1lhm8": {
-   "level": 1,
-   "dueAt": 1784788886223,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702486223
-  },
-  "puzzle:0BtyY": {
-   "level": 1,
-   "dueAt": 1784788890840,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702490840
-  },
-  "puzzle:0zTmA": {
-   "level": 1,
-   "dueAt": 1784788895691,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784702495691
-  },
-  "puzzle:0PJcm": {
-   "level": 1,
-   "dueAt": 1784793910035,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707510035
-  },
-  "puzzle:2DChU": {
-   "level": 1,
-   "dueAt": 1784793918585,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707518585
-  },
-  "puzzle:01oq6": {
-   "level": 1,
-   "dueAt": 1784793935070,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707535070
-  },
-  "puzzle:1Ecwx": {
-   "level": 1,
-   "dueAt": 1784793944606,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707544606
-  },
-  "puzzle:1iTkn": {
-   "level": 1,
-   "dueAt": 1784793952708,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707552708
-  },
-  "puzzle:2YaGj": {
-   "level": 1,
-   "dueAt": 1784793987784,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707587784
-  },
-  "puzzle:06ySG": {
-   "level": 1,
-   "dueAt": 1784793998351,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707598351
-  },
-  "puzzle:37Nch": {
-   "level": 1,
-   "dueAt": 1784794004170,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707604170
-  },
-  "puzzle:37gYp": {
-   "level": 1,
-   "dueAt": 1784794022119,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707622119
-  },
-  "puzzle:0oCl4": {
-   "level": 1,
-   "dueAt": 1784794043488,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707643488
-  },
-  "puzzle:15MY2": {
-   "level": 1,
-   "dueAt": 1784794051275,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707651275
-  },
-  "puzzle:0GsgA": {
-   "level": 1,
-   "dueAt": 1784794068343,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707668343
-  },
-  "puzzle:kRXUl": {
-   "level": 1,
-   "dueAt": 1784794097159,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707697159
-  },
-  "puzzle:h1wfj": {
-   "level": 1,
-   "dueAt": 1784794102043,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707702043
-  },
-  "puzzle:ZR1Ku": {
-   "level": 1,
-   "dueAt": 1784794123030,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707723030
-  },
-  "puzzle:LTYev": {
-   "level": 1,
-   "dueAt": 1784794128416,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707728416
-  },
-  "puzzle:5wee1": {
-   "level": 1,
-   "dueAt": 1784794134765,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707734765
-  },
-  "puzzle:iYs6L": {
-   "level": 1,
-   "dueAt": 1784794145352,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707745352
-  },
-  "puzzle:iWISs": {
-   "level": 1,
-   "dueAt": 1784794155719,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707755719
-  },
-  "puzzle:OL070": {
-   "level": 1,
-   "dueAt": 1784794170648,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707770648
-  },
-  "puzzle:fRCmQ": {
-   "level": 1,
-   "dueAt": 1784794177251,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707777251
-  },
-  "puzzle:P030C": {
-   "level": 1,
-   "dueAt": 1784794190758,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707790758
-  },
-  "puzzle:5c64B": {
-   "level": 1,
-   "dueAt": 1784794203346,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707803346
-  },
-  "puzzle:viwqV": {
-   "level": 1,
-   "dueAt": 1784794207696,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707807696
-  },
-  "puzzle:7kMmo": {
-   "level": 1,
-   "dueAt": 1784794281133,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707881133
-  },
-  "puzzle:6iYvg": {
-   "level": 1,
-   "dueAt": 1784794293071,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707893071
-  },
-  "puzzle:Blib4": {
-   "level": 1,
-   "dueAt": 1784794305052,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707905052
-  },
-  "puzzle:3VSTX": {
-   "level": 1,
-   "dueAt": 1784794314022,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707914022
-  },
-  "puzzle:7MrKM": {
-   "level": 1,
-   "dueAt": 1784794319690,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707919690
-  },
-  "puzzle:CWmvo": {
-   "level": 1,
-   "dueAt": 1784794323174,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707923174
-  },
-  "puzzle:3frZ3": {
-   "level": 1,
-   "dueAt": 1784794329359,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707929359
-  },
-  "puzzle:AZ1V7": {
-   "level": 1,
-   "dueAt": 1784794331992,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707931992
-  },
-  "puzzle:29d7a": {
-   "level": 1,
-   "dueAt": 1784794336374,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707936374
-  },
-  "puzzle:9H3KC": {
-   "level": 1,
-   "dueAt": 1784794338641,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707938641
-  },
-  "puzzle:BYkmo": {
-   "level": 1,
-   "dueAt": 1784794346328,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707946328
-  },
-  "puzzle:3Q2FZ": {
-   "level": 1,
-   "dueAt": 1784794350562,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784707950562
-  },
-  "puzzle:1cGUK": {
-   "level": 1,
-   "dueAt": 1784794453728,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708053728
-  },
-  "puzzle:33uKj": {
-   "level": 1,
-   "dueAt": 1784794474748,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708074748
-  },
-  "puzzle:6U3Jk": {
-   "level": 1,
-   "dueAt": 1784794484266,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708084266
-  },
-  "puzzle:2DkXX": {
-   "level": 1,
-   "dueAt": 1784794489401,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708089401
-  },
-  "puzzle:1ZUp0": {
-   "level": 1,
-   "dueAt": 1784794498651,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708098651
-  },
-  "puzzle:6oifi": {
-   "level": 1,
-   "dueAt": 1784794509087,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708109087
-  },
-  "puzzle:0pU5W": {
-   "level": 1,
-   "dueAt": 1784794516655,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708116655
-  },
-  "puzzle:4IsUQ": {
-   "level": 1,
-   "dueAt": 1784794528257,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708128257
-  },
-  "puzzle:9fULa": {
-   "level": 1,
-   "dueAt": 1784794543143,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708143143
-  },
-  "puzzle:4GJ6d": {
-   "level": 0,
-   "dueAt": 1784708158592,
-   "passes": 0,
-   "fails": 1,
-   "lastAt": 1784708158592
-  },
-  "puzzle:5LVlE": {
-   "level": 1,
-   "dueAt": 1784794578265,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708178265
-  },
-  "puzzle:2w83a": {
-   "level": 1,
-   "dueAt": 1784794585933,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708185933
-  },
-  "puzzle:4sVWZ": {
-   "level": 1,
-   "dueAt": 1784794623679,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708223679
-  },
-  "puzzle:81DP3": {
-   "level": 1,
-   "dueAt": 1784794633425,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708233425
-  },
-  "puzzle:9dXnX": {
-   "level": 1,
-   "dueAt": 1784794643443,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708243443
-  },
-  "puzzle:7qew2": {
-   "level": 1,
-   "dueAt": 1784794652476,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708252476
-  },
-  "puzzle:9TwGi": {
-   "level": 1,
-   "dueAt": 1784794660162,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708260162
-  },
-  "puzzle:3YHeA": {
-   "level": 1,
-   "dueAt": 1784794690000,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708290000
-  },
-  "puzzle:6MrN8": {
-   "level": 1,
-   "dueAt": 1784794706926,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708306926
-  },
-  "puzzle:38ACb": {
-   "level": 1,
-   "dueAt": 1784794722639,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708322639
-  },
-  "puzzle:6kkuP": {
-   "level": 1,
-   "dueAt": 1784794733690,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708333690
-  },
-  "puzzle:4ZdAz": {
-   "level": 1,
-   "dueAt": 1784794747376,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708347376
-  },
-  "puzzle:82IgF": {
-   "level": 1,
-   "dueAt": 1784794754610,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708354610
-  },
-  "puzzle:3zW7Z": {
-   "level": 1,
-   "dueAt": 1784794762778,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784708362778
-  },
-  "caro-kann/e4 c6 d4 d5 e5 Bf5 Nf3 e6 Be2 c5 O-O Nc6 c3 Nge7": {
-   "level": 0,
-   "dueAt": 1784738243862,
-   "passes": 0,
-   "fails": 2,
-   "lastAt": 1784738243862
-  },
-  "kings-indian/d4 Nf6 c4 g6 Nc3 Bg7 e4 d6 Nf3 O-O Be2 e5 O-O Nc6 d5 Ne7 Ne1 Nd7 Be3 f5": {
-   "level": 0,
-   "dueAt": 1784710413996,
-   "passes": 0,
-   "fails": 3,
-   "lastAt": 1784710413996
-  },
-  "puzzle:0vSU3": {
-   "level": 1,
-   "dueAt": 1784821825166,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735425166
-  },
-  "puzzle:1neAu": {
-   "level": 1,
-   "dueAt": 1784821837346,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735437346
-  },
-  "puzzle:0wuSu": {
-   "level": 1,
-   "dueAt": 1784821841098,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735441098
-  },
-  "puzzle:0SyGE": {
-   "level": 1,
-   "dueAt": 1784821844649,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735444649
-  },
-  "puzzle:0LkeS": {
-   "level": 1,
-   "dueAt": 1784821847934,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735447934
-  },
-  "puzzle:0PPPx": {
-   "level": 1,
-   "dueAt": 1784821852235,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735452235
-  },
-  "puzzle:1oSUb": {
-   "level": 1,
-   "dueAt": 1784821857601,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735457601
-  },
-  "puzzle:1cP6D": {
-   "level": 1,
-   "dueAt": 1784821864501,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735464501
-  },
-  "puzzle:0oFz0": {
-   "level": 1,
-   "dueAt": 1784821879541,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735479541
-  },
-  "puzzle:03QVV": {
-   "level": 1,
-   "dueAt": 1784821886655,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735486655
-  },
-  "puzzle:0AyLC": {
-   "level": 1,
-   "dueAt": 1784821896758,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735496758
-  },
-  "puzzle:0bG3Z": {
-   "level": 1,
-   "dueAt": 1784821902194,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735502194
-  },
-  "puzzle:07Wub": {
-   "level": 1,
-   "dueAt": 1784822018186,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735618186
-  },
-  "puzzle:0vTpF": {
-   "level": 1,
-   "dueAt": 1784822022835,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735622835
-  },
-  "puzzle:1ARvc": {
-   "level": 1,
-   "dueAt": 1784822029472,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735629472
-  },
-  "puzzle:08wWv": {
-   "level": 1,
-   "dueAt": 1784822037938,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735637938
-  },
-  "puzzle:1s4nT": {
-   "level": 1,
-   "dueAt": 1784822046473,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735646473
-  },
-  "puzzle:0HPRh": {
-   "level": 1,
-   "dueAt": 1784822049490,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735649490
-  },
-  "puzzle:0SM6C": {
-   "level": 1,
-   "dueAt": 1784822063994,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735663994
-  },
-  "puzzle:0ADtg": {
-   "level": 1,
-   "dueAt": 1784822068527,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735668527
-  },
-  "puzzle:15h0s": {
-   "level": 1,
-   "dueAt": 1784822074594,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735674594
-  },
-  "puzzle:1npYq": {
-   "level": 1,
-   "dueAt": 1784822079698,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735679698
-  },
-  "puzzle:1d8k7": {
-   "level": 1,
-   "dueAt": 1784822090933,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735690933
-  },
-  "puzzle:1pqqm": {
-   "level": 1,
-   "dueAt": 1784822109270,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784735709270
-  },
-  "london/d4 d5 Bf4 Nf6 e3 e6 Nf3 Bd6 Bg3 O-O Bd3 c5 c3 Nc6 Nbd2": {
-   "level": 0,
-   "dueAt": 1784736081522,
-   "passes": 0,
-   "fails": 1,
-   "lastAt": 1784736081522
-  },
-  "puzzle:1j3Et": {
-   "level": 1,
-   "dueAt": 1784836588440,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750188440
-  },
-  "puzzle:1BREu": {
-   "level": 1,
-   "dueAt": 1784836597624,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750197624
-  },
-  "puzzle:0zqNj": {
-   "level": 1,
-   "dueAt": 1784836600774,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750200774
-  },
-  "puzzle:0SvtB": {
-   "level": 1,
-   "dueAt": 1784836605126,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750205126
-  },
-  "puzzle:033W8": {
-   "level": 1,
-   "dueAt": 1784836615509,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750215509
-  },
-  "puzzle:0T7fT": {
-   "level": 1,
-   "dueAt": 1784836624714,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750224714
-  },
-  "puzzle:0ZhNe": {
-   "level": 1,
-   "dueAt": 1784836753435,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750353435
-  },
-  "puzzle:0oRWD": {
-   "level": 1,
-   "dueAt": 1784836759177,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750359177
-  },
-  "puzzle:1vaGe": {
-   "level": 1,
-   "dueAt": 1784836766196,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750366196
-  },
-  "puzzle:0Cyma": {
-   "level": 1,
-   "dueAt": 1784836781598,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750381598
-  },
-  "puzzle:1YwBw": {
-   "level": 1,
-   "dueAt": 1784836850753,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750450753
-  },
-  "puzzle:1qf7m": {
-   "level": 1,
-   "dueAt": 1784836860886,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784750460886
-  },
-  "puzzle:11RJ0": {
-   "level": 1,
-   "dueAt": 1784838862344,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752462344
-  },
-  "puzzle:1WGtQ": {
-   "level": 1,
-   "dueAt": 1784838866826,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752466826
-  },
-  "puzzle:1rhAu": {
-   "level": 1,
-   "dueAt": 1784838873479,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752473479
-  },
-  "puzzle:0Au3L": {
-   "level": 1,
-   "dueAt": 1784838878245,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752478245
-  },
-  "puzzle:1M9t4": {
-   "level": 1,
-   "dueAt": 1784838894196,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752494196
-  },
-  "puzzle:002vV": {
-   "level": 1,
-   "dueAt": 1784838900430,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752500430
-  },
-  "puzzle:1oLcy": {
-   "level": 1,
-   "dueAt": 1784838909650,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752509650
-  },
-  "puzzle:0Tk80": {
-   "level": 1,
-   "dueAt": 1784838923201,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752523201
-  },
-  "puzzle:0Znpr": {
-   "level": 1,
-   "dueAt": 1784838932072,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752532072
-  },
-  "puzzle:0hbeR": {
-   "level": 1,
-   "dueAt": 1784838948070,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752548070
-  },
-  "puzzle:1no2C": {
-   "level": 1,
-   "dueAt": 1784838954142,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752554142
-  },
-  "puzzle:1kGA0": {
-   "level": 1,
-   "dueAt": 1784838958959,
-   "passes": 1,
-   "fails": 0,
-   "lastAt": 1784752558959
   }
  },
- "games": [
-  {
-   "id": "1784706493550",
-   "at": 1784706493550,
-   "color": "w",
-   "presetId": "sparring",
-   "result": "win",
-   "moves": 40,
-   "blunders": 0,
-   "mistakes": 1,
-   "castleMove": 8,
-   "avgSecondsPerMove": 8.647977777777779,
-   "motifs": [
-    "hangingPiece",
-    "missedMateIn1"
-   ],
-   "opening": "d4 d6 Bf4",
-   "wonGameConverted": true
-  },
-  {
-   "id": "1784706540333",
-   "at": 1784706540333,
-   "color": "w",
-   "presetId": "sparring",
-   "result": "loss",
-   "moves": 1,
-   "blunders": 0,
-   "mistakes": 0,
-   "castleMove": null,
-   "avgSecondsPerMove": 11.076,
-   "motifs": [],
-   "opening": "d4 e6",
-   "wonGameConverted": null
-  },
-  {
-   "id": "1784752371693",
-   "at": 1784752371693,
-   "color": "b",
-   "presetId": "sparring",
-   "result": "win",
-   "moves": 25,
-   "blunders": 0,
-   "mistakes": 1,
-   "castleMove": 9,
-   "avgSecondsPerMove": 8.7210625,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "opening": "d4 Nf6",
-   "wonGameConverted": true
-  }
- ],
+ "games": [],
  "imported": [
-  {
-   "url": "https://www.chess.com/game/live/171939953540",
-   "at": 1784757757000,
-   "color": "b",
-   "result": "win",
-   "opening": "Pirc Defense Lions Jaw Variation 3...g6",
-   "firstWhiteMove": "d4",
-   "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 714
-  },
-  {
-   "url": "https://www.chess.com/game/live/171939768760",
-   "at": 1784757285000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Queens Pawn Opening Accelerated London System",
-   "firstWhiteMove": "d4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 706
-  },
-  {
-   "url": "https://www.chess.com/game/live/171938226892",
-   "at": 1784754959000,
-   "color": "w",
-   "result": "win",
-   "opening": "Queens Pawn Opening Accelerated London System 2...Nf6 3.e3",
-   "firstWhiteMove": "d4",
-   "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 713
-  },
-  {
-   "url": "https://www.chess.com/game/live/171936157040",
-   "at": 1784751246000,
-   "color": "b",
-   "result": "win",
-   "opening": "Indian Game 2.Bf4 g6 3.Nc3 Bg7",
-   "firstWhiteMove": "d4",
-   "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 705
-  },
-  {
-   "url": "https://www.chess.com/game/live/171932623240",
-   "at": 1784745551000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Caro Kann Defense Exchange Variation 3...cxd5 4.Nf3 Nc6",
-   "firstWhiteMove": "e4",
-   "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 697
-  },
-  {
-   "url": "https://www.chess.com/game/live/171927857082",
-   "at": 1784739035000,
-   "color": "w",
-   "result": "win",
-   "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.Bf4 Nf6 4",
-   "firstWhiteMove": "d4",
-   "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 705
-  },
-  {
-   "url": "https://www.chess.com/game/live/171927317268",
-   "at": 1784737909000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Caro Kann Defense 2.Nc3 d5",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 697
-  },
-  {
-   "url": "https://www.chess.com/game/live/171909452040",
-   "at": 1784709942000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Caro Kann Defense Exchange Variation 3...cxd5",
-   "firstWhiteMove": "e4",
-   "castleMove": 9,
-   "scanned": true,
-   "blunders": 1,
-   "motifs": [
-    "hangingPiece",
-    "allowedMate"
-   ],
-   "myRating": 705
-  },
-  {
-   "url": "https://www.chess.com/game/live/171907946324",
-   "at": 1784707005000,
-   "color": "w",
-   "result": "win",
-   "opening": "Queens Pawn Opening Accelerated London System 2...e6 3.e3",
-   "firstWhiteMove": "d4",
-   "castleMove": 15,
-   "scanned": true,
-   "blunders": 0,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 713
-  },
   {
    "url": "https://www.chess.com/game/live/171897584172",
    "at": 1784680751000,
@@ -1274,8 +72,7 @@
    "blunders": 2,
    "motifs": [
     "allowedMate"
-   ],
-   "myRating": 705
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171896590012",
@@ -1287,8 +84,7 @@
    "castleMove": 8,
    "scanned": true,
    "blunders": 3,
-   "motifs": [],
-   "myRating": 713
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171895881638",
@@ -1303,8 +99,7 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ],
-   "myRating": 705
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171895360134",
@@ -1316,8 +111,7 @@
    "castleMove": 15,
    "scanned": true,
    "blunders": 2,
-   "motifs": [],
-   "myRating": 712
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171894839278",
@@ -1331,8 +125,7 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 704
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171894274448",
@@ -1346,8 +139,7 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 712
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171893910182",
@@ -1361,8 +153,7 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 704
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171893190052",
@@ -1376,8 +167,7 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 712
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171892510546",
@@ -1389,8 +179,7 @@
    "castleMove": 6,
    "scanned": true,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 712
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171892275628",
@@ -1404,8 +193,7 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 720
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171890584612",
@@ -1420,8 +208,7 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ],
-   "myRating": 728
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171890168504",
@@ -1435,8 +222,7 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 736
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171888469956",
@@ -1451,8 +237,7 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ],
-   "myRating": 744
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171886383698",
@@ -1467,8 +252,7 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ],
-   "myRating": 752
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171859896134",
@@ -1482,8 +266,7 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 760
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171854934918",
@@ -1497,8 +280,7 @@
    "blunders": 5,
    "motifs": [
     "allowedMate"
-   ],
-   "myRating": 752
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171854861128",
@@ -1510,8 +292,7 @@
    "castleMove": 7,
    "scanned": true,
    "blunders": 2,
-   "motifs": [],
-   "myRating": 745
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171853008468",
@@ -1523,8 +304,7 @@
    "castleMove": 6,
    "scanned": true,
    "blunders": 1,
-   "motifs": [],
-   "myRating": 753
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171852574938",
@@ -1538,8 +318,7 @@
    "blunders": 4,
    "motifs": [
     "missedMateIn1"
-   ],
-   "myRating": 745
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171846377692",
@@ -1553,8 +332,7 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 736
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171845107502",
@@ -1568,8 +346,7 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 744
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171810009240",
@@ -1581,8 +358,7 @@
    "castleMove": null,
    "scanned": true,
    "blunders": 2,
-   "motifs": [],
-   "myRating": 752
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171809477836",
@@ -1597,8 +373,7 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ],
-   "myRating": 744
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171808086436",
@@ -1612,8 +387,7 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 752
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171807642242",
@@ -1627,8 +401,7 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 761
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171807322836",
@@ -1642,8 +415,7 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 769
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171802805408",
@@ -1657,8 +429,7 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 761
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171799824018",
@@ -1672,8 +443,7 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 753
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171799339574",
@@ -1685,8 +455,7 @@
    "castleMove": 8,
    "scanned": true,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 753
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171714739746",
@@ -1700,8 +469,7 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ],
-   "myRating": 761
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171710691704",
@@ -1711,10 +479,9 @@
    "opening": "Queens Pawn Opening",
    "firstWhiteMove": "d4",
    "castleMove": 9,
-   "scanned": true,
-   "blunders": 3,
-   "motifs": [],
-   "myRating": 770
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171707305482",
@@ -1724,13 +491,9 @@
    "opening": "Four Knights Game Scotch Variation Accepted 5.Nxd4 Bb4",
    "firstWhiteMove": "e4",
    "castleMove": 12,
-   "scanned": true,
-   "blunders": 3,
-   "motifs": [
-    "hangingPiece",
-    "allowedMate"
-   ],
-   "myRating": 778
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171683703836",
@@ -1740,12 +503,9 @@
    "opening": "Pirc Defense Maroczy Defense",
    "firstWhiteMove": "e4",
    "castleMove": 13,
-   "scanned": true,
-   "blunders": 5,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 786
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171672024054",
@@ -1755,12 +515,9 @@
    "opening": "Van t Kruijs Opening 1...e5",
    "firstWhiteMove": "e3",
    "castleMove": 7,
-   "scanned": true,
+   "scanned": false,
    "blunders": 0,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 778
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171671610708",
@@ -1770,10 +527,9 @@
    "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.Bf4",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": true,
+   "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 770
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171671190894",
@@ -1783,10 +539,9 @@
    "opening": "Queens Pawn Opening Accelerated London System",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [],
-   "myRating": 762
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171670949770",
@@ -1796,12 +551,9 @@
    "opening": "Indian Game 2.Bf4 e6 3.e3 d5 4.Nf3",
    "firstWhiteMove": "d4",
    "castleMove": 9,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 754
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171667713824",
@@ -1811,12 +563,9 @@
    "opening": "Van t Kruijs Opening 1...e5",
    "firstWhiteMove": "e3",
    "castleMove": 12,
-   "scanned": true,
-   "blunders": 4,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 762
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171656248442",
@@ -1826,10 +575,9 @@
    "opening": "Queens Pawn Opening Accelerated London System 2...c6 3.e3",
    "firstWhiteMove": "d4",
    "castleMove": 9,
-   "scanned": true,
-   "blunders": 5,
-   "motifs": [],
-   "myRating": 770
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171636331208",
@@ -1839,10 +587,9 @@
    "opening": "Modern Defense with 1 d4 2.Bf4 Bg7 3.e3 d6",
    "firstWhiteMove": "d4",
    "castleMove": 13,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [],
-   "myRating": 761
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171626517070",
@@ -1852,10 +599,9 @@
    "opening": "Kings Pawn Opening Leonardis Variation 2...Nf6",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": true,
+   "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 754
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171625359098",
@@ -1865,12 +611,9 @@
    "opening": "Queens Pawn Opening Accelerated London System",
    "firstWhiteMove": "d4",
    "castleMove": 7,
-   "scanned": true,
-   "blunders": 7,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 746
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171546964998",
@@ -1880,12 +623,9 @@
    "opening": "Pirc Defense Classical Variation 4...Bg7 5.Bc4 O O",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 754
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171539651510",
@@ -1895,10 +635,9 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": true,
+   "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 746
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171538389936",
@@ -1908,12 +647,9 @@
    "opening": "Italian Game Two Knights Modern Bishops Opening",
    "firstWhiteMove": "e4",
    "castleMove": 14,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 738
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171538140044",
@@ -1923,12 +659,9 @@
    "opening": "Four Knights Game Spanish Variation Ranken Variation",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 737
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171536497938",
@@ -1938,12 +671,9 @@
    "opening": "Caro Kann Defense Karpov Variation 5.Bc4",
    "firstWhiteMove": "e4",
    "castleMove": 8,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 745
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171535931490",
@@ -1953,10 +683,9 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [],
-   "myRating": 737
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171528895396",
@@ -1966,10 +695,9 @@
    "opening": "Queens Gambit Accepted Central Variation",
    "firstWhiteMove": "d4",
    "castleMove": 13,
-   "scanned": true,
-   "blunders": 1,
-   "motifs": [],
-   "myRating": 729
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171455876052",
@@ -1979,10 +707,9 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": true,
-   "blunders": 4,
-   "motifs": [],
-   "myRating": 721
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171440275560",
@@ -1992,10 +719,9 @@
    "opening": "English Opening Reversed Sicilian Closed 3.g3 Nf6 4.Bg2 Bc5 ",
    "firstWhiteMove": "c4",
    "castleMove": 5,
-   "scanned": true,
-   "blunders": 1,
-   "motifs": [],
-   "myRating": 713
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171416513728",
@@ -2005,12 +731,9 @@
    "opening": "Queens Pawn Opening Blackmar Gambit 2...dxe4",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 705
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171405493482",
@@ -2020,12 +743,9 @@
    "opening": "Scandinavian Defense Closed 2...d4",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": true,
-   "blunders": 1,
-   "motifs": [
-    "missedMateIn1"
-   ],
-   "myRating": 713
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171400925830",
@@ -2035,12 +755,9 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": true,
-   "blunders": 4,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 705
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171400601878",
@@ -2050,12 +767,9 @@
    "opening": "Scotch Game 3...exd4",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": true,
-   "blunders": 5,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 697
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171399386756",
@@ -2065,10 +779,9 @@
    "opening": "Caro Kann Defense Main Line 4...Nf6",
    "firstWhiteMove": "e4",
    "castleMove": 9,
-   "scanned": true,
+   "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 704
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171395476196",
@@ -2078,10 +791,9 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": true,
-   "blunders": 1,
-   "motifs": [],
-   "myRating": 712
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171362334320",
@@ -2091,12 +803,9 @@
    "opening": "Van t Kruijs Opening 1...e5",
    "firstWhiteMove": "e3",
    "castleMove": 12,
-   "scanned": true,
-   "blunders": 1,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 720
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171358369846",
@@ -2108,8 +817,7 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 728
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171357785896",
@@ -2121,8 +829,7 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 720
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171356711984",
@@ -2134,8 +841,7 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 721
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171353210910",
@@ -2147,8 +853,7 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 712
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171352774156",
@@ -2160,8 +865,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 720
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171352140596",
@@ -2173,8 +877,7 @@
    "castleMove": 20,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 728
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171351071722",
@@ -2186,8 +889,7 @@
    "castleMove": 5,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 737
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171350696022",
@@ -2199,8 +901,7 @@
    "castleMove": 12,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 727
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171350126888",
@@ -2212,8 +913,7 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 736
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171321680786",
@@ -2225,8 +925,7 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 745
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171321511268",
@@ -2238,8 +937,7 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 735
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171319057258",
@@ -2251,8 +949,7 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 746
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171318769404",
@@ -2264,8 +961,7 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 736
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171318364260",
@@ -2277,8 +973,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 747
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171318021946",
@@ -2290,8 +985,7 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 758
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171313704196",
@@ -2303,8 +997,7 @@
    "castleMove": 15,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 769
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171312532248",
@@ -2316,8 +1009,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 780
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171312040124",
@@ -2329,8 +1021,7 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 768
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171311795024",
@@ -2342,8 +1033,7 @@
    "castleMove": 18,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 755
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171311164288",
@@ -2355,8 +1045,7 @@
    "castleMove": 12,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 769
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171310754084",
@@ -2368,8 +1057,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 782
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171309490530",
@@ -2381,8 +1069,7 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 767
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171309205588",
@@ -2394,8 +1081,7 @@
    "castleMove": 5,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 752
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171308840882",
@@ -2407,8 +1093,7 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 767
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171308694008",
@@ -2420,8 +1105,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 783
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171308293530",
@@ -2433,8 +1117,7 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 799
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171307683444",
@@ -2446,8 +1129,7 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 817
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171306993924",
@@ -2459,8 +1141,7 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 799
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171306919890",
@@ -2472,8 +1153,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 818
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171305372292",
@@ -2485,8 +1165,7 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 839
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171274602186",
@@ -2498,8 +1177,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 816
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171274401176",
@@ -2511,8 +1189,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 792
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171274021200",
@@ -2524,8 +1201,7 @@
    "castleMove": 13,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 766
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171272881810",
@@ -2537,8 +1213,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 792
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171272503628",
@@ -2550,8 +1225,7 @@
    "castleMove": 7,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 760
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171272313264",
@@ -2563,8 +1237,7 @@
    "castleMove": 5,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 762
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171271868116",
@@ -2576,8 +1249,7 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 799
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171271629262",
@@ -2589,8 +1261,7 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 800
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/171271506346",
@@ -2602,8 +1273,7 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 841
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121799270138",
@@ -2615,8 +1285,7 @@
    "castleMove": 19,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 891
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121750551608",
@@ -2628,8 +1297,7 @@
    "castleMove": 7,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 898
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121739120230",
@@ -2641,8 +1309,7 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 890
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121737997386",
@@ -2654,8 +1321,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 898
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121737841974",
@@ -2667,8 +1333,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 906
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121737649620",
@@ -2680,8 +1345,7 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 914
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121736276634",
@@ -2693,8 +1357,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 921
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121730750914",
@@ -2706,8 +1369,7 @@
    "castleMove": 14,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 929
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121730551224",
@@ -2719,8 +1381,7 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 929
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121730522830",
@@ -2732,8 +1393,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 937
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121730432950",
@@ -2745,8 +1405,7 @@
    "castleMove": 13,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 929
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121730304482",
@@ -2758,8 +1417,7 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 936
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121730074296",
@@ -2771,8 +1429,7 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 936
+   "motifs": []
   },
   {
    "url": "https://www.chess.com/game/live/121729986790",
@@ -2784,8 +1441,115 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": [],
-   "myRating": 944
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121729916482",
+   "at": 1735259070000,
+   "color": "w",
+   "result": "win",
+   "opening": "Three Knights Opening 3...Bb4",
+   "firstWhiteMove": "e4",
+   "castleMove": null,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121729755174",
+   "at": 1735258648000,
+   "color": "w",
+   "result": "win",
+   "opening": "Sicilian Defense Marshall Counterattack 4.exd5 exd5",
+   "firstWhiteMove": "e4",
+   "castleMove": 12,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121729486642",
+   "at": 1735257816000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Scotch Game",
+   "firstWhiteMove": "e4",
+   "castleMove": null,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121729277894",
+   "at": 1735256301000,
+   "color": "w",
+   "result": "win",
+   "opening": "Four Knights Game Spanish Variation Rubinstein Countergambit",
+   "firstWhiteMove": "e4",
+   "castleMove": 10,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121727800460",
+   "at": 1735249730000,
+   "color": "w",
+   "result": "loss",
+   "opening": "Scandinavian Defense Mieses Kotrc Variation 3.Nf3 Bg4 4.Be2 ",
+   "firstWhiteMove": "e4",
+   "castleMove": 9,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121727697778",
+   "at": 1735249093000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Ruy Lopez Opening Berlin Defense 4.d3",
+   "firstWhiteMove": "e4",
+   "castleMove": 11,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121727623298",
+   "at": 1735248769000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Queens Gambit Declined Chigorin Tartakower Gambit 4.cxd5",
+   "firstWhiteMove": "d4",
+   "castleMove": null,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121727518472",
+   "at": 1735248383000,
+   "color": "w",
+   "result": "win",
+   "opening": "Scotch Game 3...exd4 4.Nxd4 d6 5.Nc3",
+   "firstWhiteMove": "e4",
+   "castleMove": 15,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
+  },
+  {
+   "url": "https://www.chess.com/game/live/121727322830",
+   "at": 1735248034000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Kings Pawn Opening Kings Knight Variation 2...Nc6",
+   "firstWhiteMove": "e4",
+   "castleMove": 9,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": []
   }
  ],
  "drills": {
@@ -2800,104 +1564,25 @@
    "successes": 1,
    "bestMoves": 27,
    "lastAt": 1784701006157
-  },
-  "ladder-1": {
-   "attempts": 2,
-   "successes": 2,
-   "bestMoves": 7,
-   "lastAt": 1784702684842
-  },
-  "ladder-2": {
-   "attempts": 1,
-   "successes": 1,
-   "bestMoves": 7,
-   "lastAt": 1784702701807
-  },
-  "kq-1": {
-   "attempts": 32,
-   "successes": 7,
-   "bestMoves": 9,
-   "lastAt": 1784752771291
-  },
-  "kq-stalemate-test": {
-   "attempts": 3,
-   "successes": 1,
-   "bestMoves": 7,
-   "lastAt": 1784703936404
-  },
-  "kr-1": {
-   "attempts": 8,
-   "successes": 0,
-   "bestMoves": null,
-   "lastAt": 1784705420911
-  },
-  "coord-sprint": {
-   "attempts": 2,
-   "successes": 2,
-   "bestMoves": 6,
-   "lastAt": 1784709395412
-  },
-  "lesson:london-shape": {
-   "attempts": 1,
-   "successes": 1,
-   "bestMoves": 2,
-   "lastAt": 1784736081521
-  },
-  "lesson:caro-advance": {
-   "attempts": 1,
-   "successes": 1,
-   "bestMoves": 4,
-   "lastAt": 1784738243862
-  },
-  "conv-outside-passer": {
-   "attempts": 1,
-   "successes": 1,
-   "bestMoves": 16,
-   "lastAt": 1784752625074
   }
  },
  "puzzleStats": {
   "hangingPiece": {
-   "attempts": 29,
-   "correct": 29
-  },
-  "mateIn1": {
-   "attempts": 60,
-   "correct": 60,
-   "workingRating": 766
-  },
-  "mateIn2": {
-   "attempts": 12,
-   "correct": 12
-  },
-  "fork": {
-   "attempts": 12,
-   "correct": 12
-  },
-  "op:london": {
-   "attempts": 12,
-   "correct": 12
-  },
-  "mateIn3": {
-   "attempts": 12,
-   "correct": 11
-  },
-  "discoveredAttack": {
-   "attempts": 12,
-   "correct": 12
+   "attempts": 5,
+   "correct": 5
   }
  },
  "streak": {
-  "lastDay": "2026-07-22",
-  "days": 1
+  "lastDay": "",
+  "days": 0
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-22",
- "updatedAt": 1784759043424,
+ "updatedAt": 1784764113725,
  "ratingHistory": [
   {
-   "at": 1784758889213,
-   "rating": 714,
+   "at": 1784764113725,
+   "rating": 692,
    "best": 841,
    "tactics": 1427
   }
