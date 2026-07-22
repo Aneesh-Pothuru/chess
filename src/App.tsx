@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { initAutoSync, offerRestoreIfNewer } from './lib/sync'
+import { initAutoSync } from './lib/sync'
 import { Dashboard } from './features/dashboard/Dashboard'
 import { Play } from './features/play/Play'
 import { Openings } from './features/openings/Openings'
@@ -7,8 +7,9 @@ import { Puzzles } from './features/puzzles/Puzzles'
 import { Endgame } from './features/endgame/Endgame'
 import { Calculation } from './features/calculation/Calculation'
 import { Review } from './features/review/Review'
+import { Progress } from './features/progress/Progress'
 
-export type Route = 'dashboard' | 'play' | 'openings' | 'puzzles' | 'endgame' | 'calculation' | 'review'
+export type Route = 'dashboard' | 'play' | 'openings' | 'puzzles' | 'endgame' | 'calculation' | 'review' | 'progress'
 
 const NAV: Array<{ route: Route; label: string }> = [
   { route: 'dashboard', label: 'Today' },
@@ -17,6 +18,7 @@ const NAV: Array<{ route: Route; label: string }> = [
   { route: 'puzzles', label: 'Tactics' },
   { route: 'endgame', label: 'Conversion gym' },
   { route: 'calculation', label: 'Calculation' },
+  { route: 'progress', label: 'Progress' },
   { route: 'review', label: 'My games' },
 ]
 
@@ -24,10 +26,7 @@ export default function App() {
   const [route, setRoute] = useState<Route>('dashboard')
   const [target, setTarget] = useState<string | undefined>()
 
-  useEffect(() => {
-    void offerRestoreIfNewer()
-    return initAutoSync()
-  }, [])
+  useEffect(() => initAutoSync(), [])
 
   function go(r: Route, t?: string) {
     setRoute(r)
@@ -63,6 +62,7 @@ export default function App() {
         {route === 'puzzles' && <Puzzles key={target} initialTarget={target} />}
         {route === 'endgame' && <Endgame key={target} initialTarget={target} />}
         {route === 'calculation' && <Calculation />}
+        {route === 'progress' && <Progress />}
         {route === 'review' && <Review />}
       </main>
     </div>

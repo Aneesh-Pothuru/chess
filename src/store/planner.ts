@@ -144,6 +144,16 @@ export function seededRng(seed: number): () => number {
   }
 }
 
+// Baseline numbers from the 162-game audit (July 2026) — what progress is measured against.
+export const BASELINE = {
+  blundersPerGame: 2.4,
+  castleBy8Rate: 0.31,
+  vsD4Score: 0.26,
+  clockLeft: '4:36',
+  rating: 713,
+  best: 841,
+}
+
 /** Weekly metrics vs the report's targets, from coached + imported games. */
 export interface MetricsSummary {
   blundersPerGame: number | null

@@ -1,19 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
-import { computeMetrics, generateToday } from '../../store/planner'
+import { BASELINE, computeMetrics, generateToday } from '../../store/planner'
 import { useProfile } from '../../hooks/useProfile'
 import { fetchBriefing, type CoachBriefing } from '../../lib/briefing'
+import { checkCloudNewer, restoreFromCloud } from '../../lib/sync'
 import { update, type WeaknessKey } from '../../store/profile'
 import type { Route } from '../../App'
-
-// Baseline numbers from the 162-game analysis (July 2026) — what we measure against.
-const BASELINE = {
-  blundersPerGame: 2.4,
-  castleBy8Rate: 0.31,
-  vsD4Score: 0.26,
-  clockLeft: '4:36',
-  rating: 713,
-  best: 841,
-}
 
 const BLOCK_ICONS: Record<string, string> = {
   puzzles: '♞',
@@ -29,6 +20,8 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
   const today = useMemo(() => generateToday(profile), [profile])
   const metrics = computeMetrics(profile)
   const [briefing, setBriefing] = useState<CoachBriefing | null>(null)
+  const [cloudOffer, setCloudOffer] = useState<number | null>(null)
+  const [restoring, setRestoring] = useState(false)
 
   // Daily-routine channel: load the coach briefing and apply its weakness
   // adjustments exactly once per briefing id.
@@ -54,6 +47,17 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
     }
   }, [])
 
+  // Newer progress in the cloud (another device)? Offer it as a banner.
+  useEffect(() => {
+    let cancelled = false
+    void checkCloudNewer().then((offer) => {
+      if (!cancelled && offer) setCloudOffer(offer.updatedAt)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   const weaknesses = Object.entries(profile.weakness).sort((a, b) => b[1] - a[1]).slice(0, 4)
 
   return (
@@ -72,6 +76,28 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
         games, loose pieces around f7, and the 1.d4 black hole. Twenty focused minutes beats two
         hours of autopilot queuing.
       </p>
+
+      {cloudOffer && (
+        <div className="notice" style={{ marginTop: '1rem' }}>
+          Cloud progress from <strong>{new Date(cloudOffer).toLocaleString()}</strong> is newer than
+          this device.{' '}
+          <button
+            className="primary"
+            disabled={restoring}
+            onClick={async () => {
+              setRestoring(true)
+              await restoreFromCloud()
+              setRestoring(false)
+              setCloudOffer(null)
+            }}
+          >
+            {restoring ? 'Loading…' : 'Load it here'}
+          </button>{' '}
+          <button className="ghost" onClick={() => setCloudOffer(null)}>
+            Keep this device&apos;s version
+          </button>
+        </div>
+      )}
 
       {briefing && (
         <div className="panel" style={{ margin: '1rem 0', borderColor: 'var(--sienna)' }}>

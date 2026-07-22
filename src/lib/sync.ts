@@ -30,6 +30,38 @@ export function setToken(token: string): void {
   }
 }
 
+export interface TokenCheck {
+  ok: boolean
+  message: string
+  /** Cloud progress exists and its updatedAt, when readable. */
+  cloudUpdatedAt?: number | null
+}
+
+/**
+ * Verify a token actually works against the repo (and can write), and report
+ * whether a cloud progress file already exists — so "Save token" gives real
+ * feedback instead of silently writing to localStorage.
+ */
+export async function verifyToken(token: string): Promise<TokenCheck> {
+  if (!token.trim()) return { ok: false, message: 'Token cleared. Sync is off.' }
+  try {
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}`, {
+      headers: { Authorization: `Bearer ${token.trim()}`, Accept: 'application/vnd.github+json' },
+    })
+    if (res.status === 401) return { ok: false, message: 'GitHub rejected the token (401). Check you copied the whole github_pat_… value.' }
+    if (res.status === 404) return { ok: false, message: `Token works but cannot see ${OWNER}/${REPO} — grant it access to that repository.` }
+    if (!res.ok) return { ok: false, message: `GitHub error ${res.status} while checking the token.` }
+    const repo = (await res.json()) as { permissions?: { push?: boolean } }
+    if (!repo.permissions?.push) {
+      return { ok: false, message: 'Token can read the repo but not write. Give it Contents: Read and write.' }
+    }
+    const cloud = await fetchCloudProfile()
+    return { ok: true, message: 'Token verified — read and write access confirmed.', cloudUpdatedAt: cloud?.updatedAt ?? null }
+  } catch {
+    return { ok: false, message: 'Could not reach GitHub — check your connection and try again.' }
+  }
+}
+
 export interface SyncStatus {
   state: 'idle' | 'pushing' | 'ok' | 'error'
   message: string
@@ -135,20 +167,15 @@ export async function restoreFromCloud(): Promise<boolean> {
 }
 
 /**
- * On startup: if the cloud copy is meaningfully newer than this device
- * (another device or a fresh browser), offer to load it.
+ * On startup: is the cloud copy meaningfully newer than this device (another
+ * device or a fresh browser)? Non-blocking — the dashboard renders the offer
+ * as a banner; never use window.confirm for this (it freezes the app).
  */
-export async function offerRestoreIfNewer(): Promise<void> {
+export async function checkCloudNewer(): Promise<{ updatedAt: number } | null> {
   const remote = await fetchCloudProfile()
-  if (!remote?.updatedAt) return
-  const local = getProfile()
-  const localAt = local.updatedAt ?? 0
-  if (remote.updatedAt > localAt + 60_000) {
-    const when = new Date(remote.updatedAt).toLocaleString()
-    if (window.confirm(`Cloud training progress from ${when} is newer than this device. Load it here?`)) {
-      replaceProfile(remote)
-    }
-  }
+  if (!remote?.updatedAt) return null
+  const localAt = getProfile().updatedAt ?? 0
+  return remote.updatedAt > localAt + 60_000 ? { updatedAt: remote.updatedAt } : null
 }
 
 /** Debounced auto-push: sync 90s after the last profile change, if a token exists. */

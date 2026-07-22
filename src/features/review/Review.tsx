@@ -9,6 +9,7 @@ import {
   restoreFromCloud,
   setToken,
   subscribeSyncStatus,
+  verifyToken,
 } from '../../lib/sync'
 import { scanGame } from './scan'
 
@@ -166,8 +167,30 @@ function SyncPanel() {
   const status = useSyncExternalStore(subscribeSyncStatus, getSyncStatus)
   const [tokenInput, setTokenInput] = useState(getToken())
   const [busy, setBusy] = useState(false)
+  const [tokenFeedback, setTokenFeedback] = useState<{ ok: boolean; text: string } | null>(null)
+  const [confirmLoad, setConfirmLoad] = useState(false)
   const profile = useProfile()
   const hasToken = getToken().length > 0
+
+  async function saveToken() {
+    setBusy(true)
+    setTokenFeedback({ ok: true, text: 'Checking the token against GitHub…' })
+    const check = await verifyToken(tokenInput)
+    if (check.ok) {
+      setToken(tokenInput)
+      let text = `✓ ${check.message} Auto-sync is now on.`
+      if (check.cloudUpdatedAt) {
+        text += ` Cloud progress from ${new Date(check.cloudUpdatedAt).toLocaleString()} exists — use "Load cloud progress" to bring it onto this device.`
+      } else {
+        text += ' No cloud progress exists yet — press "Push progress now" on the device where you have been training.'
+      }
+      setTokenFeedback({ ok: true, text })
+    } else {
+      if (!tokenInput.trim()) setToken('')
+      setTokenFeedback({ ok: false, text: `✗ ${check.message}` })
+    }
+    setBusy(false)
+  }
 
   return (
     <div className="panel" style={{ marginTop: '0.9rem' }}>
@@ -190,13 +213,8 @@ function SyncPanel() {
           onChange={(e) => setTokenInput(e.target.value)}
           style={{ minWidth: 260 }}
         />
-        <button
-          onClick={() => {
-            setToken(tokenInput)
-            setTokenInput(getToken())
-          }}
-        >
-          Save token
+        <button onClick={() => void saveToken()} disabled={busy}>
+          {busy ? 'Checking…' : 'Save token'}
         </button>
         <button
           className="primary"
@@ -211,17 +229,32 @@ function SyncPanel() {
         </button>
         <button
           disabled={busy}
+          className={confirmLoad ? 'primary' : ''}
           onClick={async () => {
-            if (!window.confirm('Overwrite THIS device with the cloud copy?')) return
+            if (!confirmLoad) {
+              setConfirmLoad(true)
+              setTokenFeedback({ ok: true, text: 'This overwrites THIS device with the cloud copy. Click again to confirm.' })
+              return
+            }
+            setConfirmLoad(false)
             setBusy(true)
             const ok = await restoreFromCloud()
             setBusy(false)
-            if (!ok) window.alert('No cloud progress found yet — push from your main device first.')
+            setTokenFeedback(
+              ok
+                ? { ok: true, text: '✓ Cloud progress loaded onto this device.' }
+                : { ok: false, text: '✗ No cloud progress found yet — press "Push progress now" on the device where you have been training.' },
+            )
           }}
         >
-          Load cloud progress
+          {confirmLoad ? 'Confirm: load cloud copy' : 'Load cloud progress'}
         </button>
       </div>
+      {tokenFeedback && (
+        <div className={tokenFeedback.ok ? 'won-banner' : 'alert'} style={{ marginTop: '0.4rem' }}>
+          {tokenFeedback.text}
+        </div>
+      )}
       <p className="small muted">
         {hasToken ? 'Auto-sync is on: changes push ~90s after your last action. ' : 'No token saved — sync is off. '}
         <span className={status.state === 'error' ? 'mono' : 'mono muted'}>{status.message}</span>
