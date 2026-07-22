@@ -156,11 +156,15 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
         return true
       }
       if (g.isStalemate()) {
-        finish(
-          false,
-          config.trap ? `STALEMATE. ${config.trap}` : 'STALEMATE — half a point gone. Before every move in a won position: does their king have a move?',
-          moves,
-        )
+        if (config.goal === 'draw') {
+          finish(true, `Stalemate — a draw. The defense held in ${moves} moves.`, moves)
+        } else {
+          finish(
+            false,
+            config.trap ? `STALEMATE. ${config.trap}` : 'STALEMATE — half a point gone. Before every move in a won position: does their king have a move?',
+            moves,
+          )
+        }
         return true
       }
       if (g.isDraw()) {
@@ -206,6 +210,11 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
       const mv = g.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci[4] })
       setFen(g.fen())
       checkPosition(false, playerMovesRef.current, false, mv.isPromotion())
+    } catch {
+      if (gen === genRef.current) {
+        setState('failed')
+        setMessage('The engine stopped responding. Reload the page, then try the drill again.')
+      }
     } finally {
       if (gen === genRef.current) setThinking(false)
     }

@@ -10,21 +10,36 @@ let analystInit: Promise<UciEngine> | null = null
 
 export function getOpponent(): Promise<UciEngine> {
   if (!opponentInit) {
-    opponent = new UciEngine()
-    opponentInit = opponent.init().then(() => opponent!)
+    const eng = new UciEngine()
+    opponent = eng
+    opponentInit = eng.init().then(() => eng)
+    // A failed init must not be cached forever — clear so the next call retries.
+    opponentInit.catch(() => {
+      if (opponent === eng) {
+        eng.destroy()
+        opponent = null
+        opponentInit = null
+      }
+    })
   }
   return opponentInit
 }
 
 export function getAnalyst(): Promise<UciEngine> {
   if (!analystInit) {
-    analyst = new UciEngine()
-    analystInit = analyst
-      .init()
-      .then(async () => {
-        await analyst!.setOption('Skill Level', 20)
-        return analyst!
-      })
+    const eng = new UciEngine()
+    analyst = eng
+    analystInit = eng.init().then(async () => {
+      await eng.setOption('Skill Level', 20)
+      return eng
+    })
+    analystInit.catch(() => {
+      if (analyst === eng) {
+        eng.destroy()
+        analyst = null
+        analystInit = null
+      }
+    })
   }
   return analystInit
 }

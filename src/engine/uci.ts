@@ -35,7 +35,7 @@ export class UciEngine {
       const line = typeof e.data === 'string' ? e.data : ''
       for (const fn of [...this.listeners]) fn(line)
     }
-    await this.request('uci', (line) => line === 'uciok')
+    await this.request(['uci'], (line) => line === 'uciok')
     await this.waitReady()
     this._ready = true
   }
@@ -44,14 +44,23 @@ export class UciEngine {
     this.worker?.postMessage(cmd)
   }
 
-  /** Send a command and resolve when `until` matches an output line. */
-  private request(cmd: string, until: (line: string) => boolean, timeoutMs = 20000): Promise<string> {
+  /**
+   * Send commands and resolve when `until` matches an output line. ALL
+   * commands go through the serial queue so a `position` can never be
+   * separated from its `go`, and setoption can never land mid-search.
+   */
+  private request(
+    cmds: string[],
+    until: (line: string) => boolean,
+    timeoutMs = 20000,
+    onSend?: () => void,
+  ): Promise<string> {
     const run = () =>
       new Promise<string>((resolve, reject) => {
         if (!this.worker) return reject(new Error('engine not initialized'))
         const timer = setTimeout(() => {
           this.listeners = this.listeners.filter((l) => l !== onLine)
-          reject(new Error(`engine timeout waiting after: ${cmd}`))
+          reject(new Error(`engine timeout waiting after: ${cmds[cmds.length - 1]}`))
         }, timeoutMs)
         const onLine = (line: string) => {
           if (until(line)) {
@@ -61,7 +70,8 @@ export class UciEngine {
           }
         }
         this.listeners.push(onLine)
-        this.send(cmd)
+        onSend?.()
+        for (const cmd of cmds) this.send(cmd)
       })
     const next = this.queue.then(run, run)
     this.queue = next.catch(() => undefined)
@@ -69,12 +79,11 @@ export class UciEngine {
   }
 
   async waitReady(): Promise<void> {
-    await this.request('isready', (line) => line === 'readyok')
+    await this.request(['isready'], (line) => line === 'readyok')
   }
 
   async setOption(name: string, value: string | number): Promise<void> {
-    this.send(`setoption name ${name} value ${value}`)
-    await this.waitReady()
+    await this.request([`setoption name ${name} value ${value}`, 'isready'], (line) => line === 'readyok')
   }
 
   /**
@@ -84,7 +93,9 @@ export class UciEngine {
   async search(fen: string, go: string, timeoutMs = 30000): Promise<SearchResult> {
     const whiteToMove = fen.split(' ')[1] !== 'b'
     let lastInfo: { score: Score; pv: string[] } | null = null
+    let listening = false
     const infoListener = (line: string) => {
+      if (!listening) return
       if (!line.startsWith('info ') || !line.includes(' multipv 1 ') && !line.includes(' score ')) return
       if (line.includes(' multipv ') && !line.includes(' multipv 1 ')) return
       const m = /score (cp|mate) (-?\d+)/.exec(line)
@@ -98,8 +109,16 @@ export class UciEngine {
     }
     this.listeners.push(infoListener)
     try {
-      this.send(`position fen ${fen}`)
-      const bestLine = await this.request(go, (line) => line.startsWith('bestmove'), timeoutMs)
+      // position+go are sent atomically inside the queued slot, and the info
+      // listener only records lines from OUR search window.
+      const bestLine = await this.request(
+        [`position fen ${fen}`, go],
+        (line) => line.startsWith('bestmove'),
+        timeoutMs,
+        () => {
+          listening = true
+        },
+      )
       const bestMove = bestLine.split(/\s+/)[1]
       const info = lastInfo as { score: Score; pv: string[] } | null
       return { bestMove, score: info?.score ?? null, pv: info?.pv ?? [] }
@@ -109,8 +128,7 @@ export class UciEngine {
   }
 
   async newGame(): Promise<void> {
-    this.send('ucinewgame')
-    await this.waitReady()
+    await this.request(['ucinewgame', 'isready'], (line) => line === 'readyok')
   }
 
   destroy(): void {

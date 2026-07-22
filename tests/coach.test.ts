@@ -31,6 +31,11 @@ describe('hangingPieces', () => {
     expect(hangingPieces(new Chess().fen(), 'w')).toEqual([])
     expect(hangingPieces(new Chess().fen(), 'b')).toEqual([])
   })
+
+  it('ignores attackers that are absolutely pinned', () => {
+    // Bb5 pins Nc6 to Ke8: the d4 pawn is NOT capturable.
+    expect(hangingPieces('4k3/8/2n5/1B6/3P4/8/8/4K3 b - - 0 1', 'w')).toEqual([])
+  })
 })
 
 describe('mate in one', () => {
@@ -65,6 +70,18 @@ describe('detectFork', () => {
     const fork = detectFork('6k1/3q1r2/3p4/8/8/5N2/8/4K3 w - - 0 1', 'Ne5')
     expect(fork).toBeNull()
   })
+
+  it('a king touching defended pieces is not forking them', () => {
+    const fork = detectFork('7k/2p5/1n1n4/8/1K6/8/8/8 w - - 0 1', 'Kc5')
+    expect(fork).toBeNull()
+  })
+
+  it('a promotion forking defended pieces is valued as the new piece', () => {
+    // g8=Q "attacks" Nd8 (defended by Ra8) and Ng5 (defended by h6 pawn):
+    // queen-for-knight trades are not forks.
+    const fork = detectFork('r2n4/6P1/7p/k5n1/8/8/8/7K w - - 0 1', 'g8=Q')
+    expect(fork).toBeNull()
+  })
 })
 
 describe('f7f2Danger', () => {
@@ -97,11 +114,18 @@ describe('queenRaidWarning', () => {
 })
 
 describe('backRankWeakness', () => {
-  it('flags a boxed king with enemy heavies on the board', () => {
+  it('flags a boxed king facing a rook on an open file', () => {
     expect(backRankWeakness('3rk3/8/8/8/8/8/5PPP/6K1 w - - 0 1', 'w')).toBe(true)
   })
   it('quiet with luft', () => {
     expect(backRankWeakness('3rk3/8/8/8/8/6P1/5P1P/6K1 w - - 0 1', 'w')).toBe(false)
+  })
+  it('quiet in the start position (all files closed)', () => {
+    expect(backRankWeakness(new Chess().fen(), 'w')).toBe(false)
+    expect(backRankWeakness(new Chess().fen(), 'b')).toBe(false)
+  })
+  it('quiet when own rooks guard the back rank', () => {
+    expect(backRankWeakness('3rk3/8/8/8/8/8/5PPP/R3R1K1 w - - 0 1', 'w')).toBe(false)
   })
 })
 

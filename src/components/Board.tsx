@@ -42,7 +42,11 @@ export function Board({
   onSquareClick,
   maxWidth = 560,
 }: BoardProps) {
-  const [selected, setSelected] = useState<Square | null>(null)
+  // Selection remembers the fen it was made against, so any external position
+  // change (engine reply, takeback, next puzzle) invalidates it implicitly.
+  const [sel, setSel] = useState<{ square: Square; fen: string } | null>(null)
+  const selected = sel && sel.fen === fen ? sel.square : null
+  const setSelected = (square: Square | null) => setSel(square ? { square, fen } : null)
 
   const game = useMemo(() => new Chess(fen), [fen])
 

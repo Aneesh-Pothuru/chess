@@ -26,17 +26,19 @@ const WEAKNESS_BUCKETS: Partial<Record<WeaknessKey, string[]>> = {
   openingE4: ['op:caroKann'],
 }
 
-/** Deterministic-ish weighted pick of the day's puzzle buckets. */
+/** Deterministic-ish weighted pick of the day's puzzle buckets (all distinct). */
 export function pickPuzzleBuckets(profile: Profile, count: number, rng: () => number = Math.random): string[] {
   const entries = Object.entries(WEAKNESS_BUCKETS) as [WeaknessKey, string[]][]
-  const weighted: Array<{ bucket: string; w: number }> = []
+  // A bucket trained by several weaknesses sums their weights (more likely,
+  // never duplicated).
+  const weights = new Map<string, number>()
   for (const [key, buckets] of entries) {
     for (const bucket of buckets) {
-      weighted.push({ bucket, w: profile.weakness[key] })
+      weights.set(bucket, (weights.get(bucket) ?? 0) + profile.weakness[key])
     }
   }
   const picked: string[] = []
-  const pool = [...weighted]
+  const pool = [...weights.entries()].map(([bucket, w]) => ({ bucket, w }))
   while (picked.length < count && pool.length > 0) {
     const total = pool.reduce((s, x) => s + x.w, 0)
     let r = rng() * total
@@ -68,7 +70,7 @@ export function generateToday(profile: Profile, now: Date = new Date()): Session
     minutes: 10,
   })
 
-  const weekIsConversion = weekOfYear(now) % 2 === 0 ? profile.focusWeek === 'conversion' : profile.focusWeek !== 'conversion'
+  const weekIsConversion = weekIndex(now) % 2 === 0 ? profile.focusWeek === 'conversion' : profile.focusWeek !== 'conversion'
   if (weekIsConversion) {
     blocks.push({
       kind: 'conversion',
@@ -116,17 +118,25 @@ function dayKey(d: Date): number {
   return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()
 }
 
-function weekOfYear(d: Date): number {
-  const start = new Date(d.getFullYear(), 0, 1)
-  return Math.floor((d.getTime() - start.getTime()) / (7 * 86400_000))
+/** Continuous epoch-based week index — parity alternates cleanly across year boundaries. */
+function weekIndex(d: Date): number {
+  const local = d.getTime() - d.getTimezoneOffset() * 60000
+  return Math.floor(local / (7 * 86400_000))
 }
 
-/** Tiny deterministic PRNG so the daily plan is stable within a day. */
+/**
+ * Tiny deterministic PRNG so the daily plan is stable within a day. Hashed
+ * counter (splitmix-style) — consecutive integer seeds must decorrelate, or
+ * the "daily" rotation freezes on the same buckets for weeks.
+ */
 export function seededRng(seed: number): () => number {
   let s = seed >>> 0
   return () => {
-    s = (s * 1664525 + 1013904223) >>> 0
-    return s / 0xffffffff
+    s = (s + 0x9e3779b9) >>> 0
+    let t = s
+    t = Math.imul(t ^ (t >>> 16), 0x21f0aaad)
+    t = Math.imul(t ^ (t >>> 15), 0x735a2d97)
+    return ((t ^ (t >>> 15)) >>> 0) / 4294967296
   }
 }
 

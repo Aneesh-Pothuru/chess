@@ -15,6 +15,37 @@ export interface HangingPiece {
   kind: 'free' | 'underDefended'
 }
 
+/**
+ * Attackers of `square` by `byColor` that can actually capture there legally —
+ * chess.js attackers() ignores pins, so an absolutely pinned "attacker" must
+ * be filtered out. When it is not byColor's turn, legality is probed on a
+ * turn-flipped copy of the position (en passant cleared).
+ */
+export function legalAttackers(game: Chess, square: Square, byColor: Color): Square[] {
+  const raw = game.attackers(square, byColor)
+  if (raw.length === 0) return raw
+  let probe = game
+  if (game.turn() !== byColor) {
+    const parts = game.fen().split(' ')
+    parts[1] = byColor
+    parts[3] = '-'
+    try {
+      probe = new Chess(parts.join(' '))
+    } catch {
+      return raw // unflippable position (e.g. mover in check); keep the heuristic
+    }
+  }
+  return raw.filter((from) => {
+    try {
+      probe.move({ from, to: square, promotion: 'q' })
+      probe.undo()
+      return true
+    } catch {
+      return false
+    }
+  })
+}
+
 /** Pieces of `color` that can be won by a simple capture right now. */
 export function hangingPieces(fen: string, color: Color): HangingPiece[] {
   const game = new Chess(fen)
@@ -23,7 +54,7 @@ export function hangingPieces(fen: string, color: Color): HangingPiece[] {
   for (const row of game.board()) {
     for (const cell of row) {
       if (!cell || cell.color !== color || cell.type === 'k') continue
-      const attackers = game.attackers(cell.square, enemy)
+      const attackers = legalAttackers(game, cell.square, enemy)
       if (attackers.length === 0) continue
       const defenders = game.attackers(cell.square, color)
       if (defenders.length === 0) {
@@ -81,7 +112,9 @@ export function detectFork(fenBefore: string, san: string): ForkInfo | null {
   const mover = move.color
   const enemy: Color = mover === 'w' ? 'b' : 'w'
   const from = move.to // the piece now sits on move.to
-  const moverValue = PIECE_VALUE[move.piece]
+  // A promoted pawn forks with its NEW value; a king can never favorably
+  // capture a defended piece, so only undefended targets count for it.
+  const moverValue = move.piece === 'k' ? Infinity : PIECE_VALUE[move.promotion ?? move.piece]
   const targets: Square[] = []
   for (const row of game.board()) {
     for (const cell of row) {
@@ -157,7 +190,6 @@ export function queenRaidWarning(fen: string, color: Color): Square | null {
 /** Is `color` vulnerable to a back-rank mate pattern right now? */
 export function backRankWeakness(fen: string, color: Color): boolean {
   const game = new Chess(fen)
-  const rank = color === 'w' ? '1' : '2'
   const backRank = color === 'w' ? '1' : '8'
   const king = game.findPiece({ type: 'k', color })[0]
   if (!king || king[1] !== backRank) return false
@@ -174,13 +206,29 @@ export function backRankWeakness(fen: string, color: Color): boolean {
     }
   }
   if (!boxed) return false
-  // Any enemy rook/queen with an open file into the back rank is a live threat;
-  // cheap proxy: enemy heavy piece already on that rank or an open file exists.
-  void rank
+  // A live threat needs an enemy heavy piece already ON the back rank, or one
+  // aiming down a pawn-free file at an UNDEFENDED back-rank landing square.
   const enemy: Color = color === 'w' ? 'b' : 'w'
-  for (const row of game.board()) {
+  const board = game.board()
+  const fileHasPawn = (f: number): boolean => {
+    for (const row of board) {
+      const cell = row[f]
+      if (cell && cell.type === 'p') return true
+    }
+    return false
+  }
+  for (const row of board) {
     for (const cell of row) {
-      if (cell && cell.color === enemy && (cell.type === 'r' || cell.type === 'q')) return true
+      if (!cell || cell.color !== enemy || (cell.type !== 'r' && cell.type !== 'q')) continue
+      if (cell.square[1] === backRank) return true
+      const f = cell.square.charCodeAt(0) - 97
+      if (fileHasPawn(f)) continue
+      const landing = (cell.square[0] + backRank) as Square
+      const occupant = game.get(landing)
+      if (occupant && occupant.color === enemy) continue
+      // Defended landing square (excluding the boxed king itself) is not a mate threat.
+      const defenders = game.attackers(landing, color).filter((s) => s !== king)
+      if (defenders.length === 0) return true
     }
   }
   return false

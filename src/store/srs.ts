@@ -42,9 +42,9 @@ export function isDue(state: SrsState | undefined, now: number = Date.now()): bo
   return !state || state.dueAt <= now
 }
 
-/** Sort keys by urgency: overdue first, then never-seen. */
+/** Sort keys by urgency: overdue reviews first (oldest due first), then never-seen. */
 export function dueKeys(states: Record<string, SrsState>, keys: string[], now: number = Date.now()): string[] {
   return keys
     .filter((k) => isDue(states[k], now))
-    .sort((a, b) => (states[a]?.dueAt ?? 0) - (states[b]?.dueAt ?? 0))
+    .sort((a, b) => (states[a]?.dueAt ?? Infinity) - (states[b]?.dueAt ?? Infinity))
 }

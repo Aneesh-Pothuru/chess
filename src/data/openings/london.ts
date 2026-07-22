@@ -129,6 +129,9 @@ export const london: Repertoire = {
                   n('Nc6', { weight: 1 }, [
                     n('Nf3', { primary: true, note: 'Carry on: c3, Be2, O-O. The queen returns to better squares later.' }),
                   ]),
+                  n('cxd4', { weight: 1 }, [
+                    n('exd4', { primary: true, note: 'Recapture toward the center. If the queen ever grabs d4, Nf3 hits her with tempo and your pieces flood out — the initiative outweighs the pawn at this level.' }),
+                  ]),
                 ]),
               ]),
               n('Nc6', { weight: 2 }, [
@@ -207,11 +210,15 @@ export const london: Repertoire = {
                       n('d6', { weight: 2 }, [
                         n('Be2', { primary: true }, [
                           n('Nbd7', { weight: 1 }, [
-                            n('O-O', { primary: true, note: 'Castled by move 7. When ...e5 comes: dxe5 dxe5, then retreat the bishop to h2 rather than grabbing e5 — the grab dissolves into mass trades full of ...Ng4 and ...Nxf2 tricks. Keep the tension and outplay them.' }, [
+                            n('O-O', { primary: true, note: 'Castled by move 7. When ...e5 comes: dxe5 dxe5 and take on e5 — h3 is exactly why the grab works here (see the line).' }, [
                               n('e5', { weight: 1 }, [
                                 n('dxe5', { primary: true }, [
                                   n('dxe5', { weight: 1 }, [
-                                    n('Bh2', { primary: true, note: 'The discipline move. Taking on e5 twice looks like a free pawn but ...Qxd1 then ...Ng4! and ...Nxf2! wins it straight back with everything traded. Keep the bishop, pressure e5 slowly with Nc3-d5 or c3+Qc2.' }),
+                                    n('Nxe5', { primary: true, note: 'Count it out: this wins a clean pawn BECAUSE you played h3. The old trick ...Qxd1, ...Ng4 hitting your bishop fails to hxg4. Without h3 on the board, do not grab.' }, [
+                                      n('Nxe5', { weight: 1 }, [
+                                        n('Bxe5', { primary: true, note: 'If ...Qxd1 Rxd1 Ng4, then hxg4 keeps the pawn; if ...Nd7, Bxg7 Kxg7 and you are up a pawn with the safer king. A pawn is a pawn — convert it.' }),
+                                      ]),
+                                    ]),
                                   ]),
                                 ]),
                               ]),
@@ -244,7 +251,17 @@ export const london: Repertoire = {
           n('c5', { weight: 2 }, [
             n('e3', { primary: true }, [
               n('Qb6', { weight: 1 }, [
-                n('Qc1', { primary: true, note: 'The standing answer when c3 is not in yet: guard b2, develop, ask the queen what she is doing on b6.' }),
+                n('Nc3', {
+                  primary: true,
+                  note: 'The confident answer without ...d5 played: offer b2! If Qxb2, Nb5! nearly traps the queen — Nc7+ forks king and rook, and Rb1 comes with tempo. (Qc1 here would drop d4 to ...cxd4 and ...Qxd4.)',
+                }, [
+                  n('Qxb2', { weight: 1, name: 'The poisoned pawn' }, [
+                    n('Nb5', { primary: true, note: 'Both threats at once: Nc7+ forking, and Rb1 hitting the queen. Best play still costs Black material or the queen spends five moves escaping while you develop everything.' }),
+                  ]),
+                  n('cxd4', { weight: 1 }, [
+                    n('exd4', { primary: true, note: 'Center intact, knight already out. If Qxb2 now, Nb5 still lands.' }),
+                  ]),
+                ]),
               ]),
               n('cxd4', { weight: 1 }, [
                 n('exd4', { primary: true }),
@@ -305,6 +322,28 @@ export const london: Repertoire = {
           ]),
           n('g6', { weight: 1 }, [
             n('e3', { primary: true }),
+          ]),
+        ]),
+      ]),
+      n('e5', { weight: 1, name: 'Englund Gambit' }, [
+        n('dxe5', { primary: true, note: 'Take it. The gambit is unsound — but it is a TRAP opening aimed at d4 players, so the next few moves must be exact.' }, [
+          n('Nc6', { weight: 2 }, [
+            n('Nf3', { primary: true, note: 'Guard the extra pawn. Expect ...Qe7 next — that is the trap being set.' }, [
+              n('Qe7', { weight: 2, name: 'The Englund trap' }, [
+                n('Bf4', { primary: true, note: 'Fine — but ONLY with the follow-up memorized: after ...Qb4+, block with Bd2, and when the queen eats b2, Nc3! The famous trap needs you to play Bc3?? instead; never put the bishop there.' }, [
+                  n('Qb4+', { weight: 2 }, [
+                    n('Bd2', { primary: true, note: 'Block with the bishop, hitting the queen.' }, [
+                      n('Qxb2', { weight: 2 }, [
+                        n('Nc3', {
+                          primary: true,
+                          note: 'The move that defuses everything. (Bc3?? loses the queen to ...Bb4! — that is their whole plan.) Now Rb1 comes with tempo, Nb5/Nd5 chase the queen, and you are simply a pawn up with a huge lead.',
+                        }),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
           ]),
         ]),
       ]),

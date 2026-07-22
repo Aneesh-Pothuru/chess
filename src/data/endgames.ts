@@ -58,7 +58,8 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     stage: 2,
     fen: 'k7/8/8/2Q5/8/8/8/4K3 w - - 0 1',
     playerColor: 'w',
-    moveTarget: 6,
+    moveTarget: 8, // DTM is exactly 7 vs best defense; 8 leaves one waiting move
+
     goal: 'mate',
     lesson:
       'The king is already cornered on a8. Qb6?? or Qc7?? right now is STALEMATE — the exact draw that has cost you half-points. Mark time with your king (Kd2, Ke3...) and only close in when mate is forced.',

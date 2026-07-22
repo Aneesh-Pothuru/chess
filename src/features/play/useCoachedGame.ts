@@ -275,7 +275,8 @@ export function useCoachedGame(): CoachedGame {
     try {
       const engine = await getOpponent()
       const uci = await opponentMove(engine, g.fen(), presetRef.current)
-      if (gen !== genRef.current) return
+      // The game may have ended (resign, flag) while the bot was thinking.
+      if (gen !== genRef.current || statusRef.current !== 'playing') return
       const mv = g.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci[4] })
       const ply = g.history().length
       setFen(g.fen())
@@ -527,6 +528,7 @@ export function useCoachedGame(): CoachedGame {
   }, [finish])
 
   const hint = useCallback((): { from: string; to: string; note: string } | null => {
+    if (gameRef.current.turn() !== playerColorRef.current) return null
     if (!inBookRef.current || !repRef.current) return null
     const book = primaryMove(repRef.current, bookPathRef.current)
     if (!book) return null

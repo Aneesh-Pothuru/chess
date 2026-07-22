@@ -65,7 +65,7 @@ export const kingsIndian: Repertoire = {
                                           ]),
                                         ]),
                                         n('Bg5', { weight: 1 }, [
-                                          n('Rd4', { primary: true, note: 'Active rook, hits e4 and c4. Endgames are won by activity — this is what "convert" looks like.' }),
+                                          n('Re8', { primary: true, note: 'Defend e5 laterally and step out of tricks — Rd4?? here loses the exchange to Nxd4. If Nd5 comes: ...Nxd5 cxd5 and THEN ...Nd4, the knight (not the rook) owning the hole.' }),
                                         ]),
                                       ]),
                                     ]),
