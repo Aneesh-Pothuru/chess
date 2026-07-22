@@ -3,7 +3,7 @@
  "createdAt": 1784699495918,
  "settings": {
   "username": "pots1125",
-  "opponentPresetId": "sparring",
+  "opponentPresetId": "challenger",
   "strictMode": true,
   "tenSecondFloor": true
  },
@@ -16,7 +16,7 @@
   "openingD4": 0.9700000000000001,
   "openingE4": 0.55,
   "endgameTechnique": 0.9099999999999999,
-  "timeUsage": 0.8600000000000001,
+  "timeUsage": 0.8700000000000001,
   "castling": 0.75,
   "boardVision": 0.7,
   "coordinates": 0.5700000000000001
@@ -1141,6 +1141,97 @@
  ],
  "imported": [
   {
+   "url": "https://www.chess.com/game/live/171939953540",
+   "at": 1784757757000,
+   "color": "b",
+   "result": "win",
+   "opening": "Pirc Defense Lions Jaw Variation 3...g6",
+   "firstWhiteMove": "d4",
+   "castleMove": 5,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 714
+  },
+  {
+   "url": "https://www.chess.com/game/live/171939768760",
+   "at": 1784757285000,
+   "color": "w",
+   "result": "loss",
+   "opening": "Queens Pawn Opening Accelerated London System",
+   "firstWhiteMove": "d4",
+   "castleMove": null,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 706
+  },
+  {
+   "url": "https://www.chess.com/game/live/171938226892",
+   "at": 1784754959000,
+   "color": "w",
+   "result": "win",
+   "opening": "Queens Pawn Opening Accelerated London System 2...Nf6 3.e3",
+   "firstWhiteMove": "d4",
+   "castleMove": 8,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 713
+  },
+  {
+   "url": "https://www.chess.com/game/live/171936157040",
+   "at": 1784751246000,
+   "color": "b",
+   "result": "win",
+   "opening": "Indian Game 2.Bf4 g6 3.Nc3 Bg7",
+   "firstWhiteMove": "d4",
+   "castleMove": 5,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 705
+  },
+  {
+   "url": "https://www.chess.com/game/live/171932623240",
+   "at": 1784745551000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Caro Kann Defense Exchange Variation 3...cxd5 4.Nf3 Nc6",
+   "firstWhiteMove": "e4",
+   "castleMove": 10,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 697
+  },
+  {
+   "url": "https://www.chess.com/game/live/171927857082",
+   "at": 1784739035000,
+   "color": "w",
+   "result": "win",
+   "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.Bf4 Nf6 4",
+   "firstWhiteMove": "d4",
+   "castleMove": 8,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 705
+  },
+  {
+   "url": "https://www.chess.com/game/live/171927317268",
+   "at": 1784737909000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Caro Kann Defense 2.Nc3 d5",
+   "firstWhiteMove": "e4",
+   "castleMove": null,
+   "scanned": false,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 697
+  },
+  {
    "url": "https://www.chess.com/game/live/171909452040",
    "at": 1784709942000,
    "color": "b",
@@ -1153,7 +1244,8 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ]
+   ],
+   "myRating": 705
   },
   {
    "url": "https://www.chess.com/game/live/171907946324",
@@ -1167,7 +1259,8 @@
    "blunders": 0,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 713
   },
   {
    "url": "https://www.chess.com/game/live/171897584172",
@@ -1181,7 +1274,8 @@
    "blunders": 2,
    "motifs": [
     "allowedMate"
-   ]
+   ],
+   "myRating": 705
   },
   {
    "url": "https://www.chess.com/game/live/171896590012",
@@ -1193,7 +1287,8 @@
    "castleMove": 8,
    "scanned": true,
    "blunders": 3,
-   "motifs": []
+   "motifs": [],
+   "myRating": 713
   },
   {
    "url": "https://www.chess.com/game/live/171895881638",
@@ -1208,7 +1303,8 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ]
+   ],
+   "myRating": 705
   },
   {
    "url": "https://www.chess.com/game/live/171895360134",
@@ -1220,7 +1316,8 @@
    "castleMove": 15,
    "scanned": true,
    "blunders": 2,
-   "motifs": []
+   "motifs": [],
+   "myRating": 712
   },
   {
    "url": "https://www.chess.com/game/live/171894839278",
@@ -1234,7 +1331,8 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 704
   },
   {
    "url": "https://www.chess.com/game/live/171894274448",
@@ -1248,7 +1346,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 712
   },
   {
    "url": "https://www.chess.com/game/live/171893910182",
@@ -1262,7 +1361,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 704
   },
   {
    "url": "https://www.chess.com/game/live/171893190052",
@@ -1276,7 +1376,8 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 712
   },
   {
    "url": "https://www.chess.com/game/live/171892510546",
@@ -1288,7 +1389,8 @@
    "castleMove": 6,
    "scanned": true,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 712
   },
   {
    "url": "https://www.chess.com/game/live/171892275628",
@@ -1302,7 +1404,8 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 720
   },
   {
    "url": "https://www.chess.com/game/live/171890584612",
@@ -1317,7 +1420,8 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ]
+   ],
+   "myRating": 728
   },
   {
    "url": "https://www.chess.com/game/live/171890168504",
@@ -1331,7 +1435,8 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 736
   },
   {
    "url": "https://www.chess.com/game/live/171888469956",
@@ -1346,7 +1451,8 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ]
+   ],
+   "myRating": 744
   },
   {
    "url": "https://www.chess.com/game/live/171886383698",
@@ -1361,7 +1467,8 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ]
+   ],
+   "myRating": 752
   },
   {
    "url": "https://www.chess.com/game/live/171859896134",
@@ -1375,7 +1482,8 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 760
   },
   {
    "url": "https://www.chess.com/game/live/171854934918",
@@ -1389,7 +1497,8 @@
    "blunders": 5,
    "motifs": [
     "allowedMate"
-   ]
+   ],
+   "myRating": 752
   },
   {
    "url": "https://www.chess.com/game/live/171854861128",
@@ -1401,7 +1510,8 @@
    "castleMove": 7,
    "scanned": true,
    "blunders": 2,
-   "motifs": []
+   "motifs": [],
+   "myRating": 745
   },
   {
    "url": "https://www.chess.com/game/live/171853008468",
@@ -1413,7 +1523,8 @@
    "castleMove": 6,
    "scanned": true,
    "blunders": 1,
-   "motifs": []
+   "motifs": [],
+   "myRating": 753
   },
   {
    "url": "https://www.chess.com/game/live/171852574938",
@@ -1427,7 +1538,8 @@
    "blunders": 4,
    "motifs": [
     "missedMateIn1"
-   ]
+   ],
+   "myRating": 745
   },
   {
    "url": "https://www.chess.com/game/live/171846377692",
@@ -1441,7 +1553,8 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 736
   },
   {
    "url": "https://www.chess.com/game/live/171845107502",
@@ -1455,7 +1568,8 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 744
   },
   {
    "url": "https://www.chess.com/game/live/171810009240",
@@ -1467,7 +1581,8 @@
    "castleMove": null,
    "scanned": true,
    "blunders": 2,
-   "motifs": []
+   "motifs": [],
+   "myRating": 752
   },
   {
    "url": "https://www.chess.com/game/live/171809477836",
@@ -1482,7 +1597,8 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ]
+   ],
+   "myRating": 744
   },
   {
    "url": "https://www.chess.com/game/live/171808086436",
@@ -1496,7 +1612,8 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 752
   },
   {
    "url": "https://www.chess.com/game/live/171807642242",
@@ -1510,7 +1627,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 761
   },
   {
    "url": "https://www.chess.com/game/live/171807322836",
@@ -1524,7 +1642,8 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 769
   },
   {
    "url": "https://www.chess.com/game/live/171802805408",
@@ -1538,7 +1657,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 761
   },
   {
    "url": "https://www.chess.com/game/live/171799824018",
@@ -1552,7 +1672,8 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 753
   },
   {
    "url": "https://www.chess.com/game/live/171799339574",
@@ -1564,7 +1685,8 @@
    "castleMove": 8,
    "scanned": true,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 753
   },
   {
    "url": "https://www.chess.com/game/live/171714739746",
@@ -1578,7 +1700,8 @@
    "blunders": 3,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 761
   },
   {
    "url": "https://www.chess.com/game/live/171710691704",
@@ -1590,7 +1713,8 @@
    "castleMove": 9,
    "scanned": true,
    "blunders": 3,
-   "motifs": []
+   "motifs": [],
+   "myRating": 770
   },
   {
    "url": "https://www.chess.com/game/live/171707305482",
@@ -1605,7 +1729,8 @@
    "motifs": [
     "hangingPiece",
     "allowedMate"
-   ]
+   ],
+   "myRating": 778
   },
   {
    "url": "https://www.chess.com/game/live/171683703836",
@@ -1619,7 +1744,8 @@
    "blunders": 5,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 786
   },
   {
    "url": "https://www.chess.com/game/live/171672024054",
@@ -1633,7 +1759,8 @@
    "blunders": 0,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 778
   },
   {
    "url": "https://www.chess.com/game/live/171671610708",
@@ -1645,7 +1772,8 @@
    "castleMove": null,
    "scanned": true,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 770
   },
   {
    "url": "https://www.chess.com/game/live/171671190894",
@@ -1657,7 +1785,8 @@
    "castleMove": null,
    "scanned": true,
    "blunders": 2,
-   "motifs": []
+   "motifs": [],
+   "myRating": 762
   },
   {
    "url": "https://www.chess.com/game/live/171670949770",
@@ -1671,7 +1800,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 754
   },
   {
    "url": "https://www.chess.com/game/live/171667713824",
@@ -1685,7 +1815,8 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 762
   },
   {
    "url": "https://www.chess.com/game/live/171656248442",
@@ -1697,7 +1828,8 @@
    "castleMove": 9,
    "scanned": true,
    "blunders": 5,
-   "motifs": []
+   "motifs": [],
+   "myRating": 770
   },
   {
    "url": "https://www.chess.com/game/live/171636331208",
@@ -1709,7 +1841,8 @@
    "castleMove": 13,
    "scanned": true,
    "blunders": 2,
-   "motifs": []
+   "motifs": [],
+   "myRating": 761
   },
   {
    "url": "https://www.chess.com/game/live/171626517070",
@@ -1721,7 +1854,8 @@
    "castleMove": 5,
    "scanned": true,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 754
   },
   {
    "url": "https://www.chess.com/game/live/171625359098",
@@ -1735,7 +1869,8 @@
    "blunders": 7,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 746
   },
   {
    "url": "https://www.chess.com/game/live/171546964998",
@@ -1749,7 +1884,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 754
   },
   {
    "url": "https://www.chess.com/game/live/171539651510",
@@ -1761,7 +1897,8 @@
    "castleMove": 10,
    "scanned": true,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 746
   },
   {
    "url": "https://www.chess.com/game/live/171538389936",
@@ -1775,7 +1912,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 738
   },
   {
    "url": "https://www.chess.com/game/live/171538140044",
@@ -1789,7 +1927,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 737
   },
   {
    "url": "https://www.chess.com/game/live/171536497938",
@@ -1803,7 +1942,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 745
   },
   {
    "url": "https://www.chess.com/game/live/171535931490",
@@ -1815,7 +1955,8 @@
    "castleMove": 5,
    "scanned": true,
    "blunders": 2,
-   "motifs": []
+   "motifs": [],
+   "myRating": 737
   },
   {
    "url": "https://www.chess.com/game/live/171528895396",
@@ -1827,7 +1968,8 @@
    "castleMove": 13,
    "scanned": true,
    "blunders": 1,
-   "motifs": []
+   "motifs": [],
+   "myRating": 729
   },
   {
    "url": "https://www.chess.com/game/live/171455876052",
@@ -1839,7 +1981,8 @@
    "castleMove": 5,
    "scanned": true,
    "blunders": 4,
-   "motifs": []
+   "motifs": [],
+   "myRating": 721
   },
   {
    "url": "https://www.chess.com/game/live/171440275560",
@@ -1851,7 +1994,8 @@
    "castleMove": 5,
    "scanned": true,
    "blunders": 1,
-   "motifs": []
+   "motifs": [],
+   "myRating": 713
   },
   {
    "url": "https://www.chess.com/game/live/171416513728",
@@ -1865,7 +2009,8 @@
    "blunders": 2,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 705
   },
   {
    "url": "https://www.chess.com/game/live/171405493482",
@@ -1879,7 +2024,8 @@
    "blunders": 1,
    "motifs": [
     "missedMateIn1"
-   ]
+   ],
+   "myRating": 713
   },
   {
    "url": "https://www.chess.com/game/live/171400925830",
@@ -1893,7 +2039,8 @@
    "blunders": 4,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 705
   },
   {
    "url": "https://www.chess.com/game/live/171400601878",
@@ -1907,7 +2054,8 @@
    "blunders": 5,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 697
   },
   {
    "url": "https://www.chess.com/game/live/171399386756",
@@ -1919,7 +2067,8 @@
    "castleMove": 9,
    "scanned": true,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 704
   },
   {
    "url": "https://www.chess.com/game/live/171395476196",
@@ -1931,7 +2080,8 @@
    "castleMove": 5,
    "scanned": true,
    "blunders": 1,
-   "motifs": []
+   "motifs": [],
+   "myRating": 712
   },
   {
    "url": "https://www.chess.com/game/live/171362334320",
@@ -1945,7 +2095,8 @@
    "blunders": 1,
    "motifs": [
     "hangingPiece"
-   ]
+   ],
+   "myRating": 720
   },
   {
    "url": "https://www.chess.com/game/live/171358369846",
@@ -1957,7 +2108,8 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 728
   },
   {
    "url": "https://www.chess.com/game/live/171357785896",
@@ -1969,7 +2121,8 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 720
   },
   {
    "url": "https://www.chess.com/game/live/171356711984",
@@ -1981,7 +2134,8 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 721
   },
   {
    "url": "https://www.chess.com/game/live/171353210910",
@@ -1993,7 +2147,8 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 712
   },
   {
    "url": "https://www.chess.com/game/live/171352774156",
@@ -2005,7 +2160,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 720
   },
   {
    "url": "https://www.chess.com/game/live/171352140596",
@@ -2017,7 +2173,8 @@
    "castleMove": 20,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 728
   },
   {
    "url": "https://www.chess.com/game/live/171351071722",
@@ -2029,7 +2186,8 @@
    "castleMove": 5,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 737
   },
   {
    "url": "https://www.chess.com/game/live/171350696022",
@@ -2041,7 +2199,8 @@
    "castleMove": 12,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 727
   },
   {
    "url": "https://www.chess.com/game/live/171350126888",
@@ -2053,7 +2212,8 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 736
   },
   {
    "url": "https://www.chess.com/game/live/171321680786",
@@ -2065,7 +2225,8 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 745
   },
   {
    "url": "https://www.chess.com/game/live/171321511268",
@@ -2077,7 +2238,8 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 735
   },
   {
    "url": "https://www.chess.com/game/live/171319057258",
@@ -2089,7 +2251,8 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 746
   },
   {
    "url": "https://www.chess.com/game/live/171318769404",
@@ -2101,7 +2264,8 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 736
   },
   {
    "url": "https://www.chess.com/game/live/171318364260",
@@ -2113,7 +2277,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 747
   },
   {
    "url": "https://www.chess.com/game/live/171318021946",
@@ -2125,7 +2290,8 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 758
   },
   {
    "url": "https://www.chess.com/game/live/171313704196",
@@ -2137,7 +2303,8 @@
    "castleMove": 15,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 769
   },
   {
    "url": "https://www.chess.com/game/live/171312532248",
@@ -2149,7 +2316,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 780
   },
   {
    "url": "https://www.chess.com/game/live/171312040124",
@@ -2161,7 +2329,8 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 768
   },
   {
    "url": "https://www.chess.com/game/live/171311795024",
@@ -2173,7 +2342,8 @@
    "castleMove": 18,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 755
   },
   {
    "url": "https://www.chess.com/game/live/171311164288",
@@ -2185,7 +2355,8 @@
    "castleMove": 12,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 769
   },
   {
    "url": "https://www.chess.com/game/live/171310754084",
@@ -2197,7 +2368,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 782
   },
   {
    "url": "https://www.chess.com/game/live/171309490530",
@@ -2209,7 +2381,8 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 767
   },
   {
    "url": "https://www.chess.com/game/live/171309205588",
@@ -2221,7 +2394,8 @@
    "castleMove": 5,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 752
   },
   {
    "url": "https://www.chess.com/game/live/171308840882",
@@ -2233,7 +2407,8 @@
    "castleMove": 11,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 767
   },
   {
    "url": "https://www.chess.com/game/live/171308694008",
@@ -2245,7 +2420,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 783
   },
   {
    "url": "https://www.chess.com/game/live/171308293530",
@@ -2257,7 +2433,8 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 799
   },
   {
    "url": "https://www.chess.com/game/live/171307683444",
@@ -2269,7 +2446,8 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 817
   },
   {
    "url": "https://www.chess.com/game/live/171306993924",
@@ -2281,7 +2459,8 @@
    "castleMove": 9,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 799
   },
   {
    "url": "https://www.chess.com/game/live/171306919890",
@@ -2293,7 +2472,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 818
   },
   {
    "url": "https://www.chess.com/game/live/171305372292",
@@ -2305,7 +2485,8 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 839
   },
   {
    "url": "https://www.chess.com/game/live/171274602186",
@@ -2317,7 +2498,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 816
   },
   {
    "url": "https://www.chess.com/game/live/171274401176",
@@ -2329,7 +2511,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 792
   },
   {
    "url": "https://www.chess.com/game/live/171274021200",
@@ -2341,7 +2524,8 @@
    "castleMove": 13,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 766
   },
   {
    "url": "https://www.chess.com/game/live/171272881810",
@@ -2353,7 +2537,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 792
   },
   {
    "url": "https://www.chess.com/game/live/171272503628",
@@ -2365,7 +2550,8 @@
    "castleMove": 7,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 760
   },
   {
    "url": "https://www.chess.com/game/live/171272313264",
@@ -2377,7 +2563,8 @@
    "castleMove": 5,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 762
   },
   {
    "url": "https://www.chess.com/game/live/171271868116",
@@ -2389,7 +2576,8 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 799
   },
   {
    "url": "https://www.chess.com/game/live/171271629262",
@@ -2401,7 +2589,8 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 800
   },
   {
    "url": "https://www.chess.com/game/live/171271506346",
@@ -2413,7 +2602,8 @@
    "castleMove": 6,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 841
   },
   {
    "url": "https://www.chess.com/game/live/121799270138",
@@ -2425,7 +2615,8 @@
    "castleMove": 19,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 891
   },
   {
    "url": "https://www.chess.com/game/live/121750551608",
@@ -2437,7 +2628,8 @@
    "castleMove": 7,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 898
   },
   {
    "url": "https://www.chess.com/game/live/121739120230",
@@ -2449,7 +2641,8 @@
    "castleMove": 8,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 890
   },
   {
    "url": "https://www.chess.com/game/live/121737997386",
@@ -2461,7 +2654,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 898
   },
   {
    "url": "https://www.chess.com/game/live/121737841974",
@@ -2473,7 +2667,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 906
   },
   {
    "url": "https://www.chess.com/game/live/121737649620",
@@ -2485,7 +2680,8 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 914
   },
   {
    "url": "https://www.chess.com/game/live/121736276634",
@@ -2497,7 +2693,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 921
   },
   {
    "url": "https://www.chess.com/game/live/121730750914",
@@ -2509,7 +2706,8 @@
    "castleMove": 14,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 929
   },
   {
    "url": "https://www.chess.com/game/live/121730551224",
@@ -2521,7 +2719,8 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 929
   },
   {
    "url": "https://www.chess.com/game/live/121730522830",
@@ -2533,7 +2732,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 937
   },
   {
    "url": "https://www.chess.com/game/live/121730432950",
@@ -2545,7 +2745,8 @@
    "castleMove": 13,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 929
   },
   {
    "url": "https://www.chess.com/game/live/121730304482",
@@ -2557,7 +2758,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 936
   },
   {
    "url": "https://www.chess.com/game/live/121730074296",
@@ -2569,7 +2771,8 @@
    "castleMove": 10,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 936
   },
   {
    "url": "https://www.chess.com/game/live/121729986790",
@@ -2581,91 +2784,8 @@
    "castleMove": null,
    "scanned": false,
    "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121729916482",
-   "at": 1735259070000,
-   "color": "w",
-   "result": "win",
-   "opening": "Three Knights Opening 3...Bb4",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121729755174",
-   "at": 1735258648000,
-   "color": "w",
-   "result": "win",
-   "opening": "Sicilian Defense Marshall Counterattack 4.exd5 exd5",
-   "firstWhiteMove": "e4",
-   "castleMove": 12,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121729486642",
-   "at": 1735257816000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Scotch Game",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121729277894",
-   "at": 1735256301000,
-   "color": "w",
-   "result": "win",
-   "opening": "Four Knights Game Spanish Variation Rubinstein Countergambit",
-   "firstWhiteMove": "e4",
-   "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121727800460",
-   "at": 1735249730000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Scandinavian Defense Mieses Kotrc Variation 3.Nf3 Bg4 4.Be2 ",
-   "firstWhiteMove": "e4",
-   "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121727697778",
-   "at": 1735249093000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Ruy Lopez Opening Berlin Defense 4.d3",
-   "firstWhiteMove": "e4",
-   "castleMove": 11,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121727623298",
-   "at": 1735248769000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Queens Gambit Declined Chigorin Tartakower Gambit 4.cxd5",
-   "firstWhiteMove": "d4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "motifs": [],
+   "myRating": 944
   }
  ],
  "drills": {
@@ -2773,7 +2893,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-22",
- "updatedAt": 1784758899474,
+ "updatedAt": 1784759043424,
  "ratingHistory": [
   {
    "at": 1784758889213,
