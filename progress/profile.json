@@ -16,7 +16,7 @@
   "openingD4": 0.9400000000000001,
   "openingE4": 0.55,
   "endgameTechnique": 0.97,
-  "timeUsage": 0.7,
+  "timeUsage": 0.73,
   "castling": 0.75,
   "boardVision": 0.7,
   "coordinates": 0.55
@@ -1868,5 +1868,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784705682886
+ "updatedAt": 1784706066664
 }
