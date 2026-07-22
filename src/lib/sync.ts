@@ -178,7 +178,12 @@ export async function checkCloudNewer(): Promise<{ updatedAt: number } | null> {
   return remote.updatedAt > localAt + 60_000 ? { updatedAt: remote.updatedAt } : null
 }
 
-/** Debounced auto-push: sync 90s after the last profile change, if a token exists. */
+/**
+ * Auto-sync:
+ * - On every profile change, push 90s after the LAST change (debounced).
+ * - On app open, if this device has unpushed changes from a previous session
+ *   (e.g. the tab was closed inside the 90s window), push them immediately.
+ */
 export function initAutoSync(): () => void {
   let timer: ReturnType<typeof setTimeout> | null = null
   const unsub = subscribe(() => {
@@ -188,6 +193,16 @@ export function initAutoSync(): () => void {
       void pushProgress()
     }, 90_000)
   })
+  // Catch-up push on open: local newer than cloud means the last session's
+  // final changes never made it up.
+  if (getToken()) {
+    void fetchCloudProfile().then((remote) => {
+      const localAt = getProfile().updatedAt ?? 0
+      if (localAt > (remote?.updatedAt ?? 0) + 5_000) {
+        void pushProgress()
+      }
+    })
+  }
   return () => {
     unsub()
     if (timer) clearTimeout(timer)
