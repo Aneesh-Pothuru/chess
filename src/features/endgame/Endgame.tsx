@@ -287,7 +287,9 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
     setHintBusy(true)
     try {
       const analyst = await getAnalyst()
-      const res = await analyst.search(g.fen(), 'go depth 18 movetime 900')
+      // Deep enough to actually SEE the mate in basic endings — shallow hints
+      // corral without optimizing and can burn the move budget.
+      const res = await analyst.search(g.fen(), 'go depth 24 movetime 1500')
       if (!res.bestMove || res.bestMove === '(none)') return
       const probe = new Chess(g.fen())
       const mv = probe.move({ from: res.bestMove.slice(0, 2), to: res.bestMove.slice(2, 4), promotion: res.bestMove[4] })
@@ -311,9 +313,22 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
       </div>
       <div className="board-page" style={{ marginTop: '0.6rem' }}>
         <div>
-          {state === 'success' && <div className="won-banner"><strong>{message}</strong></div>}
-          {state === 'failed' && <div className="alert"><strong>{message}</strong></div>}
-          {state === 'playing' && message && <div className="notice">{message}</div>}
+          {/* Fixed-height slot: hint/status text swaps here without moving the board. */}
+          <div className="coach-strip">
+            {state === 'success' ? (
+              <div className="won-banner"><strong>{message}</strong></div>
+            ) : state === 'failed' ? (
+              <div className="alert"><strong>{message}</strong></div>
+            ) : message ? (
+              <div className="notice">{message}</div>
+            ) : (
+              <div className="coach-tip">
+                <span className="muted">
+                  Goal: {config.goal} in ≤ {config.moveTarget} moves. Stuck? The Hint button asks the engine.
+                </span>
+              </div>
+            )}
+          </div>
           <Board
             fen={fen}
             orientation={config.playerColor === 'w' ? 'white' : 'black'}

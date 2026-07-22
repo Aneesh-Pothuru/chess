@@ -336,9 +336,15 @@ function Drill({ rep }: { rep: Repertoire }) {
   return (
     <div className="board-page" style={{ marginTop: '0.9rem' }}>
       <div>
-        {drill.feedback && (
-          <div className={drill.feedback.kind === 'good' ? 'won-banner' : 'alert'}>{drill.feedback.text}</div>
-        )}
+        <div className="coach-strip">
+          {drill.feedback ? (
+            <div className={drill.feedback.kind === 'good' ? 'won-banner' : 'alert'}>{drill.feedback.text}</div>
+          ) : (
+            <div className="coach-tip">
+              <span className="muted">Play your repertoire move. Notes appear here as the line unfolds.</span>
+            </div>
+          )}
+        </div>
         <Board
           fen={game.fen()}
           orientation={rep.color === 'w' ? 'white' : 'black'}

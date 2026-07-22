@@ -268,8 +268,10 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
   return (
     <div className="board-page">
       <div>
-        <div className={active.state === 'failed' ? 'alert' : active.state === 'solved' ? 'won-banner' : 'notice'}>
-          {active.message}
+        <div className="coach-strip">
+          <div className={active.state === 'failed' ? 'alert' : active.state === 'solved' ? 'won-banner' : 'notice'}>
+            {active.message}
+          </div>
         </div>
         <Board
           fen={active.game.fen()}

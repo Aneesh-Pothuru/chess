@@ -46,7 +46,8 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     stage: 2,
     fen: '8/8/3k4/8/8/8/8/2Q1K3 w - - 0 1',
     playerColor: 'w',
-    moveTarget: 10,
+    moveTarget: 12, // DTM ~10 vs perfect defense; +2 for human technique
+
     goal: 'mate',
     lesson:
       "The box method: put your queen a knight's-move away from their king and shrink the box every move — never check. When their king reaches the edge, bring YOUR king up two squares away, then mate.",
@@ -72,7 +73,8 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     stage: 3,
     fen: '8/8/8/4k3/8/8/8/R3K3 w - - 0 1',
     playerColor: 'w',
-    moveTarget: 16,
+    moveTarget: 20, // theoretical max is 16 vs perfect defense; 20 = good human technique
+
     goal: 'mate',
     lesson:
       'The box, patiently: the rook fences the king; your king walks up to take the opposition. When the kings face off, check with the rook to push theirs back a rank. Repeat to the edge.',
