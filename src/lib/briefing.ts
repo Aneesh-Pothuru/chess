@@ -4,6 +4,7 @@
 // commit shows up without a manual pull) and adjusts the day's plan.
 
 import type { WeaknessKey } from '../store/profile'
+import { getToken as getGithubToken } from './sync'
 
 export interface BriefingFocus {
   route: 'play' | 'openings' | 'puzzles' | 'endgame' | 'calculation' | 'review'
@@ -26,7 +27,10 @@ export interface CoachBriefing {
 }
 
 const LOCAL_URL = `${import.meta.env.BASE_URL}coach/briefing.json`
-const REMOTE_URL = 'https://raw.githubusercontent.com/Aneesh-Pothuru/chess/main/public/coach/briefing.json'
+// Anonymous raw URL works only if the repo is public; the API URL works for a
+// private repo when the user has saved a token (Cloud sync panel).
+const RAW_URL = 'https://raw.githubusercontent.com/Aneesh-Pothuru/chess/main/public/coach/briefing.json'
+const API_URL = 'https://api.github.com/repos/Aneesh-Pothuru/chess/contents/public/coach/briefing.json?ref=main'
 const MAX_AGE_DAYS = 4
 
 function valid(b: unknown): b is CoachBriefing {
@@ -45,9 +49,9 @@ function isFresh(b: CoachBriefing, now: Date): boolean {
   return age >= 0 ? age < MAX_AGE_DAYS * 86400_000 : true
 }
 
-async function tryFetch(url: string): Promise<CoachBriefing | null> {
+async function tryFetch(url: string, headers?: Record<string, string>): Promise<CoachBriefing | null> {
   try {
-    const res = await fetch(url, { cache: 'no-cache' })
+    const res = await fetch(url, { cache: 'no-cache', headers })
     if (!res.ok) return null
     const data: unknown = await res.json()
     return valid(data) ? data : null
@@ -56,9 +60,20 @@ async function tryFetch(url: string): Promise<CoachBriefing | null> {
   }
 }
 
+function remoteBriefing(): Promise<CoachBriefing | null> {
+  const token = getGithubToken()
+  if (token) {
+    return tryFetch(API_URL, {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github.raw+json',
+    })
+  }
+  return tryFetch(RAW_URL)
+}
+
 /** Newest fresh briefing from the local copy or the GitHub repo, if any. */
 export async function fetchBriefing(now: Date = new Date()): Promise<CoachBriefing | null> {
-  const [local, remote] = await Promise.all([tryFetch(LOCAL_URL), tryFetch(REMOTE_URL)])
+  const [local, remote] = await Promise.all([tryFetch(LOCAL_URL), remoteBriefing()])
   const fresh = [local, remote].filter((b): b is CoachBriefing => b !== null && isFresh(b, now))
   if (fresh.length === 0) return null
   fresh.sort((a, b) => (a.date < b.date ? 1 : -1))

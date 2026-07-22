@@ -103,10 +103,20 @@ export async function pushProgress(): Promise<boolean> {
   return false
 }
 
-/** Fetch the cloud copy (no token needed — the repo is public raw-readable). */
+/**
+ * Fetch the cloud copy. With a saved token this uses the API (works for a
+ * private repo); without one it falls back to the anonymous raw URL, which
+ * only works if the repo is public.
+ */
 export async function fetchCloudProfile(): Promise<Profile | null> {
+  const token = getToken()
   try {
-    const res = await fetch(`${RAW}?t=${Date.now()}`, { cache: 'no-store' })
+    const res = token
+      ? await fetch(`${API}?ref=main`, {
+          cache: 'no-store',
+          headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.raw+json' },
+        })
+      : await fetch(`${RAW}?t=${Date.now()}`, { cache: 'no-store' })
     if (!res.ok) return null
     const data = (await res.json()) as Profile
     return data?.version === 1 ? data : null
