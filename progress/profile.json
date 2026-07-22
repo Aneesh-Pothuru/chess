@@ -728,6 +728,13 @@
    "passes": 1,
    "fails": 0,
    "lastAt": 1784708362778
+  },
+  "caro-kann/e4 c6 d4 d5 e5 Bf5 Nf3 e6 Be2 c5 O-O Nc6 c3 Nge7": {
+   "level": 0,
+   "dueAt": 1784710173212,
+   "passes": 0,
+   "fails": 1,
+   "lastAt": 1784710173212
   }
  },
  "games": [
@@ -2344,5 +2351,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784709641894
+ "updatedAt": 1784710173212
 }
