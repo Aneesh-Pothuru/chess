@@ -15,7 +15,7 @@
   "f7f2": 0.8,
   "openingD4": 0.9400000000000001,
   "openingE4": 0.55,
-  "endgameTechnique": 1,
+  "endgameTechnique": 0.97,
   "timeUsage": 0.7,
   "castling": 0.75,
   "boardVision": 0.7,
@@ -1830,10 +1830,10 @@
    "lastAt": 1784702701807
   },
   "kq-1": {
-   "attempts": 25,
-   "successes": 2,
-   "bestMoves": 10,
-   "lastAt": 1784704144170
+   "attempts": 26,
+   "successes": 3,
+   "bestMoves": 9,
+   "lastAt": 1784705682885
   },
   "kq-stalemate-test": {
    "attempts": 3,
@@ -1868,5 +1868,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784705565094
+ "updatedAt": 1784705682886
 }
