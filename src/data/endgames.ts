@@ -27,7 +27,7 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     moveTarget: 8,
     goal: 'mate',
     lesson:
-      'The ladder: one rook checks, the other cuts off the next rank. Walk the king to the edge rung by rung. If the king attacks a rook, slide that rook to the far side of the board.',
+      "The ladder: your rooks take turns, rung by rung. First, one rook fences the rank just BELOW their king — here, Ra5. Then the other checks on the king's rank — Rb6+ — and the king must retreat, because the fence blocks the way down. The back rook leapfrogs up to become the new fence, the other checks again. Repeat to the back rank, where the last check IS mate. Your own king never moves. Two safety rules: always check from a DISTANCE — a rook that lands next to their king gets eaten — and if their king walks toward a rook, slide that rook to the far side along its rank. Note: the target fits THIS method; the Hint button shows the engine's fastest mate, which may not ladder at all. Both win.",
   },
   {
     id: 'ladder-2',
@@ -37,7 +37,7 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     playerColor: 'w',
     moveTarget: 9,
     goal: 'mate',
-    lesson: 'Same ladder, but the king will chase your rooks. The answer is always the same: move the harassed rook far away along its rank — it loses no power at distance.',
+    lesson: "Same ladder — but two wrinkles: your rooks start stacked on one file, blocking each other, and their king starts close enough to hunt them. Solve both BEFORE you climb: swing one rook to the far wing (Rh2), then ladder from there. Distance is the entire defense — a rook fences a rank just as well from across the board. Every time the king chases a rook, slide it along its rank to the far side and carry on. Never land a rook next to their king. Hints show the engine's fastest mate, which may not look like a ladder; the target fits the ladder.",
   },
   // Stage 2 — K+Q mate
   {
@@ -46,11 +46,11 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     stage: 2,
     fen: '8/8/3k4/8/8/8/8/2Q1K3 w - - 0 1',
     playerColor: 'w',
-    moveTarget: 12, // DTM ~10 vs perfect defense; +2 for human technique
+    moveTarget: 15, // tablebase-audited: DTM is 8, but the TAUGHT box method takes 15 vs perfect defense
 
     goal: 'mate',
     lesson:
-      "The box method: put your queen a knight's-move away from their king and shrink the box every move — never check. When their king reaches the edge, bring YOUR king up two squares away, then mate.",
+      "The box method, four steps. ONE: put the queen a knight's-move from their king — from d6, that's Qc4 — then COPY every step their king takes, same direction, keeping that distance. The copy is the whole trick: the box shrinks by itself, and the queen can never be caught. No checks. TWO, the STOP: the moment their king is stuck shuffling on the edge, the queen FREEZES — one more shrink is stalemate. THREE: walk YOUR king up until it stands two squares from theirs. FOUR: the first check of the whole drill is the mate. About the target: 15 moves fits THIS method against perfect defense (measured exactly). The engine mates in 8 using checks the method forbids — so when a Hint shows a check, that's the engine's fastest road, not a correction of the box. Both win; the box is the one you'll trust under the clock.",
     trap: "Queen a knight's-move from a CORNERED king = stalemate. When the king sits in the corner, stop shrinking and walk your own king in.",
   },
   {
@@ -63,7 +63,7 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
 
     goal: 'mate',
     lesson:
-      'The king is already cornered on a8. Qb6?? or Qc7?? right now is STALEMATE — the exact draw that has cost you half-points. Mark time with your king (Kd2, Ke3...) and only close in when mate is forced.',
+      "Their king is already in jail: Qc5 pins it to a8, b7 and b8 — three squares, nothing else. The queen's work is DONE, and touching her is where the half-point dies: Qb6?? or Qc7?? this instant is stalemate. Leave the queen alone and MARCH your king the short road: Kd2, Kc3, Kb4, Kb5, then b6. If their king parks on b7 to block, one long-distance check (Qd5+) shoves it back — then keep walking. With your king on b6, the queen's next move is mate. Before EVERY queen move: does their king have a square? For once the method IS the engine's fastest line — mate in 7, so the 8-move target gives one move of slack.",
     trap: 'Qc7 or Qb6 immediately = stalemate. The queen waits; the king walks.',
   },
   // Stage 3 — K+R mate
@@ -77,7 +77,7 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
 
     goal: 'mate',
     lesson:
-      'The box, patiently: the rook fences the king; your king walks up to take the opposition. When the kings face off, check with the rook to push theirs back a rank. Repeat to the edge.',
+      "The box, patiently — three tools. ONE, the fence: your rook holds one rank between the kings and never gives up that job; park it on the far side, out of their king's reach, and if chased, slide it ALONG its rank, never off it. TWO, your king does all the pushing: walk it up behind the fence until it faces their king with one square between — only on that face-off does the rook check, pushing them back a rank. THREE, the tempo move: when their king steps SIDEWAYS instead of facing yours, do NOT check — slide the rook one square along its rank instead. Now they must face your king (you check) or drift to the corner. The finish: kings face to face, rook checks along the edge — mate. The 20-move target is exactly what this method achieves vs perfect defense (measured); the engine mates in 14 with moves that look nothing like a box. Both win.",
     trap: 'Kc6+Rb7 vs Ka8 with Black to move is stalemate — keep the fenced area no smaller than it must be until your king arrives.',
   },
   // Stage 4 — rule of the square
