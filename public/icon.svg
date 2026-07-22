@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="36" fill="#211a14"/>
+  <rect x="10" y="10" width="160" height="160" rx="28" fill="none" stroke="#3a2f25" stroke-width="3"/>
+  <!-- simple pawn silhouette in boxwood ivory with sienna base -->
+  <circle cx="90" cy="62" r="24" fill="#e8dcc7"/>
+  <path d="M70 96 Q90 82 110 96 L104 118 L76 118 Z" fill="#e8dcc7"/>
+  <rect x="58" y="122" width="64" height="12" rx="6" fill="#e8dcc7"/>
+  <rect x="48" y="140" width="84" height="14" rx="7" fill="#c96f3b"/>
+</svg>

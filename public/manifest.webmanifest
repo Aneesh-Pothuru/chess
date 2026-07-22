@@ -1,0 +1,13 @@
+{
+  "name": "Chess Coach — pots1125",
+  "short_name": "Chess Coach",
+  "description": "Personal chess coach: play, drill, and convert won games.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#171310",
+  "theme_color": "#211a14",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}
