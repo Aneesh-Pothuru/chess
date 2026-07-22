@@ -8,16 +8,16 @@
   "tenSecondFloor": true
  },
  "weakness": {
-  "conversion": 0.8899999999999999,
-  "hangingPiece": 0.8299999999999998,
+  "conversion": 0.8599999999999999,
+  "hangingPiece": 0.98,
   "fork": 0.85,
-  "mateThreats": 0.6299999999999998,
+  "mateThreats": 0.6699999999999998,
   "f7f2": 0.8,
   "openingD4": 0.9400000000000001,
   "openingE4": 0.55,
   "endgameTechnique": 0.97,
-  "timeUsage": 0.73,
-  "castling": 0.75,
+  "timeUsage": 0.78,
+  "castling": 0.76,
   "boardVision": 0.7,
   "coordinates": 0.55
  },
@@ -310,7 +310,41 @@
    "lastAt": 1784702495691
   }
  },
- "games": [],
+ "games": [
+  {
+   "id": "1784706493550",
+   "at": 1784706493550,
+   "color": "w",
+   "presetId": "sparring",
+   "result": "win",
+   "moves": 40,
+   "blunders": 0,
+   "mistakes": 1,
+   "castleMove": 8,
+   "avgSecondsPerMove": 8.647977777777779,
+   "motifs": [
+    "hangingPiece",
+    "missedMateIn1"
+   ],
+   "opening": "d4 d6 Bf4",
+   "wonGameConverted": true
+  },
+  {
+   "id": "1784706540333",
+   "at": 1784706540333,
+   "color": "w",
+   "presetId": "sparring",
+   "result": "loss",
+   "moves": 1,
+   "blunders": 0,
+   "mistakes": 0,
+   "castleMove": null,
+   "avgSecondsPerMove": 11.076,
+   "motifs": [],
+   "opening": "d4 e6",
+   "wonGameConverted": null
+  }
+ ],
  "imported": [
   {
    "url": "https://www.chess.com/game/live/171897584172",
@@ -1863,10 +1897,10 @@
   }
  },
  "streak": {
-  "lastDay": "",
-  "days": 0
+  "lastDay": "2026-07-22",
+  "days": 1
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784706066664
+ "updatedAt": 1784706558246
 }
