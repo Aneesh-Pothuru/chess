@@ -8,10 +8,10 @@
   "tenSecondFloor": true
  },
  "weakness": {
-  "conversion": 0.8299999999999998,
+  "conversion": 0.7999999999999998,
   "hangingPiece": 1,
   "fork": 0.7299999999999999,
-  "mateThreats": 0.27999999999999947,
+  "mateThreats": 0.15999999999999936,
   "f7f2": 0.8,
   "openingD4": 0.9700000000000001,
   "openingE4": 0.55,
@@ -1001,6 +1001,90 @@
    "passes": 1,
    "fails": 0,
    "lastAt": 1784750460886
+  },
+  "puzzle:11RJ0": {
+   "level": 1,
+   "dueAt": 1784838862344,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752462344
+  },
+  "puzzle:1WGtQ": {
+   "level": 1,
+   "dueAt": 1784838866826,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752466826
+  },
+  "puzzle:1rhAu": {
+   "level": 1,
+   "dueAt": 1784838873479,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752473479
+  },
+  "puzzle:0Au3L": {
+   "level": 1,
+   "dueAt": 1784838878245,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752478245
+  },
+  "puzzle:1M9t4": {
+   "level": 1,
+   "dueAt": 1784838894196,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752494196
+  },
+  "puzzle:002vV": {
+   "level": 1,
+   "dueAt": 1784838900430,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752500430
+  },
+  "puzzle:1oLcy": {
+   "level": 1,
+   "dueAt": 1784838909650,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752509650
+  },
+  "puzzle:0Tk80": {
+   "level": 1,
+   "dueAt": 1784838923201,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752523201
+  },
+  "puzzle:0Znpr": {
+   "level": 1,
+   "dueAt": 1784838932072,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752532072
+  },
+  "puzzle:0hbeR": {
+   "level": 1,
+   "dueAt": 1784838948070,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752548070
+  },
+  "puzzle:1no2C": {
+   "level": 1,
+   "dueAt": 1784838954142,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752554142
+  },
+  "puzzle:1kGA0": {
+   "level": 1,
+   "dueAt": 1784838958959,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784752558959
   }
  },
  "games": [
@@ -2610,10 +2694,10 @@
    "lastAt": 1784702701807
   },
   "kq-1": {
-   "attempts": 28,
-   "successes": 5,
+   "attempts": 32,
+   "successes": 7,
    "bestMoves": 9,
-   "lastAt": 1784708695339
+   "lastAt": 1784752771291
   },
   "kq-stalemate-test": {
    "attempts": 3,
@@ -2644,6 +2728,12 @@
    "successes": 1,
    "bestMoves": 4,
    "lastAt": 1784738243862
+  },
+  "conv-outside-passer": {
+   "attempts": 1,
+   "successes": 1,
+   "bestMoves": 16,
+   "lastAt": 1784752625074
   }
  },
  "puzzleStats": {
@@ -2652,8 +2742,9 @@
    "correct": 29
   },
   "mateIn1": {
-   "attempts": 48,
-   "correct": 48
+   "attempts": 60,
+   "correct": 60,
+   "workingRating": 766
   },
   "mateIn2": {
    "attempts": 12,
@@ -2682,5 +2773,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-22",
- "updatedAt": 1784752436879
+ "updatedAt": 1784752823892
 }
