@@ -115,6 +115,12 @@ function Ideas({ rep }: { rep: Repertoire }) {
 
 // ---------------------------------------------------------------- Explore
 
+function lastMoveOf(game: Chess): { from: string; to: string } | null {
+  const h = game.history({ verbose: true })
+  const tail = h[h.length - 1]
+  return tail ? { from: tail.from, to: tail.to } : null
+}
+
 function Learn({ rep }: { rep: Repertoire }) {
   const [path, setPath] = useState<string[]>([])
   const game = useMemo(() => {
@@ -132,7 +138,12 @@ function Learn({ rep }: { rep: Repertoire }) {
 
   return (
     <div className="board-page" style={{ marginTop: '0.9rem' }}>
-      <Board fen={game.fen()} orientation={rep.color === 'w' ? 'white' : 'black'} interactive={false} />
+      <Board
+        fen={game.fen()}
+        orientation={rep.color === 'w' ? 'white' : 'black'}
+        lastMove={lastMoveOf(game)}
+        interactive={false}
+      />
       <div>
         <div className="panel">
           <div className="eyebrow">{path.length === 0 ? 'Start' : path.join(' ')}</div>
@@ -259,7 +270,7 @@ function Drill({ rep }: { rep: Repertoire }) {
       })
       return false
     }
-    let nextPath = [...drill.path, san]
+    const nextPath = [...drill.path, san]
     const node = nodeAt(rep, nextPath)
     const noteText = node?.note
     // Opponent replies from the line (or weighted sample).
@@ -275,16 +286,25 @@ function Drill({ rep }: { rep: Repertoire }) {
       })
       return true
     }
-    nextPath = opponentAdvance(nextPath, drill.lineKey)
-    const stillHasChildren = childrenAt(rep, nextPath).length > 0
+    const replyPath = opponentAdvance(nextPath, drill.lineKey)
+    const stillHasChildren = childrenAt(rep, replyPath).length > 0
+    if (!stillHasChildren) recordDrillResult(drill.lineKey, true)
+    // Show the player's move first; the book reply lands after the animation.
     setDrill({
       lineKey: drill.lineKey,
       path: nextPath,
       feedback: noteText ? { kind: 'good', text: noteText } : null,
-      finished: !stillHasChildren,
+      finished: false,
       failed: false,
     })
-    if (!stillHasChildren) recordDrillResult(drill.lineKey, true)
+    setTimeout(() => {
+      setDrill((prev) => {
+        if (prev.lineKey !== drill.lineKey || prev.finished || prev.path.join(' ') !== nextPath.join(' ')) {
+          return prev
+        }
+        return { ...prev, path: replyPath, finished: !stillHasChildren }
+      })
+    }, 550)
     return true
   }
 
@@ -323,6 +343,7 @@ function Drill({ rep }: { rep: Repertoire }) {
           fen={game.fen()}
           orientation={rep.color === 'w' ? 'white' : 'black'}
           onMove={onMove}
+          lastMove={lastMoveOf(game)}
           interactive={!drill.finished && game.turn() === rep.color}
         />
         <div className="row" style={{ marginTop: '0.7rem' }}>

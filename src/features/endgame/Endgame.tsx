@@ -112,7 +112,11 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
   const [message, setMessage] = useState('')
   const [playerMoves, setPlayerMoves] = useState(0)
   const [thinking, setThinking] = useState(false)
+  const [lastMove, setLastMove] = useState<{ from: string; to: string } | null>(null)
+  const [hintArrow, setHintArrow] = useState<{ from: string; to: string; color: string } | null>(null)
+  const [hintBusy, setHintBusy] = useState(false)
   const genRef = useRef(0)
+  const playerMovedAtRef = useRef(0)
 
   const record = useCallback(
     (success: boolean, moves: number) => {
@@ -206,9 +210,13 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
         const engine = await getOpponent()
         uci = await opponentMove(engine, g.fen(), presetById('challenger'))
       }
+      // Sequence the animations: let the player's piece land first.
+      const sincePlayer = Date.now() - playerMovedAtRef.current
+      if (sincePlayer < 550) await new Promise((r) => setTimeout(r, 550 - sincePlayer))
       if (gen !== genRef.current) return
       const mv = g.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci[4] })
       setFen(g.fen())
+      setLastMove({ from: mv.from, to: mv.to })
       checkPosition(false, playerMovesRef.current, false, mv.isPromotion())
     } catch {
       if (gen === genRef.current) {
@@ -242,6 +250,9 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
     playerMovesRef.current = moves
     setPlayerMoves(moves)
     setFen(g.fen())
+    setLastMove({ from: mv.from, to: mv.to })
+    setHintArrow(null)
+    playerMovedAtRef.current = Date.now()
     // Early stalemate warning while still playing.
     if (!g.isGameOver() && config.goal === 'mate') {
       const mobility = opponentMobility(g.fen())
@@ -258,12 +269,35 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
     genRef.current++
     gameRef.current = new Chess(config.fen)
     playerMovesRef.current = 0
+    playerMovedAtRef.current = 0
     setPlayerMoves(0)
     setFen(config.fen)
     setState('playing')
     setMessage('')
     setThinking(false)
+    setLastMove(null)
+    setHintArrow(null)
     if (new Chess(config.fen).turn() !== config.playerColor) void engineTurn()
+  }
+
+  async function showHint() {
+    if (hintBusy || state !== 'playing' || thinking) return
+    const g = gameRef.current
+    if (g.turn() !== config.playerColor) return
+    setHintBusy(true)
+    try {
+      const analyst = await getAnalyst()
+      const res = await analyst.search(g.fen(), 'go depth 18 movetime 900')
+      if (!res.bestMove || res.bestMove === '(none)') return
+      const probe = new Chess(g.fen())
+      const mv = probe.move({ from: res.bestMove.slice(0, 2), to: res.bestMove.slice(2, 4), promotion: res.bestMove[4] })
+      setHintArrow({ from: mv.from, to: mv.to, color: '#c9a227' })
+      setMessage(`Hint: ${mv.san}. Play it — then find the NEXT one yourself; that is where the technique sticks.`)
+    } catch {
+      setMessage('Hint unavailable — the engine is busy defending.')
+    } finally {
+      setHintBusy(false)
+    }
   }
 
   return (
@@ -284,10 +318,17 @@ function DrillRunner({ config, onExit }: { config: RunnerConfig; onExit: () => v
             fen={fen}
             orientation={config.playerColor === 'w' ? 'white' : 'black'}
             onMove={onMove}
+            arrows={hintArrow ? [hintArrow] : []}
+            lastMove={lastMove}
             interactive={state === 'playing' && !thinking}
           />
           <div className="row" style={{ marginTop: '0.7rem' }}>
             <button onClick={restart}>{state === 'playing' ? 'Reset drill' : 'Try again'}</button>
+            {state === 'playing' && (
+              <button onClick={() => void showHint()} disabled={hintBusy || thinking}>
+                {hintBusy ? 'Thinking…' : 'Hint'}
+              </button>
+            )}
             <span className="muted small">
               move {playerMoves} / {config.moveTarget}
               {thinking ? ' · defending…' : ''}

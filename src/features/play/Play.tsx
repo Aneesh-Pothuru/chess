@@ -142,6 +142,7 @@ export function Play() {
               onSquareClick={(sq: Square) => game.resolveThreatClick(sq)}
               arrows={hintArrow ? [hintArrow] : []}
               highlights={highlights}
+              lastMove={game.lastMove}
               interactive={game.status === 'playing'}
             />
             <div className="row" style={{ marginTop: '0.7rem' }}>

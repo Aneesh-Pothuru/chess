@@ -37,6 +37,8 @@ interface Active {
   state: 'solving' | 'solved' | 'failed'
   message: string
   orientation: 'white' | 'black'
+  lastMove: { from: string; to: string } | null
+  hintSquare: string | null
 }
 
 export function Puzzles({ initialTarget }: { initialTarget?: string }) {
@@ -80,7 +82,7 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
     const puzzle = s.queue[index]
     const game = new Chess(puzzle.fen)
     const uci = puzzle.moves.split(' ')
-    game.move({ from: uci[0].slice(0, 2), to: uci[0].slice(2, 4), promotion: uci[0][4] })
+    const setup = game.move({ from: uci[0].slice(0, 2), to: uci[0].slice(2, 4), promotion: uci[0][4] })
     solvingSince.current = Date.now()
     setActive({
       puzzle,
@@ -88,8 +90,10 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
       solutionUci: uci,
       step: 1,
       state: 'solving',
-      message: `${game.turn() === 'w' ? 'White' : 'Black'} to move.`,
+      message: `${setup.san} was just played. ${game.turn() === 'w' ? 'White' : 'Black'} to move — punish it.`,
       orientation: game.turn() === 'w' ? 'white' : 'black',
+      lastMove: { from: setup.from, to: setup.to },
+      hintSquare: null,
     })
   }
 
@@ -129,23 +133,66 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
         ...active,
         state: 'failed',
         message: `${mv.san} misses it. The solution starts ${sanOf(active.game.fen(), expected)} — replay it, then move on.`,
+        lastMove: { from: mv.from, to: mv.to },
+        hintSquare: null,
       })
       return false
     }
-    // Correct so far: play it and the opponent's scripted reply.
+    // Correct so far: play it, then the opponent's scripted reply lands after
+    // the player's animation finishes.
     let step = active.step + 1
     const reply = active.solutionUci[step]
     if (isAltMate || step >= active.solutionUci.length) {
       finishPuzzle(true)
       const seconds = Math.round((Date.now() - solvingSince.current) / 1000)
       setSession({ ...session, solved: session.solved + 1 })
-      setActive({ ...active, game: g, step, state: 'solved', message: `Solved in ${seconds}s. Rating ${active.puzzle.rating}.` })
+      setActive({
+        ...active,
+        game: g,
+        step,
+        state: 'solved',
+        message: `Solved in ${seconds}s. Rating ${active.puzzle.rating}.`,
+        lastMove: { from: mv.from, to: mv.to },
+        hintSquare: null,
+      })
       return true
     }
-    g.move({ from: reply.slice(0, 2) as Square, to: reply.slice(2, 4) as Square, promotion: reply[4] })
-    step += 1
-    setActive({ ...active, game: g, step, message: 'Keep going — find the follow-up.' })
+    const afterPlayer = new Chess(g.fen())
+    setActive({
+      ...active,
+      game: afterPlayer,
+      step,
+      message: 'Keep going — find the follow-up.',
+      lastMove: { from: mv.from, to: mv.to },
+      hintSquare: null,
+    })
+    const expectedStepAfterReply = step + 1
+    setTimeout(() => {
+      setActive((prev) => {
+        // Only apply if the puzzle is still on this exact step.
+        if (!prev || prev.puzzle.id !== active.puzzle.id || prev.step !== step || prev.state !== 'solving') return prev
+        const g2 = new Chess(prev.game.fen())
+        const replyMv = g2.move({ from: reply.slice(0, 2) as Square, to: reply.slice(2, 4) as Square, promotion: reply[4] })
+        return {
+          ...prev,
+          game: g2,
+          step: expectedStepAfterReply,
+          lastMove: { from: replyMv.from, to: replyMv.to },
+        }
+      })
+    }, 550)
     return true
+  }
+
+  function showHint() {
+    if (!active || active.state !== 'solving') return
+    const expected = active.solutionUci[active.step]
+    if (!expected) return
+    setActive({
+      ...active,
+      hintSquare: expected.slice(0, 2),
+      message: 'The highlighted piece makes the move. Now find its square.',
+    })
   }
 
   function next() {
@@ -228,9 +275,18 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
           fen={active.game.fen()}
           orientation={active.orientation}
           onMove={onMove}
+          lastMove={active.lastMove}
+          highlights={
+            active.hintSquare ? { [active.hintSquare]: { boxShadow: 'inset 0 0 0 3px var(--gold)' } } : {}
+          }
           interactive={active.state === 'solving'}
         />
         <div className="row" style={{ marginTop: '0.7rem' }}>
+          {active.state === 'solving' && (
+            <button onClick={showHint} disabled={!!active.hintSquare}>
+              Hint
+            </button>
+          )}
           {active.state !== 'solving' && (
             <button className="primary" onClick={next}>
               Next puzzle

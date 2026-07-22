@@ -22,9 +22,12 @@ interface BoardProps {
   interactive?: boolean
   onSquareClick?: (square: Square) => void
   maxWidth?: number
+  /** The move just played — its from/to squares get the standard soft tint. */
+  lastMove?: { from: string; to: string } | null
 }
 
 const SELECT_STYLE: CSSProperties = { background: 'rgba(201, 162, 39, 0.45)' }
+const LAST_MOVE_STYLE: CSSProperties = { background: 'rgba(201, 162, 39, 0.25)' }
 const TARGET_STYLE: CSSProperties = {
   background: 'radial-gradient(circle, rgba(201, 111, 59, 0.55) 22%, transparent 24%)',
 }
@@ -41,6 +44,7 @@ export function Board({
   interactive = true,
   onSquareClick,
   maxWidth = 560,
+  lastMove = null,
 }: BoardProps) {
   // Selection remembers the fen it was made against, so any external position
   // change (engine reply, takeback, next puzzle) invalidates it implicitly.
@@ -88,7 +92,14 @@ export function Board({
     }
   }
 
-  const squareStyles: Record<string, CSSProperties> = { ...highlights }
+  const squareStyles: Record<string, CSSProperties> = {}
+  if (lastMove) {
+    squareStyles[lastMove.from] = LAST_MOVE_STYLE
+    squareStyles[lastMove.to] = LAST_MOVE_STYLE
+  }
+  for (const [sq, style] of Object.entries(highlights)) {
+    squareStyles[sq] = { ...squareStyles[sq], ...style }
+  }
   if (selected) squareStyles[selected] = { ...squareStyles[selected], ...SELECT_STYLE }
   for (const [sq, isCapture] of legalTargets) {
     squareStyles[sq] = { ...squareStyles[sq], ...(isCapture ? CAPTURE_STYLE : TARGET_STYLE) }

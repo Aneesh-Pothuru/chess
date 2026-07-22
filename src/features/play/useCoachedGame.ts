@@ -66,6 +66,7 @@ export interface CoachedGame {
   threatPrompt: ThreatPrompt | null
   clocks: { w: number; b: number }
   engineFailed: boolean
+  lastMove: { from: string; to: string } | null
   start: (color: Color, presetId: string, strict: boolean) => void
   playerMove: (from: Square, to: Square, promotion?: string) => boolean
   resolveThreatClick: (square: Square) => void
@@ -91,6 +92,7 @@ export function useCoachedGame(): CoachedGame {
   const [threatPrompt, setThreatPrompt] = useState<ThreatPrompt | null>(null)
   const [clocks, setClocks] = useState({ w: START_CLOCK, b: START_CLOCK })
   const [engineFailed, setEngineFailed] = useState(false)
+  const [lastMove, setLastMove] = useState<{ from: string; to: string } | null>(null)
 
   const genRef = useRef(0)
   const presetRef = useRef(presetById('sparring'))
@@ -106,6 +108,7 @@ export function useCoachedGame(): CoachedGame {
   const statusRef = useRef<GameStatus>('idle')
   const playerColorRef = useRef<Color>('w')
   const wonGameRef = useRef(false)
+  const playerMovedAtRef = useRef(0)
 
   // ------------------------------------------------------------ clock
   useEffect(() => {
@@ -309,9 +312,14 @@ export function useCoachedGame(): CoachedGame {
     try {
       const engine = await getOpponent()
       const uci = await opponentMove(engine, g.fen(), presetRef.current)
+      // Let the player's move animation finish before the reply lands — two
+      // pieces moving at once reads as chaos.
+      const sincePlayer = Date.now() - playerMovedAtRef.current
+      if (sincePlayer < 550) await new Promise((r) => setTimeout(r, 550 - sincePlayer))
       // The game may have ended (resign, flag) while the bot was thinking.
       if (gen !== genRef.current || statusRef.current !== 'playing') return
       const mv = g.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci[4] })
+      setLastMove({ from: mv.from, to: mv.to })
       const ply = g.history().length
       setFen(g.fen())
       pushEntry({ ply, san: mv.san, notes: [] })
@@ -373,6 +381,8 @@ export function useCoachedGame(): CoachedGame {
       const san = mv.san
       const fenAfter = g.fen()
       setFen(fenAfter)
+      setLastMove({ from: mv.from, to: mv.to })
+      playerMovedAtRef.current = Date.now()
       const seconds = (Date.now() - moveStartRef.current) / 1000
       moveTimesRef.current.push(seconds)
       pushEntry({ ply, san, notes: [] })
@@ -491,6 +501,8 @@ export function useCoachedGame(): CoachedGame {
       setWonGame(false)
       setThreatPrompt(null)
       setEngineFailed(false)
+      setLastMove(null)
+      playerMovedAtRef.current = 0
       setClocks({ w: START_CLOCK, b: START_CLOCK })
       setFen(gameRef.current.fen())
       setStatus('playing')
@@ -554,6 +566,9 @@ export function useCoachedGame(): CoachedGame {
     setThreatPrompt(null)
     setThinking(false)
     setEvalScore(null)
+    const hist = g.history({ verbose: true })
+    const tail = hist[hist.length - 1]
+    setLastMove(tail ? { from: tail.from, to: tail.to } : null)
     moveStartRef.current = Date.now()
   }, [])
 
@@ -610,6 +625,7 @@ export function useCoachedGame(): CoachedGame {
     threatPrompt,
     clocks,
     engineFailed,
+    lastMove,
     start,
     playerMove,
     resolveThreatClick,
