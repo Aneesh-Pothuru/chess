@@ -8,15 +8,15 @@
   "tenSecondFloor": true
  },
  "weakness": {
-  "conversion": 0.8599999999999999,
-  "hangingPiece": 0.8699999999999999,
+  "conversion": 0.8299999999999998,
+  "hangingPiece": 1,
   "fork": 0.7299999999999999,
   "mateThreats": 0.27999999999999947,
   "f7f2": 0.8,
   "openingD4": 0.9700000000000001,
   "openingE4": 0.55,
   "endgameTechnique": 0.9099999999999999,
-  "timeUsage": 0.8200000000000001,
+  "timeUsage": 0.8600000000000001,
   "castling": 0.75,
   "boardVision": 0.7,
   "coordinates": 0.5700000000000001
@@ -1036,6 +1036,23 @@
    "motifs": [],
    "opening": "d4 e6",
    "wonGameConverted": null
+  },
+  {
+   "id": "1784752371693",
+   "at": 1784752371693,
+   "color": "b",
+   "presetId": "sparring",
+   "result": "win",
+   "moves": 25,
+   "blunders": 0,
+   "mistakes": 1,
+   "castleMove": 9,
+   "avgSecondsPerMove": 8.7210625,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "opening": "d4 Nf6",
+   "wonGameConverted": true
   }
  ],
  "imported": [
@@ -2665,5 +2682,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-22",
- "updatedAt": 1784750583797
+ "updatedAt": 1784752436879
 }
