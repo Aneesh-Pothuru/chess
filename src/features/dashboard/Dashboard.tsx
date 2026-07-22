@@ -107,11 +107,26 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
           </div>
           <h3>{briefing.headline}</h3>
           <p className="small" style={{ whiteSpace: 'pre-wrap' }}>{briefing.note}</p>
-          {briefing.focus && (
+          {briefing.tasks && briefing.tasks.length > 0 ? (
+            <div>
+              <div className="eyebrow" style={{ marginTop: '0.4rem' }}>Coach&apos;s orders — in this order</div>
+              {briefing.tasks.map((t, i) => (
+                <button
+                  key={i}
+                  className="option-btn"
+                  onClick={() => go(t.route as Route, t.target)}
+                >
+                  <strong>{i + 1}. {t.title}</strong>
+                  {t.minutes ? <span className="muted mono small"> · {t.minutes} min</span> : null}
+                  <div className="muted small">{t.detail}</div>
+                </button>
+              ))}
+            </div>
+          ) : briefing.focus ? (
             <button className="primary" onClick={() => go(briefing.focus!.route as Route, briefing.focus!.target)}>
               {briefing.focus.title} →
             </button>
-          )}
+          ) : null}
         </div>
       )}
 

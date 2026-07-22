@@ -67,7 +67,8 @@ export interface Profile {
   games: GameReport[]
   imported: ImportedGame[]
   drills: Record<string, DrillProgress>
-  puzzleStats: Record<string, { attempts: number; correct: number }> // per bucket
+  /** Per puzzle bucket: attempts/correct plus the adaptive difficulty ladder. */
+  puzzleStats: Record<string, { attempts: number; correct: number; workingRating?: number }>
   streak: { lastDay: string; days: number }
   focusWeek: 'conversion' | 'openings'
   /** Coach-briefing id whose adjustments were already applied. */

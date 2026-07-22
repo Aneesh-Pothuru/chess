@@ -20,7 +20,10 @@ export interface CoachBriefing {
   date: string // YYYY-MM-DD
   headline: string
   note: string
+  /** Single focus (legacy). Prefer `tasks`. */
   focus?: BriefingFocus
+  /** The day's assignments, 2-4 items. Rendered as a checklist of buttons. */
+  tasks?: BriefingFocus[]
   /** Weakness weight deltas, applied once. Clamped to +-0.1 per key. */
   adjustments?: Partial<Record<WeaknessKey, number>>
   stats?: { gamesAnalyzed?: number; record?: string; blunders?: number }

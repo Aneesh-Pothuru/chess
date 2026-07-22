@@ -7,6 +7,7 @@ import { dueKeys, newSrsState, recordResult } from '../../store/srs'
 import { update, bumpWeakness, type WeaknessKey } from '../../store/profile'
 import { useProfile } from '../../hooks/useProfile'
 import { pickPuzzleBuckets, seededRng } from '../../store/planner'
+import { LADDER_START, nextWorkingRating, orderUnseenByLadder } from '../../chess/puzzleLadder'
 
 const BUCKET_WEAKNESS: Record<string, WeaknessKey> = {
   hangingPiece: 'hangingPiece',
@@ -66,9 +67,14 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
     const pool = puzzlesFor(bucketId)
     const srsKeys = pool.map((p) => `puzzle:${p.id}`)
     const due = new Set(dueKeys(profile.srs, srsKeys))
-    // Due-for-review first, then unseen, easiest first.
+    // Due-for-review first, then unseen served around the bucket's working
+    // rating — difficulty climbs as you solve (see puzzleLadder.ts).
+    const working = profile.puzzleStats[bucketId]?.workingRating ?? LADDER_START
     const dueP = pool.filter((p) => due.has(`puzzle:${p.id}`) && profile.srs[`puzzle:${p.id}`])
-    const unseen = pool.filter((p) => !profile.srs[`puzzle:${p.id}`]).sort((a, b) => a.rating - b.rating)
+    const unseen = orderUnseenByLadder(
+      pool.filter((p) => !profile.srs[`puzzle:${p.id}`]),
+      working,
+    )
     const queue = [...dueP, ...unseen].slice(0, 12)
     if (queue.length === 0) {
       return
@@ -106,6 +112,7 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
       p.puzzleStats[session.bucketId] = {
         attempts: stats.attempts + 1,
         correct: stats.correct + (pass ? 1 : 0),
+        workingRating: nextWorkingRating(stats.workingRating, pass),
       }
     })
     const wk = BUCKET_WEAKNESS[session.bucketId]
@@ -238,6 +245,9 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
                       {stats.correct}/{stats.attempts} solved
                     </span>
                   )}
+                  {stats && stats.attempts > 0 && (
+                    <span className="tag accent">difficulty ~{stats.workingRating ?? LADDER_START}</span>
+                  )}
                 </div>
               </div>
             )
@@ -296,7 +306,8 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
           )}
           <span className="muted small">
             Puzzle {session.index + 1} of {session.queue.length} ·{' '}
-            {BUCKET_INFO.find((i) => i.id === session.bucketId)?.label}
+            {BUCKET_INFO.find((i) => i.id === session.bucketId)?.label} · difficulty ~
+            {profile.puzzleStats[session.bucketId]?.workingRating ?? LADDER_START}
           </span>
         </div>
       </div>

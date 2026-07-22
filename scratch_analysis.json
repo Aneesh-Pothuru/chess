@@ -1,0 +1,918 @@
+[
+  {
+    "url": "https://www.chess.com/game/live/171852574938",
+    "color": "b",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/Reti-Opening-1...d5",
+    "ecoUrl": "https://www.chess.com/openings/Reti-Opening-1...d5",
+    "termWhite": "pots1125 won by checkmate",
+    "totalPlies": 70,
+    "castleMove": 9,
+    "finalClk": "0:02:23.6",
+    "maxMyLead": 16,
+    "minMyLead": -4,
+    "endLead": 16,
+    "myHangCount": 3,
+    "myHang": [
+      {
+        "ply": 12,
+        "after": "Nxe5",
+        "squares": [
+          "n@e5"
+        ]
+      },
+      {
+        "ply": 20,
+        "after": "Bxc3",
+        "squares": [
+          "b@c3"
+        ]
+      },
+      {
+        "ply": 24,
+        "after": "Nxe5",
+        "squares": [
+          "n@e5"
+        ]
+      }
+    ],
+    "missedMate": [
+      {
+        "ply": 52,
+        "best": "Qg6#",
+        "played": "Qf3+"
+      },
+      {
+        "ply": 56,
+        "best": "Qg6#",
+        "played": "Rh3"
+      },
+      {
+        "ply": 62,
+        "best": "g5#",
+        "played": "Qh4+"
+      }
+    ],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": false,
+    "opponent": "Luis747CR",
+    "end": "2026-07-21T01:43:01.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171853008468",
+    "color": "w",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System-2...e6-3.e3",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System-2...e6-3.e3",
+    "termWhite": "pots1125 won by checkmate",
+    "totalPlies": 57,
+    "castleMove": 6,
+    "finalClk": "0:01:50.5",
+    "maxMyLead": 15,
+    "minMyLead": 0,
+    "endLead": 10,
+    "myHangCount": 1,
+    "myHang": [
+      {
+        "ply": 29,
+        "after": "Qxe7+",
+        "squares": [
+          "q@e7"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": false,
+    "opponent": "lnri224",
+    "end": "2026-07-21T01:58:54.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171854861128",
+    "color": "w",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4-Nf6-4.e3",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4-Nf6-4.e3",
+    "termWhite": "seanchyd won by resignation",
+    "totalPlies": 30,
+    "castleMove": 7,
+    "finalClk": "0:08:22.2",
+    "maxMyLead": 3,
+    "minMyLead": -12,
+    "endLead": -12,
+    "myHangCount": 2,
+    "myHang": [
+      {
+        "ply": 21,
+        "after": "Nxe4",
+        "squares": [
+          "n@e4"
+        ]
+      },
+      {
+        "ply": 29,
+        "after": "g3",
+        "squares": [
+          "q@g4"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "seanchyd",
+    "end": "2026-07-21T03:12:43.000Z",
+    "rawResult": "resigned"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171854934918",
+    "color": "w",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4-Nf6-4.e3",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4-Nf6-4.e3",
+    "termWhite": "pots1125 won - game abandoned",
+    "totalPlies": 139,
+    "castleMove": 21,
+    "finalClk": "0:01:19.4",
+    "maxMyLead": 8,
+    "minMyLead": -3,
+    "endLead": 8,
+    "myHangCount": 5,
+    "myHang": [
+      {
+        "ply": 35,
+        "after": "Qxg6+",
+        "squares": [
+          "q@g6"
+        ]
+      },
+      {
+        "ply": 37,
+        "after": "Bxe4",
+        "squares": [
+          "b@e4"
+        ]
+      },
+      {
+        "ply": 55,
+        "after": "Nxf2",
+        "squares": [
+          "n@f2"
+        ]
+      },
+      {
+        "ply": 69,
+        "after": "Rxg8",
+        "squares": [
+          "r@g8",
+          "r@e6"
+        ]
+      },
+      {
+        "ply": 129,
+        "after": "b8=Q",
+        "squares": [
+          "r@h7"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [
+      {
+        "ply": 135,
+        "played": "Kc1",
+        "mate": "Rh1#"
+      }
+    ],
+    "wasWinning": true,
+    "convFail": false,
+    "opponent": "jokodowi",
+    "end": "2026-07-21T03:30:39.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171859896134",
+    "color": "b",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/Caro-Kann-Defense",
+    "ecoUrl": "https://www.chess.com/openings/Caro-Kann-Defense",
+    "termWhite": "pots1125 won by checkmate",
+    "totalPlies": 36,
+    "castleMove": 11,
+    "finalClk": "0:06:56.9",
+    "maxMyLead": 0,
+    "minMyLead": -10,
+    "endLead": -9,
+    "myHangCount": 3,
+    "myHang": [
+      {
+        "ply": 30,
+        "after": "Bb8",
+        "squares": [
+          "r@c5"
+        ]
+      },
+      {
+        "ply": 32,
+        "after": "Ne4",
+        "squares": [
+          "n@e4"
+        ]
+      },
+      {
+        "ply": 34,
+        "after": "Qd6",
+        "squares": [
+          "n@e4"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "YusranYusri",
+    "end": "2026-07-21T06:50:20.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171886383698",
+    "color": "b",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Horwitz-Defense",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Horwitz-Defense",
+    "termWhite": "MAuger02 won by checkmate",
+    "totalPlies": 33,
+    "castleMove": 5,
+    "finalClk": "0:07:06.6",
+    "maxMyLead": 1,
+    "minMyLead": -3,
+    "endLead": -2,
+    "myHangCount": 2,
+    "myHang": [
+      {
+        "ply": 12,
+        "after": "Ng4",
+        "squares": [
+          "n@g4"
+        ]
+      },
+      {
+        "ply": 16,
+        "after": "Bxc3+",
+        "squares": [
+          "b@c3"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [
+      {
+        "ply": 32,
+        "played": "Ba6",
+        "mate": "Qg7#"
+      }
+    ],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "MAuger02",
+    "end": "2026-07-21T18:41:27.000Z",
+    "rawResult": "checkmated"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171888469956",
+    "color": "w",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System",
+    "termWhite": "Naziroshan45 won by checkmate",
+    "totalPlies": 72,
+    "castleMove": 19,
+    "finalClk": "0:03:35.1",
+    "maxMyLead": 3,
+    "minMyLead": -12,
+    "endLead": -12,
+    "myHangCount": 4,
+    "myHang": [
+      {
+        "ply": 17,
+        "after": "Nxc6",
+        "squares": [
+          "n@c6"
+        ]
+      },
+      {
+        "ply": 19,
+        "after": "Bxd6",
+        "squares": [
+          "b@d6"
+        ]
+      },
+      {
+        "ply": 39,
+        "after": "c4",
+        "squares": [
+          "b@d3"
+        ]
+      },
+      {
+        "ply": 47,
+        "after": "Nxf3",
+        "squares": [
+          "q@d1"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [
+      {
+        "ply": 71,
+        "played": "Ke1",
+        "mate": "Rg1#"
+      }
+    ],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "Naziroshan45",
+    "end": "2026-07-21T19:41:41.000Z",
+    "rawResult": "checkmated"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171890168504",
+    "color": "b",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Caro-Kann-Defense-2.Nf3-d5",
+    "ecoUrl": "https://www.chess.com/openings/Caro-Kann-Defense-2.Nf3-d5",
+    "termWhite": "nondescriptive won by resignation",
+    "totalPlies": 33,
+    "castleMove": null,
+    "finalClk": "0:06:28.9",
+    "maxMyLead": 3,
+    "minMyLead": -5,
+    "endLead": -5,
+    "myHangCount": 3,
+    "myHang": [
+      {
+        "ply": 10,
+        "after": "Bxf3",
+        "squares": [
+          "b@f3"
+        ]
+      },
+      {
+        "ply": 30,
+        "after": "Ne4",
+        "squares": [
+          "r@h8"
+        ]
+      },
+      {
+        "ply": 32,
+        "after": "Ke8",
+        "squares": [
+          "r@h8"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "nondescriptive",
+    "end": "2026-07-21T20:21:54.000Z",
+    "rawResult": "resigned"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171890584612",
+    "color": "w",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System",
+    "termWhite": "SarunasSiu won by checkmate",
+    "totalPlies": 30,
+    "castleMove": 8,
+    "finalClk": "0:07:15",
+    "maxMyLead": 1,
+    "minMyLead": -3,
+    "endLead": -2,
+    "myHangCount": 4,
+    "myHang": [
+      {
+        "ply": 13,
+        "after": "Nxg5",
+        "squares": [
+          "n@g5"
+        ]
+      },
+      {
+        "ply": 25,
+        "after": "Bxc6",
+        "squares": [
+          "b@c6"
+        ]
+      },
+      {
+        "ply": 27,
+        "after": "Bxc7",
+        "squares": [
+          "b@c7"
+        ]
+      },
+      {
+        "ply": 29,
+        "after": "Nc3",
+        "squares": [
+          "b@c7"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [
+      {
+        "ply": 27,
+        "played": "Bxc7",
+        "mate": "Qxg2#"
+      },
+      {
+        "ply": 29,
+        "played": "Nc3",
+        "mate": "Qxg2#"
+      }
+    ],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "SarunasSiu",
+    "end": "2026-07-21T20:30:57.000Z",
+    "rawResult": "checkmated"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171892275628",
+    "color": "w",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Indian-Game-2.Bf4-d6-3.Nf3",
+    "ecoUrl": "https://www.chess.com/openings/Indian-Game-2.Bf4-d6-3.Nf3",
+    "termWhite": "boelpatrole won by resignation",
+    "totalPlies": 48,
+    "castleMove": null,
+    "finalClk": "0:05:50.3",
+    "maxMyLead": 3,
+    "minMyLead": -8,
+    "endLead": -8,
+    "myHangCount": 2,
+    "myHang": [
+      {
+        "ply": 39,
+        "after": "Nxc3",
+        "squares": [
+          "n@c3"
+        ]
+      },
+      {
+        "ply": 47,
+        "after": "Qxa7",
+        "squares": [
+          "q@a7"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "boelpatrole",
+    "end": "2026-07-21T21:21:42.000Z",
+    "rawResult": "resigned"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171892510546",
+    "color": "b",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Old-Indian-Defense",
+    "ecoUrl": "https://www.chess.com/openings/Old-Indian-Defense",
+    "termWhite": "juanihellin won on time",
+    "totalPlies": 75,
+    "castleMove": 6,
+    "finalClk": "0:00:02",
+    "maxMyLead": 6,
+    "minMyLead": -7,
+    "endLead": 2,
+    "myHangCount": 1,
+    "myHang": [
+      {
+        "ply": 50,
+        "after": "Bxc4",
+        "squares": [
+          "b@c4"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": true,
+    "opponent": "juanihellin",
+    "end": "2026-07-21T21:41:31.000Z",
+    "rawResult": "timeout"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171893190052",
+    "color": "b",
+    "result": "draw",
+    "opening": "https://www.chess.com/openings/Caro-Kann-Defense-Exchange-Variation-3...cxd5",
+    "ecoUrl": "https://www.chess.com/openings/Caro-Kann-Defense-Exchange-Variation-3...cxd5",
+    "termWhite": "Game drawn by insufficient material",
+    "totalPlies": 134,
+    "castleMove": null,
+    "finalClk": "0:00:38.8",
+    "maxMyLead": 7,
+    "minMyLead": -9,
+    "endLead": 3,
+    "myHangCount": 4,
+    "myHang": [
+      {
+        "ply": 30,
+        "after": "Bxe3",
+        "squares": [
+          "b@e3"
+        ]
+      },
+      {
+        "ply": 48,
+        "after": "g5",
+        "squares": [
+          "n@f6"
+        ]
+      },
+      {
+        "ply": 50,
+        "after": "Kd5",
+        "squares": [
+          "n@f6"
+        ]
+      },
+      {
+        "ply": 108,
+        "after": "Rxb3",
+        "squares": [
+          "r@b3"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": true,
+    "opponent": "AMSchess7",
+    "end": "2026-07-21T21:59:30.000Z",
+    "rawResult": "insufficient"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171893910182",
+    "color": "w",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System",
+    "termWhite": "aleks20262026 won by resignation",
+    "totalPlies": 54,
+    "castleMove": null,
+    "finalClk": "0:03:33",
+    "maxMyLead": 2,
+    "minMyLead": -12,
+    "endLead": -12,
+    "myHangCount": 2,
+    "myHang": [
+      {
+        "ply": 21,
+        "after": "Bxc6+",
+        "squares": [
+          "b@c6"
+        ]
+      },
+      {
+        "ply": 53,
+        "after": "Qb6",
+        "squares": [
+          "q@b6"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "aleks20262026",
+    "end": "2026-07-21T22:19:11.000Z",
+    "rawResult": "resigned"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171894274448",
+    "color": "w",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4-Bf5-4.e3-e6",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4-Bf5-4.e3-e6",
+    "termWhite": "pots1125 won by resignation",
+    "totalPlies": 85,
+    "castleMove": null,
+    "finalClk": "0:05:19.6",
+    "maxMyLead": 8,
+    "minMyLead": -9,
+    "endLead": 8,
+    "myHangCount": 3,
+    "myHang": [
+      {
+        "ply": 11,
+        "after": "Bxe4",
+        "squares": [
+          "b@e4"
+        ]
+      },
+      {
+        "ply": 47,
+        "after": "Rd8",
+        "squares": [
+          "n@c3"
+        ]
+      },
+      {
+        "ply": 49,
+        "after": "Rxf8+",
+        "squares": [
+          "r@f8"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": false,
+    "opponent": "Afcman1998",
+    "end": "2026-07-21T22:28:23.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171894839278",
+    "color": "w",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Variation-2...e6-3.Bf4-c5-4.e3",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Variation-2...e6-3.Bf4-c5-4.e3",
+    "termWhite": "hemendik-at won on time",
+    "totalPlies": 74,
+    "castleMove": 20,
+    "finalClk": "0:00:01",
+    "maxMyLead": 8,
+    "minMyLead": -3,
+    "endLead": 2,
+    "myHangCount": 2,
+    "myHang": [
+      {
+        "ply": 55,
+        "after": "Bxg6+",
+        "squares": [
+          "b@g6"
+        ]
+      },
+      {
+        "ply": 61,
+        "after": "Rxe6",
+        "squares": [
+          "r@e6"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": true,
+    "opponent": "hemendik-at",
+    "end": "2026-07-21T22:56:25.000Z",
+    "rawResult": "timeout"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171895360134",
+    "color": "b",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/Caro-Kann-Defense",
+    "ecoUrl": "https://www.chess.com/openings/Caro-Kann-Defense",
+    "termWhite": "pots1125 won by checkmate",
+    "totalPlies": 66,
+    "castleMove": 15,
+    "finalClk": "0:05:01.7",
+    "maxMyLead": 8,
+    "minMyLead": -2,
+    "endLead": 6,
+    "myHangCount": 2,
+    "myHang": [
+      {
+        "ply": 28,
+        "after": "Nxe4",
+        "squares": [
+          "n@e4"
+        ]
+      },
+      {
+        "ply": 38,
+        "after": "Bxd2+",
+        "squares": [
+          "b@d2"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": false,
+    "opponent": "DemetrioOsuna",
+    "end": "2026-07-21T23:09:24.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171895881638",
+    "color": "b",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Indian-Game-2.Bf4-e6-3.e3",
+    "ecoUrl": "https://www.chess.com/openings/Indian-Game-2.Bf4-e6-3.e3",
+    "termWhite": "ibnn2003 won by checkmate",
+    "totalPlies": 65,
+    "castleMove": 6,
+    "finalClk": "0:03:25.2",
+    "maxMyLead": 10,
+    "minMyLead": -8,
+    "endLead": 0,
+    "myHangCount": 4,
+    "myHang": [
+      {
+        "ply": 24,
+        "after": "Nxe4",
+        "squares": [
+          "n@e4"
+        ]
+      },
+      {
+        "ply": 40,
+        "after": "bxa1=Q",
+        "squares": [
+          "q@a1"
+        ]
+      },
+      {
+        "ply": 54,
+        "after": "Rd8",
+        "squares": [
+          "b@e6"
+        ]
+      },
+      {
+        "ply": 56,
+        "after": "b5",
+        "squares": [
+          "b@e6"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [
+      {
+        "ply": 64,
+        "played": "Rxc3",
+        "mate": "Be5#"
+      }
+    ],
+    "wasWinning": true,
+    "convFail": true,
+    "opponent": "ibnn2003",
+    "end": "2026-07-21T23:30:51.000Z",
+    "rawResult": "checkmated"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171896590012",
+    "color": "b",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/French-Defense-Classical-Steinitz-Variation-4...Ne4-5.Nxe4-dxe4-6.Be3",
+    "ecoUrl": "https://www.chess.com/openings/French-Defense-Classical-Steinitz-Variation-4...Ne4-5.Nxe4-dxe4-6.Be3",
+    "termWhite": "pots1125 won by resignation",
+    "totalPlies": 94,
+    "castleMove": 8,
+    "finalClk": "0:02:44.7",
+    "maxMyLead": 9,
+    "minMyLead": -8,
+    "endLead": 9,
+    "myHangCount": 2,
+    "myHang": [
+      {
+        "ply": 48,
+        "after": "Bxc5+",
+        "squares": [
+          "b@c5"
+        ]
+      },
+      {
+        "ply": 50,
+        "after": "Qd7",
+        "squares": [
+          "b@e4"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": true,
+    "convFail": false,
+    "opponent": "DomGelo",
+    "end": "2026-07-21T23:59:57.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171897584172",
+    "color": "w",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Zukertort-Chigorin-Variation-3.Bf4",
+    "termWhite": "s4rc4stic won by checkmate",
+    "totalPlies": 36,
+    "castleMove": 8,
+    "finalClk": "0:06:41.4",
+    "maxMyLead": 1,
+    "minMyLead": -3,
+    "endLead": -1,
+    "myHangCount": 0,
+    "myHang": [],
+    "missedMate": [],
+    "allowedMate": [
+      {
+        "ply": 35,
+        "played": "Kh1",
+        "mate": "Qxh2#"
+      }
+    ],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "s4rc4stic",
+    "end": "2026-07-22T00:39:11.000Z",
+    "rawResult": "checkmated"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171907946324",
+    "color": "w",
+    "result": "win",
+    "opening": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System-2...e6-3.e3",
+    "ecoUrl": "https://www.chess.com/openings/Queens-Pawn-Opening-Accelerated-London-System-2...e6-3.e3",
+    "termWhite": "pots1125 won - game abandoned",
+    "totalPlies": 31,
+    "castleMove": 15,
+    "finalClk": "0:07:46.8",
+    "maxMyLead": 0,
+    "minMyLead": -6,
+    "endLead": -4,
+    "myHangCount": 0,
+    "myHang": [],
+    "missedMate": [],
+    "allowedMate": [],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "ArunKumar12345678",
+    "end": "2026-07-22T07:56:45.000Z",
+    "rawResult": "win"
+  },
+  {
+    "url": "https://www.chess.com/game/live/171909452040",
+    "color": "b",
+    "result": "loss",
+    "opening": "https://www.chess.com/openings/Caro-Kann-Defense-Exchange-Variation-3...cxd5",
+    "ecoUrl": "https://www.chess.com/openings/Caro-Kann-Defense-Exchange-Variation-3...cxd5",
+    "termWhite": "Hamid137 won by checkmate",
+    "totalPlies": 29,
+    "castleMove": 9,
+    "finalClk": "0:08:31.8",
+    "maxMyLead": 3,
+    "minMyLead": -3,
+    "endLead": -2,
+    "myHangCount": 1,
+    "myHang": [
+      {
+        "ply": 28,
+        "after": "Nxe7",
+        "squares": [
+          "r@d8"
+        ]
+      }
+    ],
+    "missedMate": [],
+    "allowedMate": [
+      {
+        "ply": 28,
+        "played": "Nxe7",
+        "mate": "Qxd8#"
+      }
+    ],
+    "wasWinning": false,
+    "convFail": false,
+    "opponent": "Hamid137",
+    "end": "2026-07-22T08:45:42.000Z",
+    "rawResult": "checkmated"
+  }
+]

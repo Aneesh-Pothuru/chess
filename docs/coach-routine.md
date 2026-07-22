@@ -47,17 +47,26 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
   "date": "2026-07-23",
   "headline": "One-line theme for today",
   "note": "2-6 sentences. Reference the actual games by opponent/opening. Name the leak, name the fix. Plain, direct coaching voice.",
-  "focus": {
-    "route": "play | openings | puzzles | endgame | calculation | review",
-    "target": "optional: puzzle bucket id, repertoire id (london/caro-kann/kings-indian), or 'conversion'",
-    "title": "Button label",
-    "detail": "One sentence",
-    "minutes": 12
-  },
+  "tasks": [
+    {
+      "route": "play | openings | puzzles | endgame | calculation | review",
+      "target": "optional: puzzle bucket id, repertoire id (london/caro-kann/kings-indian), or 'conversion'",
+      "title": "Button label",
+      "detail": "One sentence tying the assignment to something that happened in the games",
+      "minutes": 10
+    }
+  ],
   "adjustments": { "<weaknessKey>": 0.03 },
   "stats": { "gamesAnalyzed": 3, "record": "1W-2L", "blunders": 5 }
 }
 ```
+
+   `tasks` is the day's assignment list: give **2-4 items, ordered by priority**, each tied to a
+   specific finding from the games (never generic filler). A good day mixes one repair drill for
+   yesterday's worst leak, one puzzle set for a recurring motif, and one opening-course unit when
+   an opening cost points. Useful targets: puzzle bucket ids (`mateIn1`, `hangingPiece`,
+   `attackingF2F7`, ...), `conversion`, repertoire ids (the openings page opens on its guided
+   Course tab). The legacy single `focus` field still works but `tasks` is preferred.
 
    Valid weakness keys: `conversion`, `hangingPiece`, `fork`, `mateThreats`, `f7f2`,
    `openingD4`, `openingE4`, `endgameTechnique`, `timeUsage`, `castling`, `boardVision`,
