@@ -46,7 +46,7 @@ export function castleMoveNumber(moves: string[], color: 'w' | 'b'): number | nu
 }
 
 /** Final remaining clock (seconds) for `color`, or null when no clocks. */
-export function finalClockSeconds(moves: string[], clocks: (string | null)[], color: 'w' | 'b'): number | null {
+export function finalClockSeconds(clocks: (string | null)[], color: 'w' | 'b'): number | null {
   const start = color === 'w' ? 0 : 1
   let last: string | null = null
   for (let i = start; i < clocks.length; i += 2) {

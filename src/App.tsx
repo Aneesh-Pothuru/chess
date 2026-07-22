@@ -1,122 +1,64 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Dashboard } from './features/dashboard/Dashboard'
+import { Play } from './features/play/Play'
+import { Openings } from './features/openings/Openings'
+import { Puzzles } from './features/puzzles/Puzzles'
+import { Endgame } from './features/endgame/Endgame'
+import { Calculation } from './features/calculation/Calculation'
+import { Review } from './features/review/Review'
 
-function App() {
-  const [count, setCount] = useState(0)
+export type Route = 'dashboard' | 'play' | 'openings' | 'puzzles' | 'endgame' | 'calculation' | 'review'
+
+const NAV: Array<{ route: Route; label: string }> = [
+  { route: 'dashboard', label: 'Today' },
+  { route: 'play', label: 'Play the coach' },
+  { route: 'openings', label: 'Opening lab' },
+  { route: 'puzzles', label: 'Tactics' },
+  { route: 'endgame', label: 'Conversion gym' },
+  { route: 'calculation', label: 'Calculation' },
+  { route: 'review', label: 'My games' },
+]
+
+export default function App() {
+  const [route, setRoute] = useState<Route>('dashboard')
+  const [target, setTarget] = useState<string | undefined>()
+
+  function go(r: Route, t?: string) {
+    setRoute(r)
+    setTarget(t)
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="shell">
+      <nav className="rail">
+        <div className="brand">
+          Chess Coach
+          <em>pots1125 edition</em>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
+        {NAV.map((item) => (
+          <button
+            key={item.route}
+            className={route === item.route ? 'active' : ''}
+            onClick={() => go(item.route)}
+          >
+            {item.label}
+          </button>
+        ))}
+        <div className="foot">
+          Stockfish 18 · lichess puzzles (CC0)
+          <br />
+          castle by 8 · spend the clock · convert
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      </nav>
+      <main className="main">
+        {route === 'dashboard' && <Dashboard go={go} />}
+        {route === 'play' && <Play />}
+        {route === 'openings' && <Openings key={target} initialTarget={target} />}
+        {route === 'puzzles' && <Puzzles key={target} initialTarget={target} />}
+        {route === 'endgame' && <Endgame key={target} initialTarget={target} />}
+        {route === 'calculation' && <Calculation />}
+        {route === 'review' && <Review />}
+      </main>
+    </div>
   )
 }
-
-export default App
