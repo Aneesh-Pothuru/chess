@@ -1,6 +1,8 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { computeMetrics, generateToday } from '../../store/planner'
 import { useProfile } from '../../hooks/useProfile'
+import { fetchBriefing, type CoachBriefing } from '../../lib/briefing'
+import { update, type WeaknessKey } from '../../store/profile'
 import type { Route } from '../../App'
 
 // Baseline numbers from the 162-game analysis (July 2026) — what we measure against.
@@ -26,6 +28,31 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
   const profile = useProfile()
   const today = useMemo(() => generateToday(profile), [profile])
   const metrics = computeMetrics(profile)
+  const [briefing, setBriefing] = useState<CoachBriefing | null>(null)
+
+  // Daily-routine channel: load the coach briefing and apply its weakness
+  // adjustments exactly once per briefing id.
+  useEffect(() => {
+    let cancelled = false
+    void fetchBriefing().then((b) => {
+      if (cancelled || !b) return
+      setBriefing(b)
+      update((p) => {
+        if (p.lastBriefingId === b.id) return
+        p.lastBriefingId = b.id
+        for (const [key, delta] of Object.entries(b.adjustments ?? {})) {
+          if (key in p.weakness && typeof delta === 'number') {
+            const k = key as WeaknessKey
+            const clamped = Math.max(-0.1, Math.min(0.1, delta))
+            p.weakness[k] = Math.min(1, Math.max(0.05, p.weakness[k] + clamped))
+          }
+        }
+      })
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const weaknesses = Object.entries(profile.weakness).sort((a, b) => b[1] - a[1]).slice(0, 4)
 
@@ -45,6 +72,22 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
         games, loose pieces around f7, and the 1.d4 black hole. Twenty focused minutes beats two
         hours of autopilot queuing.
       </p>
+
+      {briefing && (
+        <div className="panel" style={{ margin: '1rem 0', borderColor: 'var(--sienna)' }}>
+          <div className="spread">
+            <div className="eyebrow">Coach&apos;s briefing · {briefing.date}</div>
+            {briefing.stats?.record && <span className="tag">{briefing.stats.record}</span>}
+          </div>
+          <h3>{briefing.headline}</h3>
+          <p className="small" style={{ whiteSpace: 'pre-wrap' }}>{briefing.note}</p>
+          {briefing.focus && (
+            <button className="primary" onClick={() => go(briefing.focus!.route as Route, briefing.focus!.target)}>
+              {briefing.focus.title} →
+            </button>
+          )}
+        </div>
+      )}
 
       <div className="grid2" style={{ margin: '1rem 0' }}>
         {today.map((block, i) => (
@@ -133,6 +176,8 @@ const WEAKNESS_LABELS: Record<string, string> = {
   endgameTechnique: 'Endgame technique',
   timeUsage: 'Spending the clock',
   castling: 'Castling on time',
+  boardVision: 'Board awareness & counting',
+  coordinates: 'Square-name fluency',
 }
 
 function Metric({ label, value, target, status }: { label: string; value: string; target: string; status?: 'ok' | 'warn' | 'bad' }) {

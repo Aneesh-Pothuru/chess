@@ -31,8 +31,13 @@ localStorage.
 | **Opening lab** | 126 hand-authored repertoire lines with coach notes: London (with the Qb6/b2 patch and early-c3 prophylaxis), Caro-Kann (Advance/Exchange/Classical/Panov/Fantasy/Two Knights + sidelines), King's Indian (Classical/Sämisch/Four Pawns/Fianchetto + the anti-London ...c5+...Qb6 raid). Learn mode, weighted drills, spaced repetition (4h → 6mo ladder) |
 | **Tactics** | 2,810 real Lichess puzzles (CC0) filtered to the miss profile: forks, hanging pieces, mate-in-1/2/3, back-rank, f7/f2 strikes, endgames — plus puzzles that arose in real London/Caro-Kann/KID games. Daily rotation weighted by weakness |
 | **Conversion gym** | The endgame curriculum in teaching order (ladder mate → K+Q → K+R → square rule → opposition → key squares → practical technique) vs perfect engine defense, with stalemate-trap tests — plus seven "you are winning, now WIN" conversion drills vs real resistance |
-| **Calculation** | The puzzle-rating-vs-game-rating bridge: visualization drills (read a line, answer without moving pieces) and timed threat scans |
+| **Calculation** | The puzzle-rating-vs-game-rating bridge: visualization drills with a Short/Deep line ladder (long-term vision), timed threat scans, board math (capture-exchange and attacker counting), and 30-second coordinate sprints from both sides |
 | **My games** | Imports rapid games from the chess.com public API, scans them with Stockfish, tags blunders by motif, and updates the weakness profile — this is how the program evolves |
+
+A daily Claude Code routine can also coach remotely: it analyzes new chess.com games and commits
+`public/coach/briefing.json` + a `coach-log/` entry to this repo; the dashboard picks the briefing
+up automatically (local copy or GitHub raw) and adjusts the day's plan. The contract lives in
+[docs/coach-routine.md](docs/coach-routine.md).
 
 ## Architecture
 

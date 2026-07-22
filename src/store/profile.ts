@@ -14,6 +14,8 @@ export type WeaknessKey =
   | 'endgameTechnique'
   | 'timeUsage'
   | 'castling'
+  | 'boardVision'
+  | 'coordinates'
 
 export interface GameReport {
   id: string
@@ -68,6 +70,8 @@ export interface Profile {
   puzzleStats: Record<string, { attempts: number; correct: number }> // per bucket
   streak: { lastDay: string; days: number }
   focusWeek: 'conversion' | 'openings'
+  /** Coach-briefing id whose adjustments were already applied. */
+  lastBriefingId?: string
 }
 
 // Seeded from the improvement report + the 162-game baseline analysis.
@@ -82,6 +86,8 @@ export const DEFAULT_WEAKNESS: Record<WeaknessKey, number> = {
   endgameTechnique: 0.8,
   timeUsage: 0.7,
   castling: 0.75,
+  boardVision: 0.7,
+  coordinates: 0.55,
 }
 
 const KEY = 'chess-coach-profile-v1'

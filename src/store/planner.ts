@@ -95,12 +95,16 @@ export function generateToday(profile: Profile, now: Date = new Date()): Session
     })
   }
 
+  const visionBias = Math.max(profile.weakness.boardVision, profile.weakness.coordinates)
   blocks.push({
     kind: 'calculation',
-    title: 'Bridge: calculation reps',
-    detail: '5 visualization drills. This is the muscle that moves your 1427 puzzle brain into your 713 game brain.',
+    title: 'Bridge: calculation & vision reps',
+    detail:
+      visionBias >= 0.65
+        ? '5 visualization drills + a board-math set (capture counting) or a coordinate sprint. The muscles that move your 1427 puzzle brain into your 713 game brain.'
+        : '5 visualization drills — go Deep (4-6 plies) once Short lines feel easy.',
     route: 'calculation',
-    minutes: 6,
+    minutes: 8,
   })
 
   blocks.push({

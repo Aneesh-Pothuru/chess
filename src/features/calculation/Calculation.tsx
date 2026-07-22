@@ -9,17 +9,22 @@ import {
   type VisualizationDrill,
 } from '../../chess/calculation'
 import { bumpWeakness, update } from '../../store/profile'
+import { BoardMath } from './BoardMath'
+import { Coordinates } from './Coordinates'
 
 const VIS_SOURCES = ['mateIn2', 'fork', 'discoveredAttack', 'pin']
+const DEEP_SOURCES = ['mateIn3', 'mateIn2', 'discoveredAttack']
+
+type Tab = 'visualize' | 'scan' | 'math' | 'coords'
 
 export function Calculation() {
-  const [tab, setTab] = useState<'visualize' | 'scan'>('visualize')
+  const [tab, setTab] = useState<Tab>('visualize')
   return (
     <div>
       <div className="spread">
         <div>
           <div className="eyebrow">The bridge</div>
-          <h1>Calculation training</h1>
+          <h1>Calculation &amp; vision</h1>
         </div>
         <div className="row">
           <button className={tab === 'visualize' ? 'primary' : ''} onClick={() => setTab('visualize')}>
@@ -28,13 +33,23 @@ export function Calculation() {
           <button className={tab === 'scan' ? 'primary' : ''} onClick={() => setTab('scan')}>
             Threat scan
           </button>
+          <button className={tab === 'math' ? 'primary' : ''} onClick={() => setTab('math')}>
+            Board math
+          </button>
+          <button className={tab === 'coords' ? 'primary' : ''} onClick={() => setTab('coords')}>
+            Coordinates
+          </button>
         </div>
       </div>
       <p className="muted" style={{ maxWidth: 700 }}>
-        Your puzzle rating is 1427; your game rating is 713. The difference is this skill: seeing
-        moves that have NOT been played yet, in positions where nobody told you a tactic exists.
+        Your puzzle rating is 1427; your game rating is 713. The difference is these skills: seeing
+        moves that have NOT been played yet, counting captures without touching pieces, and knowing
+        every square by name — in positions where nobody told you a tactic exists.
       </p>
-      {tab === 'visualize' ? <Visualize /> : <ThreatScan />}
+      {tab === 'visualize' && <Visualize />}
+      {tab === 'scan' && <ThreatScan />}
+      {tab === 'math' && <BoardMath />}
+      {tab === 'coords' && <Coordinates />}
     </div>
   )
 }
@@ -45,13 +60,16 @@ function Visualize() {
   const [drill, setDrill] = useState<VisualizationDrill | null>(null)
   const [picked, setPicked] = useState<number | null>(null)
   const [score, setScore] = useState({ right: 0, total: 0 })
+  const [depth, setDepth] = useState<'short' | 'deep'>('short')
 
-  function nextDrill() {
-    for (let attempt = 0; attempt < 20; attempt++) {
-      const bucket = PUZZLE_BUCKETS[VIS_SOURCES[Math.floor(Math.random() * VIS_SOURCES.length)]]
+  function nextDrill(mode: 'short' | 'deep' = depth) {
+    const sources = mode === 'deep' ? DEEP_SOURCES : VIS_SOURCES
+    const minPlies = mode === 'deep' ? 4 : 2
+    for (let attempt = 0; attempt < 60; attempt++) {
+      const bucket = PUZZLE_BUCKETS[sources[Math.floor(Math.random() * sources.length)]]
       const p = bucket[Math.floor(Math.random() * bucket.length)]
-      const d = makeVisualizationDrill(p)
-      if (d) {
+      const d = makeVisualizationDrill(p, Math.random, mode === 'deep' ? 7 : 5)
+      if (d && d.lineSan.length >= minPlies) {
         setDrill(d)
         setPicked(null)
         return
@@ -113,7 +131,7 @@ function Visualize() {
           ))}
           {revealed && (
             <div className="row" style={{ marginTop: '0.8rem' }}>
-              <button className="primary" onClick={nextDrill}>
+              <button className="primary" onClick={() => nextDrill()}>
                 Next drill
               </button>
               <span className="muted small">
@@ -121,6 +139,28 @@ function Visualize() {
               </span>
             </div>
           )}
+          <div className="row" style={{ marginTop: '0.8rem' }}>
+            <span className="small muted">Line length:</span>
+            <button
+              className={depth === 'short' ? 'primary' : 'ghost'}
+              onClick={() => {
+                setDepth('short')
+                nextDrill('short')
+              }}
+            >
+              Short (2-3)
+            </button>
+            <button
+              className={depth === 'deep' ? 'primary' : 'ghost'}
+              onClick={() => {
+                setDepth('deep')
+                nextDrill('deep')
+              }}
+            >
+              Deep (4-6)
+            </button>
+            <span className="small muted">Long-term vision = holding longer lines. Move up once short lines feel easy.</span>
+          </div>
         </div>
       </div>
     </div>

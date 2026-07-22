@@ -69,10 +69,14 @@ function shuffled<T>(arr: T[], rng: () => number): T[] {
  * Build a visualization drill from a puzzle: the player reads a line (never
  * played on the board) and answers a question about the resulting position.
  */
-export function makeVisualizationDrill(p: RawPuzzle, rng: () => number = Math.random): VisualizationDrill | null {
+export function makeVisualizationDrill(
+  p: RawPuzzle,
+  rng: () => number = Math.random,
+  maxPlies = 5,
+): VisualizationDrill | null {
   const { game, solutionSan } = preparePuzzle(p)
   if (solutionSan.length < 2) return null
-  const lineSan = solutionSan.slice(0, Math.min(solutionSan.length, 5))
+  const lineSan = solutionSan.slice(0, Math.min(solutionSan.length, maxPlies))
   const finalGame = new Chess(game.fen())
   const startFen = game.fen()
   let lastMove: { san: string; to: Square; piece: string } | null = null

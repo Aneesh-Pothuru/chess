@@ -1,0 +1,15 @@
+{
+  "id": "2026-07-21-seed",
+  "date": "2026-07-21",
+  "headline": "Baseline set — the daily coach starts here",
+  "note": "This is the seed briefing that ships with the app. Once the daily Claude routine is running, it replaces this file every morning with an analysis of your latest chess.com games: what leaked, what improved, and one concrete focus for today.\n\nUntil then, the standing orders from the 162-game audit apply: castle by move 8, scan for mate-in-1 both ways on every move, and trade pieces (never pawns) when you are ahead.",
+  "focus": {
+    "route": "endgame",
+    "target": "conversion",
+    "title": "Convert one won game",
+    "detail": "The single highest-value habit: one conversion drill to checkmate.",
+    "minutes": 12
+  },
+  "adjustments": {},
+  "stats": { "gamesAnalyzed": 162, "record": "65W-88L-9D" }
+}
