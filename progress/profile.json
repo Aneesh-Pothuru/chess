@@ -11,7 +11,7 @@
   "conversion": 0.8599999999999999,
   "hangingPiece": 0.7099999999999997,
   "fork": 0.7299999999999999,
-  "mateThreats": 0.49999999999999967,
+  "mateThreats": 0.37999999999999956,
   "f7f2": 0.8,
   "openingD4": 0.9500000000000001,
   "openingE4": 0.55,
@@ -826,6 +826,90 @@
    "passes": 1,
    "fails": 0,
    "lastAt": 1784735502194
+  },
+  "puzzle:07Wub": {
+   "level": 1,
+   "dueAt": 1784822018186,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735618186
+  },
+  "puzzle:0vTpF": {
+   "level": 1,
+   "dueAt": 1784822022835,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735622835
+  },
+  "puzzle:1ARvc": {
+   "level": 1,
+   "dueAt": 1784822029472,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735629472
+  },
+  "puzzle:08wWv": {
+   "level": 1,
+   "dueAt": 1784822037938,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735637938
+  },
+  "puzzle:1s4nT": {
+   "level": 1,
+   "dueAt": 1784822046473,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735646473
+  },
+  "puzzle:0HPRh": {
+   "level": 1,
+   "dueAt": 1784822049490,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735649490
+  },
+  "puzzle:0SM6C": {
+   "level": 1,
+   "dueAt": 1784822063994,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735663994
+  },
+  "puzzle:0ADtg": {
+   "level": 1,
+   "dueAt": 1784822068527,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735668527
+  },
+  "puzzle:15h0s": {
+   "level": 1,
+   "dueAt": 1784822074594,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735674594
+  },
+  "puzzle:1npYq": {
+   "level": 1,
+   "dueAt": 1784822079698,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735679698
+  },
+  "puzzle:1d8k7": {
+   "level": 1,
+   "dueAt": 1784822090933,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735690933
+  },
+  "puzzle:1pqqm": {
+   "level": 1,
+   "dueAt": 1784822109270,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784735709270
   }
  },
  "games": [
@@ -2412,8 +2496,8 @@
    "correct": 29
   },
   "mateIn1": {
-   "attempts": 24,
-   "correct": 24
+   "attempts": 36,
+   "correct": 36
   },
   "mateIn2": {
    "attempts": 12,
@@ -2442,5 +2526,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-22",
- "updatedAt": 1784735512033
+ "updatedAt": 1784735717747
 }
