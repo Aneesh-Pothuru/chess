@@ -910,6 +910,13 @@
    "passes": 1,
    "fails": 0,
    "lastAt": 1784735709270
+  },
+  "london/d4 d5 Bf4 Nf6 e3 e6 Nf3 Bd6 Bg3 O-O Bd3 c5 c3 Nc6 Nbd2": {
+   "level": 0,
+   "dueAt": 1784736081522,
+   "passes": 0,
+   "fails": 1,
+   "lastAt": 1784736081522
   }
  },
  "games": [
@@ -2524,6 +2531,12 @@
    "successes": 2,
    "bestMoves": 6,
    "lastAt": 1784709395412
+  },
+  "lesson:london-shape": {
+   "attempts": 1,
+   "successes": 1,
+   "bestMoves": 2,
+   "lastAt": 1784736081521
   }
  },
  "puzzleStats": {
@@ -2562,5 +2575,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-22",
- "updatedAt": 1784735861668
+ "updatedAt": 1784736081522
 }
