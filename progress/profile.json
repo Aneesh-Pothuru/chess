@@ -9,11 +9,11 @@
  },
  "weakness": {
   "conversion": 0.8599999999999999,
-  "hangingPiece": 0.98,
-  "fork": 0.85,
+  "hangingPiece": 0.8599999999999999,
+  "fork": 0.7299999999999999,
   "mateThreats": 0.6699999999999998,
   "f7f2": 0.8,
-  "openingD4": 0.9400000000000001,
+  "openingD4": 0.9500000000000001,
   "openingE4": 0.55,
   "endgameTechnique": 0.97,
   "timeUsage": 0.78,
@@ -308,6 +308,258 @@
    "passes": 1,
    "fails": 0,
    "lastAt": 1784702495691
+  },
+  "puzzle:0PJcm": {
+   "level": 1,
+   "dueAt": 1784793910035,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707510035
+  },
+  "puzzle:2DChU": {
+   "level": 1,
+   "dueAt": 1784793918585,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707518585
+  },
+  "puzzle:01oq6": {
+   "level": 1,
+   "dueAt": 1784793935070,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707535070
+  },
+  "puzzle:1Ecwx": {
+   "level": 1,
+   "dueAt": 1784793944606,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707544606
+  },
+  "puzzle:1iTkn": {
+   "level": 1,
+   "dueAt": 1784793952708,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707552708
+  },
+  "puzzle:2YaGj": {
+   "level": 1,
+   "dueAt": 1784793987784,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707587784
+  },
+  "puzzle:06ySG": {
+   "level": 1,
+   "dueAt": 1784793998351,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707598351
+  },
+  "puzzle:37Nch": {
+   "level": 1,
+   "dueAt": 1784794004170,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707604170
+  },
+  "puzzle:37gYp": {
+   "level": 1,
+   "dueAt": 1784794022119,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707622119
+  },
+  "puzzle:0oCl4": {
+   "level": 1,
+   "dueAt": 1784794043488,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707643488
+  },
+  "puzzle:15MY2": {
+   "level": 1,
+   "dueAt": 1784794051275,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707651275
+  },
+  "puzzle:0GsgA": {
+   "level": 1,
+   "dueAt": 1784794068343,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707668343
+  },
+  "puzzle:kRXUl": {
+   "level": 1,
+   "dueAt": 1784794097159,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707697159
+  },
+  "puzzle:h1wfj": {
+   "level": 1,
+   "dueAt": 1784794102043,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707702043
+  },
+  "puzzle:ZR1Ku": {
+   "level": 1,
+   "dueAt": 1784794123030,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707723030
+  },
+  "puzzle:LTYev": {
+   "level": 1,
+   "dueAt": 1784794128416,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707728416
+  },
+  "puzzle:5wee1": {
+   "level": 1,
+   "dueAt": 1784794134765,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707734765
+  },
+  "puzzle:iYs6L": {
+   "level": 1,
+   "dueAt": 1784794145352,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707745352
+  },
+  "puzzle:iWISs": {
+   "level": 1,
+   "dueAt": 1784794155719,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707755719
+  },
+  "puzzle:OL070": {
+   "level": 1,
+   "dueAt": 1784794170648,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707770648
+  },
+  "puzzle:fRCmQ": {
+   "level": 1,
+   "dueAt": 1784794177251,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707777251
+  },
+  "puzzle:P030C": {
+   "level": 1,
+   "dueAt": 1784794190758,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707790758
+  },
+  "puzzle:5c64B": {
+   "level": 1,
+   "dueAt": 1784794203346,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707803346
+  },
+  "puzzle:viwqV": {
+   "level": 1,
+   "dueAt": 1784794207696,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707807696
+  },
+  "puzzle:7kMmo": {
+   "level": 1,
+   "dueAt": 1784794281133,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707881133
+  },
+  "puzzle:6iYvg": {
+   "level": 1,
+   "dueAt": 1784794293071,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707893071
+  },
+  "puzzle:Blib4": {
+   "level": 1,
+   "dueAt": 1784794305052,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707905052
+  },
+  "puzzle:3VSTX": {
+   "level": 1,
+   "dueAt": 1784794314022,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707914022
+  },
+  "puzzle:7MrKM": {
+   "level": 1,
+   "dueAt": 1784794319690,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707919690
+  },
+  "puzzle:CWmvo": {
+   "level": 1,
+   "dueAt": 1784794323174,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707923174
+  },
+  "puzzle:3frZ3": {
+   "level": 1,
+   "dueAt": 1784794329359,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707929359
+  },
+  "puzzle:AZ1V7": {
+   "level": 1,
+   "dueAt": 1784794331992,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707931992
+  },
+  "puzzle:29d7a": {
+   "level": 1,
+   "dueAt": 1784794336374,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707936374
+  },
+  "puzzle:9H3KC": {
+   "level": 1,
+   "dueAt": 1784794338641,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707938641
+  },
+  "puzzle:BYkmo": {
+   "level": 1,
+   "dueAt": 1784794346328,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707946328
+  },
+  "puzzle:3Q2FZ": {
+   "level": 1,
+   "dueAt": 1784794350562,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784707950562
   }
  },
  "games": [
@@ -1884,14 +2136,22 @@
  },
  "puzzleStats": {
   "hangingPiece": {
-   "attempts": 17,
-   "correct": 17
+   "attempts": 29,
+   "correct": 29
   },
   "mateIn1": {
    "attempts": 12,
    "correct": 12
   },
   "mateIn2": {
+   "attempts": 12,
+   "correct": 12
+  },
+  "fork": {
+   "attempts": 12,
+   "correct": 12
+  },
+  "op:london": {
    "attempts": 12,
    "correct": 12
   }
@@ -1902,5 +2162,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784707357256
+ "updatedAt": 1784707954115
 }
