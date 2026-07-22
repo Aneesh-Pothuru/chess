@@ -8,7 +8,7 @@
   "tenSecondFloor": true
  },
  "weakness": {
-  "conversion": 0.95,
+  "conversion": 0.9199999999999999,
   "hangingPiece": 0.95,
   "fork": 0.85,
   "mateThreats": 0.87,
@@ -1552,7 +1552,20 @@
    "motifs": []
   }
  ],
- "drills": {},
+ "drills": {
+  "conv-mate-with-material": {
+   "attempts": 4,
+   "successes": 3,
+   "bestMoves": 10,
+   "lastAt": 1784700825511
+  },
+  "conv-knight-up-endgame": {
+   "attempts": 1,
+   "successes": 0,
+   "bestMoves": null,
+   "lastAt": 1784700911004
+  }
+ },
  "puzzleStats": {
   "hangingPiece": {
    "attempts": 5,
@@ -1565,5 +1578,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784700518668
+ "updatedAt": 1784700911004
 }
