@@ -407,7 +407,7 @@ export function useCoachedGame(): CoachedGame {
         const nowHanging = hangingPieces(fenAfter, color).filter((h) => !beforeHanging.has(h.square))
         if (nowHanging.length > 0) {
           const worst = nowHanging[0]
-          note(ply, 'warning', `Your ${pieceName(worst.piece)} on ${worst.square} is ${worst.kind === 'free' ? 'hanging — free to take' : 'attacked by something cheaper'}. 129 hung pieces got you here; the scan takes five seconds.`, takebackTo)
+          note(ply, 'warning', `Your ${pieceName(worst.piece)} on ${worst.square} is ${worst.kind === 'free' ? 'hanging — free to take' : 'attacked by something cheaper'}. the July audit counted 129 hung pieces; the scan takes five seconds.`, takebackTo)
           motifsRef.current.add('hangingPiece')
           bumpWeakness('hangingPiece', 0.03)
         }
@@ -429,19 +429,19 @@ export function useCoachedGame(): CoachedGame {
         // Castling habits.
         if (san.startsWith('O-O')) {
           const moveNo = Math.ceil(ply / 2)
-          if (moveNo <= 8) note(ply, 'praise', `Castled by move ${moveNo}. Your castled games score 13 points better — keep the habit.`)
+          if (moveNo <= 8) note(ply, 'praise', `Castled by move ${moveNo}. In the July audit, castling this early scored 13 points better than castling late (45% vs 32%) — keep the habit.`)
         } else if (!oncePerGameRef.current.has('castle8')) {
           const moveNo = Math.ceil(ply / 2)
           const stillCanCastle = g.getCastlingRights(color).k || g.getCastlingRights(color).q
           if (moveNo === 8 && stillCanCastle && !hasCastled(g, color)) {
             oncePerGameRef.current.add('castle8')
-            note(ply, 'info', 'Move 8 and the king is still in the middle. Castling wins you 45% in the opening phase vs 32% later — make it the next move unless something is on fire.')
+            note(ply, 'info', 'Move 8 and the king is still in the middle. In the July audit, castling in the opening phase won 45% vs 32% later — make it the next move unless something is on fire.')
           }
         }
         // Ten-second floor.
         if (seconds < 10 && ply > 8 && !oncePerGameRef.current.has(`fast-${Math.floor(ply / 10)}`)) {
           oncePerGameRef.current.add(`fast-${Math.floor(ply / 10)}`)
-          note(ply, 'info', `${Math.round(seconds)}s on that move. Your losses end with 4+ minutes unspent — the floor is 10 seconds in any non-forced position.`)
+          note(ply, 'info', `${Math.round(seconds)}s on that move. The audit clocked your losses ending with 4+ minutes unspent — the floor is 10 seconds in any non-forced position.`)
           bumpWeakness('timeUsage', 0.01)
         }
       }

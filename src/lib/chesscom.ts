@@ -71,6 +71,7 @@ export function toImportedGame(game: ApiGame, username: string): ImportedGame | 
     scanned: false,
     blunders: 0,
     motifs: [],
+    myRating: me.rating,
   }
 }
 

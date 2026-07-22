@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BASELINE, computeMetrics, generateToday } from '../../store/planner'
+import { BASELINE, generateToday } from '../../store/planner'
+import { latestRatings, sampleRatingsIfStale, windowMetrics, ROLLING_WINDOW } from '../../store/stats'
 import { useProfile } from '../../hooks/useProfile'
 import { fetchBriefing, type CoachBriefing } from '../../lib/briefing'
 import { checkCloudNewer, restoreFromCloud } from '../../lib/sync'
@@ -18,8 +19,13 @@ const BLOCK_ICONS: Record<string, string> = {
 export function Dashboard({ go }: { go: (route: Route, target?: string) => void }) {
   const profile = useProfile()
   const today = useMemo(() => generateToday(profile), [profile])
-  const metrics = computeMetrics(profile)
+  const metrics = windowMetrics(profile, ROLLING_WINDOW)
+  const live = latestRatings(profile)
   const [briefing, setBriefing] = useState<CoachBriefing | null>(null)
+
+  useEffect(() => {
+    void sampleRatingsIfStale()
+  }, [])
   const [cloudOffer, setCloudOffer] = useState<number | null>(null)
   const [restoring, setRestoring] = useState(false)
 
@@ -64,7 +70,10 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
     <div>
       <div className="spread">
         <div>
-          <div className="eyebrow">pots1125 · rapid {BASELINE.rating} · best {BASELINE.best}</div>
+          <div className="eyebrow">
+            {profile.settings.username} · rapid {live?.rating ?? `${BASELINE.rating} (audit)`} · best{' '}
+            {live?.best ?? BASELINE.best}
+          </div>
           <h1>Today&apos;s training</h1>
         </div>
         <div className="row">
@@ -72,9 +81,10 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
         </div>
       </div>
       <p className="muted" style={{ maxWidth: 700 }}>
-        Built from your last 162 rapid games. The plan attacks three leaks in order: converting won
-        games, loose pieces around f7, and the 1.d4 black hole. Twenty focused minutes beats two
-        hours of autopilot queuing.
+        Seeded by the July 2026 audit of 162 games, updated daily by the coach routine and your
+        rolling last-{ROLLING_WINDOW}. The plan attacks the leaks in order: converting won games,
+        loose pieces, and the 1.d4 black hole. Twenty focused minutes beats two hours of autopilot
+        queuing.
       </p>
 
       {cloudOffer && (
@@ -147,39 +157,39 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
 
       <div className="grid2">
         <div className="panel">
-          <div className="eyebrow">Metrics vs the plan&apos;s targets</div>
+          <div className="eyebrow">Last {metrics.games} games vs the plan&apos;s targets</div>
           <div className="grid2" style={{ marginTop: '0.6rem' }}>
             <Metric
-              label="Blunders / game"
+              label="Blunders / analyzed game"
               value={metrics.blundersPerGame !== null ? metrics.blundersPerGame.toFixed(1) : '—'}
-              target={`target < 2.0 · was ${BASELINE.blundersPerGame}`}
+              target={`target < 2.0 · audit ${BASELINE.blundersPerGame}`}
               status={
                 metrics.blundersPerGame === null ? undefined : metrics.blundersPerGame < 2 ? 'ok' : 'bad'
               }
             />
             <Metric
               label="Castled by move 8"
-              value={metrics.castleBy8Rate !== null ? `${Math.round(metrics.castleBy8Rate * 100)}%` : '—'}
-              target={`target 70% · was ${Math.round(BASELINE.castleBy8Rate * 100)}%`}
+              value={metrics.castleBy8 !== null ? `${Math.round(metrics.castleBy8 * 100)}%` : '—'}
+              target={`target 70% · audit ${Math.round(BASELINE.castleBy8Rate * 100)}%`}
               status={
-                metrics.castleBy8Rate === null ? undefined : metrics.castleBy8Rate >= 0.7 ? 'ok' : metrics.castleBy8Rate > BASELINE.castleBy8Rate ? 'warn' : 'bad'
+                metrics.castleBy8 === null ? undefined : metrics.castleBy8 >= 0.7 ? 'ok' : metrics.castleBy8 > BASELINE.castleBy8Rate ? 'warn' : 'bad'
               }
             />
             <Metric
               label="Score vs 1.d4"
-              value={metrics.vsD4Score !== null ? `${Math.round(metrics.vsD4Score * 100)}%` : '—'}
-              target={`target 40%+ · was ${Math.round(BASELINE.vsD4Score * 100)}%`}
-              status={metrics.vsD4Score === null ? undefined : metrics.vsD4Score >= 0.4 ? 'ok' : 'warn'}
+              value={metrics.vsD4 !== null ? `${Math.round(metrics.vsD4 * 100)}%` : '—'}
+              target={`target 40%+ · audit ${Math.round(BASELINE.vsD4Score * 100)}%`}
+              status={metrics.vsD4 === null ? undefined : metrics.vsD4 >= 0.4 ? 'ok' : 'warn'}
             />
             <Metric
-              label="Games tracked"
-              value={`${metrics.gamesTracked}`}
-              target="coached + imported"
+              label="Recent record"
+              value={metrics.record}
+              target={`rolling last ${ROLLING_WINDOW}`}
             />
           </div>
           <p className="muted small" style={{ marginTop: '0.6rem' }}>
-            Baseline: 162 games through July 2026. Import new games in Review to refresh these
-            numbers; re-audit in 4–6 weeks.
+            Rolling window of your most recent games; the July 2026 audit (162 games) is the dated
+            baseline. Full trends live on the Progress page.
           </p>
         </div>
 

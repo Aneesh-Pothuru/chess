@@ -9,6 +9,8 @@ import {
   type VisualizationDrill,
 } from '../../chess/calculation'
 import { bumpWeakness, update } from '../../store/profile'
+import { useProfile } from '../../hooks/useProfile'
+import { latestRatings } from '../../store/stats'
 import { BoardMath } from './BoardMath'
 import { Coordinates } from './Coordinates'
 
@@ -41,16 +43,26 @@ export function Calculation() {
           </button>
         </div>
       </div>
-      <p className="muted" style={{ maxWidth: 700 }}>
-        Your puzzle rating is 1427; your game rating is 713. The difference is these skills: seeing
-        moves that have NOT been played yet, counting captures without touching pieces, and knowing
-        every square by name — in positions where nobody told you a tactic exists.
-      </p>
+      <RatingGapIntro />
       {tab === 'visualize' && <Visualize />}
       {tab === 'scan' && <ThreatScan />}
       {tab === 'math' && <BoardMath />}
       {tab === 'coords' && <Coordinates />}
     </div>
+  )
+}
+
+function RatingGapIntro() {
+  const profile = useProfile()
+  const live = latestRatings(profile)
+  const puzzle = live?.tactics ?? 1427
+  const game = live?.rating ?? 713
+  return (
+    <p className="muted" style={{ maxWidth: 700 }}>
+      Your puzzle rating is {puzzle}; your game rating is {game}. The difference is these skills:
+      seeing moves that have NOT been played yet, counting captures without touching pieces, and
+      knowing every square by name — in positions where nobody told you a tactic exists.
+    </p>
   )
 }
 
@@ -148,7 +160,7 @@ function Visualize() {
                 nextDrill('short')
               }}
             >
-              Short (2-3)
+              Short (2-5)
             </button>
             <button
               className={depth === 'deep' ? 'primary' : 'ghost'}
@@ -157,7 +169,7 @@ function Visualize() {
                 nextDrill('deep')
               }}
             >
-              Deep (4-6)
+              Deep (4-7)
             </button>
             <span className="small muted">Long-term vision = holding longer lines. Move up once short lines feel easy.</span>
           </div>

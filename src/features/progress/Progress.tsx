@@ -2,9 +2,11 @@
 // in one place — metrics vs the audit baseline, coached-game history, puzzle
 // accuracy by theme, drill mastery, and opening-line mastery.
 
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useProfile } from '../../hooks/useProfile'
-import { BASELINE, computeMetrics } from '../../store/planner'
+import { BASELINE } from '../../store/planner'
+import { areaTrends, latestRatings, ratingSeries, sampleRatingsIfStale, windowMetrics, ROLLING_WINDOW } from '../../store/stats'
+import { RatingChart } from '../../components/RatingChart'
 import { BUCKET_INFO } from '../../data/puzzles'
 import { ENDGAME_DRILLS, STAGE_NAMES } from '../../data/endgames'
 import { CONVERSION_DRILLS } from '../../data/conversion'
@@ -15,7 +17,14 @@ import { getSyncStatus, getToken } from '../../lib/sync'
 
 export function Progress() {
   const profile = useProfile()
-  const metrics = computeMetrics(profile)
+  const metrics = windowMetrics(profile, ROLLING_WINDOW)
+  const trends = useMemo(() => areaTrends(profile), [profile])
+  const series = useMemo(() => ratingSeries(profile), [profile])
+  const live = latestRatings(profile)
+
+  useEffect(() => {
+    void sampleRatingsIfStale()
+  }, [])
 
   const openingStats = useMemo(
     () =>
@@ -42,10 +51,10 @@ export function Progress() {
   const boardMath = profile.drills['board-math']
 
   const games = [...profile.games].reverse().slice(0, 20)
-  const wonGames = profile.games.filter((g) => g.wonGameConverted !== null)
-  const converted = wonGames.filter((g) => g.wonGameConverted).length
 
   const synced = getToken().length > 0
+
+  const deltaBest = live?.best ?? BASELINE.best
 
   return (
     <div>
@@ -54,42 +63,75 @@ export function Progress() {
           <div className="eyebrow">Progress</div>
           <h1>Your improvement, measured</h1>
         </div>
-        {profile.streak.days > 0 && <span className="tag accent">{profile.streak.days}-day streak</span>}
+        <div className="row">
+          {live && <span className="tag accent">rapid {live.rating} · best {deltaBest}</span>}
+          {profile.streak.days > 0 && <span className="tag accent">{profile.streak.days}-day streak</span>}
+        </div>
       </div>
       <p className="muted small">
+        Current-you metrics use your last {ROLLING_WINDOW} games (rolling); the July 2026 audit of
+        162 games is kept as the dated baseline.{' '}
         {synced
           ? `Cloud sync on — ${getSyncStatus().message}`
-          : 'Cloud sync is OFF on this device — progress here stays in this browser. Set it up in My games → Cloud sync.'}
-        {profile.updatedAt ? ` Last activity: ${new Date(profile.updatedAt).toLocaleString()}.` : ''}
+          : 'Cloud sync is OFF on this device — set it up in My games → Cloud sync.'}
       </p>
 
       <div className="panel" style={{ marginTop: '0.9rem' }}>
-        <div className="eyebrow">Headline metrics vs the plan&apos;s targets</div>
-        <div className="grid2" style={{ marginTop: '0.6rem' }}>
-          <Metric
-            label="Blunders / game (coached)"
-            value={metrics.blundersPerGame !== null ? metrics.blundersPerGame.toFixed(1) : 'no games yet'}
-            target={`target < 2.0 · baseline ${BASELINE.blundersPerGame}`}
-            status={metrics.blundersPerGame === null ? undefined : metrics.blundersPerGame < 2 ? 'ok' : 'bad'}
-          />
-          <Metric
-            label="Castled by move 8"
-            value={metrics.castleBy8Rate !== null ? `${Math.round(metrics.castleBy8Rate * 100)}%` : 'no games yet'}
-            target={`target 70% · baseline ${Math.round(BASELINE.castleBy8Rate * 100)}%`}
-            status={metrics.castleBy8Rate === null ? undefined : metrics.castleBy8Rate >= 0.7 ? 'ok' : metrics.castleBy8Rate > BASELINE.castleBy8Rate ? 'warn' : 'bad'}
-          />
-          <Metric
-            label="Score vs 1.d4 (imported)"
-            value={metrics.vsD4Score !== null ? `${Math.round(metrics.vsD4Score * 100)}%` : 'no data yet'}
-            target={`target 40%+ · baseline ${Math.round(BASELINE.vsD4Score * 100)}%`}
-            status={metrics.vsD4Score === null ? undefined : metrics.vsD4Score >= 0.4 ? 'ok' : 'warn'}
-          />
-          <Metric
-            label="Won games converted"
-            value={wonGames.length > 0 ? `${converted}/${wonGames.length}` : 'no data yet'}
-            target="target: every single one"
-            status={wonGames.length === 0 ? undefined : converted === wonGames.length ? 'ok' : 'bad'}
-          />
+        <div className="eyebrow">Rapid rating trend</div>
+        <RatingChart series={series} baseline={BASELINE.rating} />
+      </div>
+
+      <div className="grid2" style={{ marginTop: '0.9rem' }}>
+        <div className="panel">
+          <div className="eyebrow">Last {Math.min(metrics.games, ROLLING_WINDOW)} games ({metrics.record})</div>
+          <div className="grid2" style={{ marginTop: '0.6rem' }}>
+            <Metric
+              label="Blunders / analyzed game"
+              value={metrics.blundersPerGame !== null ? metrics.blundersPerGame.toFixed(1) : 'scan games first'}
+              target={`target < 2.0 · audit ${BASELINE.blundersPerGame}`}
+              status={metrics.blundersPerGame === null ? undefined : metrics.blundersPerGame < 2 ? 'ok' : 'bad'}
+            />
+            <Metric
+              label="Castled by move 8"
+              value={metrics.castleBy8 !== null ? `${Math.round(metrics.castleBy8 * 100)}%` : 'no games yet'}
+              target={`target 70% · audit ${Math.round(BASELINE.castleBy8Rate * 100)}%`}
+              status={metrics.castleBy8 === null ? undefined : metrics.castleBy8 >= 0.7 ? 'ok' : metrics.castleBy8 > BASELINE.castleBy8Rate ? 'warn' : 'bad'}
+            />
+            <Metric
+              label="Score vs 1.d4 as Black"
+              value={metrics.vsD4 !== null ? `${Math.round(metrics.vsD4 * 100)}%` : 'no data yet'}
+              target={`target 40%+ · audit ${Math.round(BASELINE.vsD4Score * 100)}%`}
+              status={metrics.vsD4 === null ? undefined : metrics.vsD4 >= 0.4 ? 'ok' : 'warn'}
+            />
+            <Metric
+              label="Won positions converted"
+              value={metrics.conversion ? `${metrics.conversion.converted}/${metrics.conversion.reached}` : 'no data yet'}
+              target="target: every single one"
+              status={!metrics.conversion ? undefined : metrics.conversion.converted === metrics.conversion.reached ? 'ok' : 'bad'}
+            />
+          </div>
+        </div>
+
+        <div className="panel">
+          <div className="eyebrow">Areas — recent {Math.floor(ROLLING_WINDOW / 2)} vs the {Math.floor(ROLLING_WINDOW / 2)} before</div>
+          {trends.map((t) => (
+            <div key={t.key} className="spread small" style={{ padding: '0.32rem 0', borderBottom: '1px solid var(--line)' }}>
+              <span>
+                {t.label}: <strong className="mono">{t.now}</strong>
+              </span>
+              <span
+                style={{
+                  color: t.improving === null ? 'var(--boxwood-dim)' : t.improving ? 'var(--laurel)' : 'var(--claret)',
+                }}
+              >
+                {t.improving === null ? '— steady' : t.improving ? '▲ improving' : '▼ slipping'}
+              </span>
+            </div>
+          ))}
+          <p className="muted small" style={{ marginTop: '0.5rem' }}>
+            Trends need analyzed games on both sides of the split — import and scan regularly to keep
+            these honest.
+          </p>
         </div>
       </div>
 

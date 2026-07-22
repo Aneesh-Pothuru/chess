@@ -44,6 +44,8 @@ export interface ImportedGame {
   scanned: boolean
   blunders: number
   motifs: string[]
+  /** The player's rating after this game (from the chess.com record). */
+  myRating?: number
 }
 
 export interface DrillProgress {
@@ -75,6 +77,8 @@ export interface Profile {
   lastBriefingId?: string
   /** Last local mutation, epoch ms — used by cloud sync to pick the newer copy. */
   updatedAt?: number
+  /** Periodic chess.com rating samples (rapid last/best + tactics). */
+  ratingHistory?: Array<{ at: number; rating: number; best?: number; tactics?: number }>
 }
 
 // Seeded from the improvement report + the 162-game baseline analysis.

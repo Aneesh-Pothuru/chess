@@ -34,9 +34,11 @@ export function Review() {
       )
       for (const [url, pgn] of pgns) pgnCache.set(url, pgn)
       update((p) => {
-        const known = new Set(p.imported.map((g) => g.url))
+        const known = new Map(p.imported.map((g) => [g.url, g]))
         for (const g of games) {
-          if (!known.has(g.url)) p.imported.push(g)
+          const existing = known.get(g.url)
+          if (!existing) p.imported.push(g)
+          else if (existing.myRating === undefined && g.myRating !== undefined) existing.myRating = g.myRating
         }
         p.imported.sort((a, b) => b.at - a.at)
         if (p.imported.length > 120) p.imported.length = 120
