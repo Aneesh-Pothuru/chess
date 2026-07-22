@@ -6,6 +6,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # Progress syncs and coach logs aren't part of the built site — don't
+    # redeploy for them. Briefing commits touch public/coach/, so they still deploy.
+    paths-ignore:
+      - 'progress/**'
+      - 'coach-log/**'
   workflow_dispatch:
 
 permissions:
