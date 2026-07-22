@@ -8,7 +8,7 @@
   "tenSecondFloor": true
  },
  "weakness": {
-  "conversion": 0.9199999999999999,
+  "conversion": 0.8899999999999999,
   "hangingPiece": 0.95,
   "fork": 0.85,
   "mateThreats": 0.87,
@@ -1560,10 +1560,10 @@
    "lastAt": 1784700825511
   },
   "conv-knight-up-endgame": {
-   "attempts": 1,
-   "successes": 0,
-   "bestMoves": null,
-   "lastAt": 1784700911004
+   "attempts": 2,
+   "successes": 1,
+   "bestMoves": 27,
+   "lastAt": 1784701006157
   }
  },
  "puzzleStats": {
@@ -1578,5 +1578,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784700911004
+ "updatedAt": 1784701023111
 }
