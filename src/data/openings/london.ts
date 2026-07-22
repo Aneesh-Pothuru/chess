@@ -11,7 +11,7 @@ export const london: Repertoire = {
   keyIdeas: [
     'The setup, almost every game: d4, Bf4, e3, Nf3, c3, Bd3 or Be2, Nbd2, O-O. Learn the shape, then the exceptions.',
     'The b2 problem: when Black plays ...Qb6 hitting b2, answer Qb3 (offer the trade — you are better developed) or Qc1 (guard b2, keep queens on). Never just leave b2 hanging.',
-    'Against ...Nc6 setups, play c3 EARLY. It blunts ...Nb4 hitting your Bd3, gives the Bf4 a retreat, and supports d4.',
+    'Against ...Nc6 setups, play c3 EARLY. It blunts ...Nb4 hitting your Bd3, frees c2 as a retreat square for that bishop, and supports d4.',
     'Your dark-squared bishop on f4 is the soul of the London. When Black offers a trade with ...Bd6, retreat Bg3 — if they take, hxg3 opens the h-file toward their king.',
     'Central breaks (e4) only after a full checks-captures-threats scan. Loss #5 died to 20.e4?? played without one.',
     'Castle by move 8. The setup makes it easy — do not drift.',
@@ -171,7 +171,7 @@ export const london: Repertoire = {
                     ]),
                   ]),
                   n('Bf5', { weight: 1 }, [
-                    n('Qb3', { primary: true, note: 'The bishop left b7 undefended. Qb3 hits b7 and d5 at once — often wins a pawn outright.' }),
+                    n('Qb3', { primary: true, note: 'The bishop left b7 undefended. Qb3 hits b7 and d5 at once — often winning a pawn outright. One caveat: if ...Na5 hits your queen, play Qa4+ and after ...c6 retreat to d1 — NOT c2, where the f5-bishop snaps her off.' }),
                   ]),
                 ]),
               ]),
@@ -183,7 +183,7 @@ export const london: Repertoire = {
                 ]),
               ]),
               n('Bf5', { weight: 1 }, [
-                n('Qb3', { primary: true, note: 'Same punishment: b7 is loose the moment that bishop leaves home.' }),
+                n('Qb3', { primary: true, note: 'Same punishment: b7 is loose the moment that bishop leaves home. Same caveat as always: if ...Na5, play Qa4+ and when kicked retreat to d1 — never c2, the f5-bishop covers it.' }),
               ]),
             ]),
           ]),
@@ -336,7 +336,8 @@ export const london: Repertoire = {
                       n('Qxb2', { weight: 2 }, [
                         n('Nc3', {
                           primary: true,
-                          note: 'The move that defuses everything. (Bc3?? loses the queen to ...Bb4! — that is their whole plan.) Now Rb1 comes with tempo, Nb5/Nd5 chase the queen, and you are simply a pawn up with a huge lead.',
+                          note:
+                            'The move that defuses everything. (Bc3?? walks into ...Bb4! — then Qxc3?? is met by ...Qc1 mate and anything else drops the a1-rook. That is their whole plan.) Now Rb1 comes with tempo, Nb5/Nd5 chase the queen, and though material is level again, every move of theirs saves the queen while every move of yours develops.',
                         }),
                       ]),
                     ]),

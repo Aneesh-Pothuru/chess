@@ -63,7 +63,7 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
 
     goal: 'mate',
     lesson:
-      "Their king is already in jail: Qc5 pins it to a8, b7 and b8 — three squares, nothing else. The queen's work is DONE, and touching her is where the half-point dies: Qb6?? or Qc7?? this instant is stalemate. Leave the queen alone and MARCH your king the short road: Kd2, Kc3, Kb4, Kb5, then b6. If their king parks on b7 to block, one long-distance check (Qd5+) shoves it back — then keep walking. With your king on b6, the queen's next move is mate. Before EVERY queen move: does their king have a square? For once the method IS the engine's fastest line — mate in 7, so the 8-move target gives one move of slack.",
+      "Their king is already in jail: Qc5 boxes it into a8, b8, b7 and a6 — four squares, nothing else. The queen's work is DONE, and touching her is where the half-point dies: Qb6?? or Qc7?? this instant is stalemate. Leave the queen alone and MARCH your king the short road: Kd2, Kc3, Kb4, Kb5, then b6. If their king parks on b7 to block, one long-distance check (Qd5+) shoves it back — then keep walking. With your king on b6, the queen's next move is mate. Before EVERY queen move: does their king have a square? For once the method IS the engine's fastest line — mate in 7, so the 8-move target gives one move of slack.",
     trap: 'Qc7 or Qb6 immediately = stalemate. The queen waits; the king walks.',
   },
   // Stage 3 — K+R mate
@@ -85,12 +85,12 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     id: 'square-1',
     title: 'Rule of the square: catch it',
     stage: 4,
-    fen: '8/8/8/8/5k2/8/1P6/1K6 b - - 0 1',
+    fen: '7K/8/8/8/5k2/8/1P6/8 b - - 0 1',
     playerColor: 'b',
     moveTarget: 6,
     goal: 'draw',
     lesson:
-      "Draw the square from the pawn to its promotion rank. If your king can step inside it, the pawn is caught. From f4: Ke4, then d5, c5, and take on b6 — inside the square the whole way.",
+      "Draw the square from the pawn to its promotion rank — and count from b3, not b2, because a pawn on its home square can jump two. Your king on f4 stands inside that square, so the pawn is caught. If it runs: Ke4, then d5, c5, and take on b6 — inside the square the whole way. If it sits, just walk down and eat it on b2. Either way, the capture is the draw.",
   },
   {
     id: 'square-2',
@@ -101,7 +101,7 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     moveTarget: 6,
     goal: 'promote',
     lesson:
-      'From h4 the king stands OUTSIDE the square once you push: b4! Now count — it can never step inside. One tempo decides every pawn race; do this count before pushing, every time.',
+      'Count the square from b3, not b2 — the double-step — and from h4 his king is already outside it. Push b4! anyway: the fastest move keeps him a full file behind the shrinking square, and the pawn queens in five. One tempo decides every pawn race; do this count before pushing, every time.',
   },
   // Stage 5 — opposition
   {
@@ -125,7 +125,7 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     moveTarget: 12,
     goal: 'draw',
     lesson:
-      'Defending side: stay directly in front of the pawn, and when pushed back, drop STRAIGHT back to keep taking the opposition. Corner rule bonus: against a rook pawn, reaching the corner always draws.',
+      "Defending side, two rules. When the PAWN steps forward: drop straight back and stand directly in front of it. When his KING steps forward or slides sideways: mirror it — take direct opposition, same file or rank with one square between the kings. Here that means 1...Ke7, and if his king outflanks with Kd5, answer Kd7 — sideways, NOT back to e8, which loses. Hold those two rules and the game ends with your king stalemated in front of the pawn — that stalemate is the successful draw. Corner rule bonus: against a rook pawn, reaching the corner always draws.",
   },
   // Stage 6 — key squares / technique
   {
@@ -137,19 +137,20 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     moveTarget: 14,
     goal: 'promote',
     lesson:
-      'Win condition checklist: king two ahead of the pawn (yes), now fight for the key squares c5/d5/e5. Advance the KING; the pawn is the last piece to move.',
+      "Checklist: king two squares ahead of the pawn — yes — so this is won. Fight for the key squares c5, d5 and e5 with KING moves. But watch the kings: when they stand eye-to-eye and yours cannot step forward, spend the pawn's spare step — d3!, one square only — and his king must give way. That single tempo is exactly why the pawn waited on d2.",
+    trap: 'With the kings in opposition, d4?? in one go burns the reserve tempo — ...Kd6 then holds forever. The one-square step d3 is the move.',
   },
   // Stage 7 — practical technique
   {
     id: 'rook-cut-1',
     title: 'Rook endgame: cut the king',
     stage: 7,
-    fen: '8/8/1k6/8/8/8/PK6/7R w - - 0 1',
+    fen: '8/8/3k4/8/8/8/PK6/7R w - - 0 1',
     playerColor: 'w',
-    moveTarget: 18,
+    moveTarget: 8, // exhaustively verified: taught policy promotes in <= 7 vs ANY defense
     goal: 'promote',
     lesson:
-      'The winning pattern: use the rook to cut the enemy king off by a FILE, then walk your pawn home behind the fence. Rh6/Rh5 first, march second.',
+      "The winning pattern: cut the enemy king off with the rook along a FILE, then walk your pawn home behind the fence. Rc1! draws the line — his king can never cross the c-file. Then march: a4, a5, a6. If his king walks up to poke the rook, slide it to the far end of its file (Rc8 or back to Rc1) and keep marching — the fence holds from any distance. Fence first, march second.",
   },
   {
     id: 'q-vs-p-1',
@@ -157,10 +158,10 @@ export const ENDGAME_DRILLS: EndgameDrill[] = [
     stage: 7,
     fen: '8/8/8/7Q/8/2k3K1/1p6/8 w - - 0 1',
     playerColor: 'w',
-    moveTarget: 12,
+    moveTarget: 14, // taught technique needs exactly 12 vs perfect defense; 14 = human slack
     goal: 'mate',
     lesson:
-      'The b-pawn cannot save itself: check until the king is forced IN FRONT of its own pawn — that move costs Black a tempo, and your king takes a free step closer each time. Repeat, arrive, mate. (Rook and bishop pawns have stalemate tricks; knight pawns do not.)',
+      "The b-pawn cannot save itself: drive the king with checks, and when no check makes progress, play one quiet move that attacks the pawn or grabs a square next to it — until the king is forced IN FRONT of its own pawn on b1. Blocked pawn, wasted tempo: your king takes a free step closer each time. Repeat, arrive, mate. The 14-move target fits this method against perfect defense; the engine's fastest mate (11) parks the queen ON b1 instead — both win. (Rook and bishop pawns have stalemate tricks; knight pawns do not.)",
   },
 ]
 

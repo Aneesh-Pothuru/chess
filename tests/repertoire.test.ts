@@ -39,10 +39,11 @@ describe('repertoire trees', () => {
     expect(qc8?.primary).toBe(true)
   })
 
-  it('kings-indian: contains the Nxe4 endgame trick line', () => {
+  it('kings-indian: with a knight on c6 the endgame line recaptures on e5', () => {
+    // Audited: ...Nxe4 is wrong here (Nxc6! escapes); plain recapture wins a piece.
     const kid = REPERTOIRES.find((r) => r.id === 'kings-indian')!
     const path = ['d4', 'Nf6', 'c4', 'g6', 'Nc3', 'Bg7', 'e4', 'd6', 'Nf3', 'O-O', 'Be2', 'e5',
-      'O-O', 'Nc6', 'dxe5', 'dxe5', 'Qxd8', 'Rxd8', 'Nxe5', 'Nxe4']
+      'O-O', 'Nc6', 'dxe5', 'dxe5', 'Qxd8', 'Rxd8', 'Nxe5', 'Nxe5']
     expect(nodeAt(kid, path)?.primary).toBe(true)
     expect(() => fenAfter(path)).not.toThrow()
   })

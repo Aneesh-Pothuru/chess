@@ -14,12 +14,14 @@ import {
 import { dueKeys, newSrsState, recordResult } from '../../store/srs'
 import { update } from '../../store/profile'
 import { useProfile } from '../../hooks/useProfile'
+import { courseFor, type CourseUnit } from '../../data/openings/courses'
+import { fenAtStep, lastMoveAtStep, unitWalks, type LessonWalk } from '../../chess/course'
 
-type Mode = 'browse' | 'learn' | 'drill'
+type Mode = 'course' | 'browse' | 'learn' | 'drill'
 
 export function Openings({ initialTarget }: { initialTarget?: string }) {
   const [repId, setRepId] = useState<string | null>(initialTarget ?? null)
-  const [mode, setMode] = useState<Mode>('browse')
+  const [mode, setMode] = useState<Mode>('course')
   const rep = REPERTOIRES.find((r) => r.id === repId) ?? null
 
   if (!rep) {
@@ -49,6 +51,9 @@ export function Openings({ initialTarget }: { initialTarget?: string }) {
           <h1>{rep.name}</h1>
         </div>
         <div className="row">
+          <button className={mode === 'course' ? 'primary' : ''} onClick={() => setMode('course')}>
+            Course
+          </button>
           <button className={mode === 'browse' ? 'primary' : ''} onClick={() => setMode('browse')}>
             Ideas
           </button>
@@ -58,14 +63,283 @@ export function Openings({ initialTarget }: { initialTarget?: string }) {
           <button className={mode === 'drill' ? 'primary' : ''} onClick={() => setMode('drill')}>
             Drill
           </button>
-          <button className="ghost" onClick={() => { setRepId(null); setMode('browse') }}>
+          <button className="ghost" onClick={() => { setRepId(null); setMode('course') }}>
             ← All openings
           </button>
         </div>
       </div>
+      {mode === 'course' && <Course rep={rep} />}
       {mode === 'browse' && <Ideas rep={rep} />}
       {mode === 'learn' && <Learn rep={rep} />}
       {mode === 'drill' && <Drill rep={rep} />}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------- Course
+
+function Course({ rep }: { rep: Repertoire }) {
+  const profile = useProfile()
+  const units = courseFor(rep.id)
+  const [unitId, setUnitId] = useState<string | null>(null)
+  const unit = units.find((u) => u.id === unitId) ?? null
+
+  if (unit) {
+    return (
+      <UnitLesson
+        rep={rep}
+        unit={unit}
+        onExit={() => setUnitId(null)}
+        onNext={() => {
+          const i = units.findIndex((u) => u.id === unit.id)
+          setUnitId(units[i + 1]?.id ?? null)
+        }}
+        hasNext={units.findIndex((u) => u.id === unit.id) < units.length - 1}
+      />
+    )
+  }
+
+  const doneCount = units.filter((u) => (profile.drills[`lesson:${u.id}`]?.successes ?? 0) > 0).length
+  return (
+    <div style={{ marginTop: '0.9rem' }}>
+      <p className="muted" style={{ maxWidth: 680 }}>
+        The guided course: each lesson walks a variation move by move with the coach narrating, then
+        you replay the main line yourself. Work top to bottom — {doneCount}/{units.length} complete.
+      </p>
+      <div className="grid2" style={{ marginTop: '0.8rem' }}>
+        {units.map((u, i) => {
+          const prog = profile.drills[`lesson:${u.id}`]
+          const done = (prog?.successes ?? 0) > 0
+          return (
+            <div key={u.id} className="clickable-card panel" onClick={() => setUnitId(u.id)}>
+              <div className="spread">
+                <h3>
+                  <span style={{ color: 'var(--sienna)', marginRight: 8 }}>{i + 1}.</span>
+                  {u.title}
+                </h3>
+                {done ? (
+                  <span className="tag good">done{prog!.bestMoves === 0 ? ' · clean' : ''}</span>
+                ) : (
+                  <span className="tag">start</span>
+                )}
+              </div>
+              <p className="muted small">{u.intro.split('. ').slice(0, 1).join('. ')}.</p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+type LessonPhase = 'watch' | 'try' | 'done'
+
+function UnitLesson({
+  rep,
+  unit,
+  onExit,
+  onNext,
+  hasNext,
+}: {
+  rep: Repertoire
+  unit: CourseUnit
+  onExit: () => void
+  onNext: () => void
+  hasNext: boolean
+}) {
+  const walks = useMemo(() => unitWalks(rep, unit), [rep, unit])
+  const [phase, setPhase] = useState<LessonPhase>('watch')
+  const [walkIdx, setWalkIdx] = useState(0)
+  const [stepIdx, setStepIdx] = useState(0)
+  const [tryStep, setTryStep] = useState(0)
+  const [mistakes, setMistakes] = useState(0)
+  const [tryMsg, setTryMsg] = useState('')
+
+  const walk: LessonWalk = walks[Math.min(walkIdx, walks.length - 1)]
+  const main = walks[0]
+
+  // ---------------- watch phase helpers
+  const watchFen = useMemo(() => fenAtStep(walk, stepIdx), [walk, stepIdx])
+  const watchLast = useMemo(() => lastMoveAtStep(walk, stepIdx), [walk, stepIdx])
+  const currentStep = stepIdx > 0 ? walk.steps[stepIdx - 1] : null
+  const atWalkEnd = stepIdx >= walk.steps.length
+
+  function nextWatch() {
+    if (!atWalkEnd) {
+      setStepIdx(stepIdx + 1)
+    } else if (walkIdx < walks.length - 1) {
+      setWalkIdx(walkIdx + 1)
+      setStepIdx(0)
+    } else {
+      startTry()
+    }
+  }
+
+  function startTry() {
+    setPhase('try')
+    setTryStep(0)
+    setMistakes(0)
+    setTryMsg('Your turn: play the main line from move one. The board plays the other side.')
+    // If the opponent moves first (Black repertoires), roll their opening plies in.
+    scheduleOpponentPlies(0)
+  }
+
+  function scheduleOpponentPlies(fromStep: number) {
+    let i = fromStep
+    while (i < main.steps.length && !main.steps[i].ours) i++
+    if (i > fromStep) {
+      setTimeout(() => setTryStep((prev) => (prev === fromStep ? i : prev)), 550)
+    }
+  }
+
+  const tryFen = useMemo(() => fenAtStep(main, tryStep), [main, tryStep])
+  const tryLast = useMemo(() => lastMoveAtStep(main, tryStep), [main, tryStep])
+
+  function onTryMove(from: Square, to: Square, promotion?: string): boolean {
+    if (phase !== 'try' || tryStep >= main.steps.length) return false
+    const expected = main.steps[tryStep]
+    if (!expected.ours) return false
+    const g = new Chess(tryFen)
+    const exp = g.move(expected.san)
+    g.undo()
+    if (exp.from !== from || exp.to !== to || (exp.promotion ?? undefined) !== (promotion ?? undefined)) {
+      setMistakes((m) => m + 1)
+      setTryMsg(`Not that one — the lesson plays ${expected.label}${expected.note ? ` — ${expected.note}` : '.'} Try it.`)
+      return false
+    }
+    const nextStep = tryStep + 1
+    setTryStep(nextStep)
+    setTryMsg(expected.note ?? `${expected.label} — exactly.`)
+    if (nextStep >= main.steps.length) {
+      finishTry()
+    } else {
+      scheduleOpponentPlies(nextStep)
+      // If the remaining steps are all opponent plies ending the line, finish after they roll in.
+      if (main.steps.slice(nextStep).every((s) => !s.ours)) {
+        setTimeout(() => finishTry(), 700)
+      }
+    }
+    return true
+  }
+
+  function finishTry() {
+    setPhase('done')
+    update((p) => {
+      const key = `lesson:${unit.id}`
+      const d = p.drills[key] ?? { attempts: 0, successes: 0, bestMoves: null, lastAt: 0 }
+      p.drills[key] = {
+        attempts: d.attempts + 1,
+        successes: d.successes + 1,
+        bestMoves: d.bestMoves === null ? mistakes : Math.min(d.bestMoves, mistakes),
+        lastAt: Date.now(),
+      }
+      p.srs[main.key] = recordResult(p.srs[main.key] ?? newSrsState(), mistakes === 0)
+    })
+  }
+
+  const orientation = rep.color === 'w' ? 'white' : 'black'
+
+  return (
+    <div className="board-page" style={{ marginTop: '0.9rem' }}>
+      <div>
+        <div className="coach-strip">
+          {phase === 'watch' ? (
+            <div className={currentStep?.note ? 'notice' : 'coach-tip'}>
+              {currentStep ? (
+                <>
+                  <strong className="mono">{currentStep.label}</strong>
+                  {currentStep.note ? ` — ${currentStep.note}` : currentStep.ours ? ' — your move in this line.' : ''}
+                </>
+              ) : (
+                <span className="muted">
+                  {walk.title} · press Next to step through. Notes appear as moves land.
+                </span>
+              )}
+            </div>
+          ) : phase === 'try' ? (
+            <div className="notice">{tryMsg}</div>
+          ) : (
+            <div className="won-banner">
+              <strong>
+                Lesson complete{mistakes === 0 ? ' — clean run!' : ` — ${mistakes} slip${mistakes === 1 ? '' : 's'}, worth one more pass someday.`}
+              </strong>{' '}
+              This line is now in your spaced-repetition queue.
+            </div>
+          )}
+        </div>
+        <Board
+          fen={phase === 'watch' ? watchFen : tryFen}
+          orientation={orientation}
+          onMove={phase === 'try' ? onTryMove : undefined}
+          lastMove={phase === 'watch' ? watchLast : tryLast}
+          interactive={phase === 'try'}
+        />
+        <div className="row" style={{ marginTop: '0.7rem' }}>
+          {phase === 'watch' && (
+            <>
+              <button onClick={() => setStepIdx(Math.max(0, stepIdx - 1))} disabled={stepIdx === 0}>
+                ← Back
+              </button>
+              <button className="primary" onClick={nextWatch}>
+                {!atWalkEnd ? 'Next →' : walkIdx < walks.length - 1 ? `Next: ${walks[walkIdx + 1].title}` : 'Your turn →'}
+              </button>
+              <button className="ghost" onClick={startTry}>
+                Skip to Your turn
+              </button>
+              <span className="muted small">
+                {walk.title} · {stepIdx}/{walk.steps.length}
+              </span>
+            </>
+          )}
+          {phase === 'try' && (
+            <span className="muted small">
+              Replaying the main line · move {Math.ceil((tryStep + 1) / 2)} · {mistakes} slip{mistakes === 1 ? '' : 's'}
+            </span>
+          )}
+          {phase === 'done' && (
+            <>
+              {hasNext && (
+                <button className="primary" onClick={onNext}>
+                  Next lesson →
+                </button>
+              )}
+              <button onClick={onExit}>Back to course</button>
+              <button className="ghost" onClick={() => { setPhase('watch'); setWalkIdx(0); setStepIdx(0) }}>
+                Rewatch
+              </button>
+            </>
+          )}
+          <button className="ghost" onClick={onExit} style={{ marginLeft: 'auto' }}>
+            ✕ Exit
+          </button>
+        </div>
+      </div>
+      <div className="panel">
+        <div className="eyebrow">{unit.title}</div>
+        <p className="small">{unit.intro}</p>
+        {phase === 'watch' && walks.length > 1 && (
+          <>
+            <div className="eyebrow" style={{ marginTop: '0.8rem' }}>Lines in this lesson</div>
+            {walks.map((w, i) => (
+              <button
+                key={w.key}
+                className={`option-btn ${i === walkIdx ? 'correct' : ''}`}
+                onClick={() => {
+                  setWalkIdx(i)
+                  setStepIdx(0)
+                }}
+              >
+                {w.title} ({Math.ceil(w.steps.length / 2)} moves)
+              </button>
+            ))}
+          </>
+        )}
+        {phase !== 'watch' && (
+          <p className="muted small" style={{ marginTop: '0.6rem' }}>
+            The replay uses the main line. Sidelines come back in the Drill with spaced repetition.
+          </p>
+        )}
+      </div>
     </div>
   )
 }

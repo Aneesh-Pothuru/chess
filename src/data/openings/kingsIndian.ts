@@ -17,7 +17,7 @@ export const kingsIndian: Repertoire = {
     'Against slow systems (Colle, e3 stuff, Bird): your setup needs no changes. Castle by 8, break with ...e5, play chess.',
   ],
   watchFor: [
-    'The dxe5/Qxd8 "endgame trick": after ...e5, dxe5 dxe5 Qxd8 Rxd8 Nxe5?? loses to ...Nxe4! — both knights hang, and you regain the pawn with a fine game. Know it cold; it wins games at your level.',
+    'The dxe5/Qxd8 "endgame trick": after ...e5, dxe5 dxe5 Qxd8 Rxd8 Nxe5?? loses to ...Nxe4! — both knights hang, and you regain the pawn with a fine game. (If your knight is already on c6, it is even simpler: ...Nxe5 just wins a piece.) Know it cold; it wins games at your level.',
     'Do not release the tension with ...exd4 without a reason — it hands White the center. Keep the pawn on e5 and improve pieces.',
     'In race positions, every ...a6/...h6 slow move is a wasted tempo. Count attackers, not pawns.',
   ],
@@ -53,16 +53,12 @@ export const kingsIndian: Repertoire = {
                                 n('dxe5', { weight: 1 }, [
                                   n('dxe5', { primary: true }, [
                                     n('Qxd8', { weight: 1 }, [
-                                      n('Rxd8', { primary: true, note: 'This "boring" endgame is fine for you — and if Nxe5?? now, ...Nxe4! regains everything: both knights hang and yours took a center pawn.' }, [
+                                      n('Rxd8', { primary: true, note: 'This "boring" endgame is fine for you — and if Nxe5?? now, just take back: ...Nxe5! Your c6 knight guards e5, so the grab loses a whole piece.' }, [
                                         n('Nxe5', { weight: 1 }, [
-                                          n('Nxe4', {
+                                          n('Nxe5', {
                                             primary: true,
-                                            note: 'The trick, on the board. If Nxe4, ...Bxe5 restores material with the better bishop; White has nothing.',
-                                          }, [
-                                            n('Nxe4', { weight: 1 }, [
-                                              n('Bxe5', { primary: true, note: 'Material equal, your bishop dominates the long diagonal, their e4-knight floats. You are the one pressing.' }),
-                                            ]),
-                                          ]),
+                                            note: 'Just recapture: your c6 knight guards e5, so their "free pawn" costs a whole piece. (Skip the ...Nxe4 trick here — White would answer Nxc6!, hitting your d8-rook, and escape. The trick is for positions without a knight on c6.)',
+                                          }),
                                         ]),
                                         n('Bg5', { weight: 1 }, [
                                           n('Re8', { primary: true, note: 'Defend e5 laterally and step out of tricks — Rd4?? here loses the exchange to Nxd4. If Nd5 comes: ...Nxd5 cxd5 and THEN ...Nd4, the knight (not the rook) owning the hole.' }),
@@ -118,7 +114,7 @@ export const kingsIndian: Repertoire = {
                               n('e6', { primary: true, note: 'Keep chipping. After dxe6 fxe6 or ...exd5, the center White built dissolves and their king has no shelter.' }),
                             ]),
                             n('Be2', { weight: 1 }, [
-                              n('cxd4', { primary: true, note: 'Win the d4 pawn trade, then hit e4 with ...Nc6 and ...Bg4 ideas. Their center is a target, not an asset.' }),
+                              n('cxd4', { primary: true, note: 'Trade on d4, then harass whatever recaptured: ...Nc6 hits the d4-knight (or queen) and ...Bg4 adds pressure. Their center is a target, not an asset.' }),
                             ]),
                           ]),
                         ]),
@@ -247,7 +243,7 @@ export const kingsIndian: Repertoire = {
             note: 'Stay on system. If Bxf6 exf6: your pawns look funny but the dark-squared bishop becomes a monster and no one at this level knows how to punish doubled pawns.',
           }, [
             n('Bxf6', { weight: 1 }, [
-              n('exf6', { primary: true, note: 'Recapture toward the center. ...Bg7, ...O-O, ...d5 or ...d6, ...f5 later — the bishop pair is long-term interest.' }),
+              n('exf6', { primary: true, note: 'Recapture with the e-pawn — your only recapture. ...Bg7, ...O-O, ...d5 or ...d6, ...f5 later — the bishop pair is long-term interest.' }),
             ]),
             n('Nc3', { weight: 1 }, [
               n('Bg7', { primary: true }, [

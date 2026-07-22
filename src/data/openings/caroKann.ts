@@ -68,7 +68,7 @@ export const caroKann: Repertoire = {
                 n('g4', { weight: 1, name: 'The pawn lunge' }, [
                   n('Bd7', {
                     primary: true,
-                    note: 'Cold blood. The bishop steps back; White spent two tempi loosening their own king. Later ...e6, ...c5, and their g4 pawn is a target forever.',
+                    note: 'Cold blood. The bishop steps back; White loosened their own king just to win one tempo. Later ...e6, ...c5, and their g4 pawn is a target forever.',
                   }, [
                     n('Nf3', { weight: 1 }, [
                       n('e6', { primary: true, note: 'Business as usual. ...c5 next; White must now defend a airy kingside all game.' }),
@@ -76,7 +76,7 @@ export const caroKann: Repertoire = {
                   ]),
                 ]),
                 n('h4', { weight: 1 }, [
-                  n('h5', { primary: true, note: 'Freeze the pawn. Without h5-h6 the chase is over, and g5 is now a hole for your pieces.' }, [
+                  n('h5', { primary: true, note: 'Freeze the pawn. Without h5-h6 the chase is over, the h4 pawn needs babysitting forever, and g4 — guarded by your h-pawn — becomes a fine square for your pieces.' }, [
                     n('Nf3', { weight: 1 }, [
                       n('e6', { primary: true }),
                     ]),
@@ -235,7 +235,7 @@ export const caroKann: Repertoire = {
                 note: 'The equalizer: pin, then happily give the bishop pair for a granite structure.',
               }, [
                 n('h3', { weight: 2 }, [
-                  n('Bxf3', { primary: true, note: 'Give the pair without regret; their doubled f-pawn potential and your unbreakable center are full payment.' }, [
+                  n('Bxf3', { primary: true, note: 'Give the pair without regret; your unbreakable center and effortless development are full payment.' }, [
                     n('Qxf3', { weight: 1 }, [
                       n('e6', { primary: true, note: 'Then ...Nf6, ...Nbd7, ...Bd6 or ...Be7, castle. Nothing in your camp can be attacked.' }, [
                         n('d4', { weight: 1 }, [
