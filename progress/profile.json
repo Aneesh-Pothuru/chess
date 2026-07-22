@@ -15,7 +15,7 @@
   "f7f2": 0.8,
   "openingD4": 0.9400000000000001,
   "openingE4": 0.55,
-  "endgameTechnique": 0.8,
+  "endgameTechnique": 0.8900000000000001,
   "timeUsage": 0.7,
   "castling": 0.75,
   "boardVision": 0.7,
@@ -1816,6 +1816,24 @@
    "successes": 1,
    "bestMoves": 27,
    "lastAt": 1784701006157
+  },
+  "ladder-1": {
+   "attempts": 2,
+   "successes": 2,
+   "bestMoves": 7,
+   "lastAt": 1784702684842
+  },
+  "ladder-2": {
+   "attempts": 1,
+   "successes": 1,
+   "bestMoves": 7,
+   "lastAt": 1784702701807
+  },
+  "kq-1": {
+   "attempts": 6,
+   "successes": 0,
+   "bestMoves": null,
+   "lastAt": 1784702975608
   }
  },
  "puzzleStats": {
@@ -1838,5 +1856,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784702495692
+ "updatedAt": 1784702975609
 }
