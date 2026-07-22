@@ -1,46 +1,47 @@
 {
-  "id": "2026-07-22",
+  "id": "2026-07-22-2",
   "date": "2026-07-22",
-  "headline": "Two losses to one-move mates — with 7 minutes on the clock",
-  "note": "Three rapid games today, 1W-2L, and both losses ended the same way: a mate-in-1 you allowed while blitzing. Against s4rc4stic, 18.gxf3 just wins the checking knight — instead 18.Kh1 let Qxh2# land. Against Hamid137 you were a whole knight up after 14...Nxe7, but that knight on c6 was the only defender of your d8 rook: Qxd8# back-rank mate, on a move that took six seconds. Final clocks: 6:41, 7:46, 8:31 — in 10-minute games. The fix is not more chess knowledge, it is pace: a recapture is still a move, and every move gets the two-question scan (can I be mated in one? can I mate in one?). The win vs ArunKumar was a gift — you were down 4 points when they quit. Bright spot: repertoire 3-for-3 (London twice, Caro-Kann once) and castling on moves 8 and 9 in the games that mattered. Fuller picture: yesterday's 21-game marathon (8W-12L-1D) is analyzed in coach-log/2026-07-21-marathon.md — same story at scale: winning positions lost to the clock.",
+  "headline": "The wins prove the plan works — the Caro ...e5 break lost both losses",
+  "note": "Four evening games, 2W-2L, and the day split cleanly. The wins ran the plan: London win vs kELANASTASIA castled on move 8 and finished with 4:07 on the clock — your best time usage yet — and the clachesss game broke the 1.d4 curse with a King's Indian setup, castling on move 5 and delivering a back-rank mate (30...Rb1#), the very pattern that keeps killing you. Both losses were the same Caro-Kann wound: White played Bb5, you answered with a premature ...e5 break (vs keroRoma and callmetaide), lost a pawn to the Bxc6-then-Nxe5 removed-defender trick, and the king never got safe — vs keroRoma you never castled and were mated Re8# on move 22. Fix: in the Caro, develop and castle BEFORE breaking with ...e5, and when a rook shares the e-file with your king, castling is the most urgent move on the board.",
   "focus": {
-    "route": "puzzles",
-    "target": "mateIn1",
-    "title": "Mate-in-1 scan — both ways",
-    "detail": "Both of today's losses were one-move mates you allowed with a full clock; retrain the every-move scan.",
+    "route": "openings",
+    "target": "caro-kann",
+    "title": "Caro-Kann vs Bb5: castle before you break",
+    "detail": "Both losses came from the same Bb5 position where ...e5 dropped a pawn and exposed the king; drill the line to a safe castled middlegame.",
     "minutes": 12
-  },
-  "adjustments": {
-    "mateThreats": 0.05,
-    "timeUsage": 0.04,
-    "castling": -0.01
-  },
-  "stats": {
-    "gamesAnalyzed": 3,
-    "record": "1W-2L",
-    "blunders": 3
   },
   "tasks": [
     {
+      "route": "openings",
+      "target": "caro-kann",
+      "title": "Caro-Kann vs Bb5: castle before you break",
+      "detail": "Both evening losses (keroRoma, callmetaide) started 5.Bb5 and both times ...e5 lost a pawn to Bxc6 then Nxe5. Drill the repertoire line: develop, castle, then break. The Caro SRS line is also 0-for-2.",
+      "minutes": 12
+    },
+    {
       "route": "puzzles",
       "target": "mateIn1",
-      "title": "Mate-in-1 scan — both ways",
-      "detail": "Both losses today ended on an allowed mate-in-1 played in seconds (18.Kh1 vs s4rc4stic, Qxd8# vs Hamid137). Twelve puzzles to re-arm the two-question scan.",
+      "title": "Back-rank scan — you proved you see it",
+      "detail": "You mated clachesss with Rb1# on the back rank, then keroRoma mated YOU with Re8# the same way. The pattern is in your eyes as attacker; run the scan as defender every move.",
       "minutes": 8
     },
     {
       "route": "endgame",
       "target": "conversion",
-      "title": "Convert a won game — at speed",
-      "detail": "Yesterday's marathon threw away +6, +7 and +8 positions to the clock. One conversion drill played fast: trade, simplify, move.",
+      "title": "K+R mate: get the first success",
+      "detail": "Still 0-for-8 on the king-and-rook mate drill. One clean success unlocks the box method — it is the last step of every conversion.",
       "minutes": 10
-    },
-    {
-      "route": "openings",
-      "target": "kings-indian",
-      "title": "One King's Indian course lesson",
-      "detail": "0-for-4 vs 1.d4 in the marathon and it stays your highest weakness weight. Do the next unit in the KID course.",
-      "minutes": 12
     }
-  ]
+  ],
+  "adjustments": {
+    "openingE4": 0.04,
+    "castling": 0.03,
+    "mateThreats": 0.02,
+    "openingD4": -0.02
+  },
+  "stats": {
+    "gamesAnalyzed": 4,
+    "record": "2W-2L",
+    "blunders": 6
+  }
 }
