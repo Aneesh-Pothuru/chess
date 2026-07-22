@@ -1,32 +1,50 @@
-# React + TypeScript + Vite
+# Chess Coach — pots1125 edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A personal chess training app built around one player's actual games. It plays against you at your
+level, coaches every move in real time, drills your exact repertoire (London System as White,
+Caro-Kann vs 1.e4, King's Indian vs everything else), and evolves its training plan as you play.
 
-Currently, two official plugins are available:
+Built from a data audit of 162 rapid games (chess.com: pots1125, rapid ~713, puzzles 1427). The
+program attacks the three measured leaks, in order:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. **Converting won games** — 62% of endgame-decided games lost; whole-queen leads thrown away
+2. **Loose pieces & the f7 complex** — 129 hung pieces; two losses to the same Nxf7 trick
+3. **The 1.d4 black hole** — 26% score as Black vs 1.d4
 
-## React Compiler
+## Running it
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install     # also copies the Stockfish WASM into public/ (postinstall)
+npm run dev     # open http://localhost:5173
+npm test        # 40 unit tests: repertoire legality, coach detectors, puzzle data, drills
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Requires Node 20+. Everything runs in the browser — no backend, no accounts. Progress lives in
+localStorage.
+
+## What's inside
+
+| Mode | What it does |
+|---|---|
+| **Today** | Auto-generated daily session from your weakness profile + metrics vs the plan's targets |
+| **Play the coach** | Rapid game vs strength-limited Stockfish (~550 to ~1150 presets). Live coaching: blunder checks with take-back-and-retry, hanging-piece and mate-in-1 alerts (both directions), threat-check gate before you move, Won-Game Protocol banner, castle-by-8 and spend-the-clock nudges, repertoire hints, annotated scoresheet, end-of-game report card |
+| **Opening lab** | 126 hand-authored repertoire lines with coach notes: London (with the Qb6/b2 patch and early-c3 prophylaxis), Caro-Kann (Advance/Exchange/Classical/Panov/Fantasy/Two Knights + sidelines), King's Indian (Classical/Sämisch/Four Pawns/Fianchetto + the anti-London ...c5+...Qb6 raid). Learn mode, weighted drills, spaced repetition (4h → 6mo ladder) |
+| **Tactics** | 2,810 real Lichess puzzles (CC0) filtered to the miss profile: forks, hanging pieces, mate-in-1/2/3, back-rank, f7/f2 strikes, endgames — plus puzzles that arose in real London/Caro-Kann/KID games. Daily rotation weighted by weakness |
+| **Conversion gym** | The endgame curriculum in teaching order (ladder mate → K+Q → K+R → square rule → opposition → key squares → practical technique) vs perfect engine defense, with stalemate-trap tests — plus seven "you are winning, now WIN" conversion drills vs real resistance |
+| **Calculation** | The puzzle-rating-vs-game-rating bridge: visualization drills (read a line, answer without moving pieces) and timed threat scans |
+| **My games** | Imports rapid games from the chess.com public API, scans them with Stockfish, tags blunders by motif, and updates the weakness profile — this is how the program evolves |
+
+## Architecture
+
+Vite + React 19 + TypeScript. chess.js for rules, react-chessboard for the board, Stockfish 18
+(lite single-threaded WASM, no special headers needed) in two web workers: a strength-limited
+opponent (skill caps + plausible-blunder injection to reach sub-1320 play) and a full-strength
+analyst for evals, drills defense, and game scanning.
+
+Design doc: [docs/superpowers/specs/2026-07-21-chess-coach-design.md](docs/superpowers/specs/2026-07-21-chess-coach-design.md)
+
+## Licenses
+
+- Stockfish (GPL-3.0) is fetched from npm at install time and copied to `public/stockfish/` — not vendored in this repo
+- Puzzle data derives from the [lichess puzzle database](https://database.lichess.org/#puzzles) (CC0)
+- Coaching methodology draws on Dan Heisman's published thought-process principles and standard endgame theory

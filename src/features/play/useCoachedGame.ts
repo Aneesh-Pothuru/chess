@@ -256,7 +256,6 @@ export function useCoachedGame(): CoachedGame {
                 : `${san} slips. Stronger was ${bestSan}.`,
             takebackTo: strictRef.current ? takebackTo : undefined,
           })
-          motifsRef.current.add(judgment)
         } else {
           attachToEntry(ply, judgment)
         }
@@ -519,6 +518,7 @@ export function useCoachedGame(): CoachedGame {
     setFen(g.fen())
     setThreatPrompt(null)
     setThinking(false)
+    setEvalScore(null)
     moveStartRef.current = Date.now()
   }, [])
 
