@@ -735,6 +735,13 @@
    "passes": 0,
    "fails": 1,
    "lastAt": 1784710173212
+  },
+  "kings-indian/d4 Nf6 c4 g6 Nc3 Bg7 e4 d6 Nf3 O-O Be2 e5 O-O Nc6 d5 Ne7 Ne1 Nd7 Be3 f5": {
+   "level": 0,
+   "dueAt": 1784710413996,
+   "passes": 0,
+   "fails": 3,
+   "lastAt": 1784710413996
   }
  },
  "games": [
@@ -2351,5 +2358,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784710173212
+ "updatedAt": 1784710469574
 }
