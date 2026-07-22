@@ -268,6 +268,59 @@ export const JUDGMENT_GLYPH: Record<MoveJudgment, string> = {
   good: '',
 }
 
+// ---------------------------------------------------------------- move explanations
+
+const PIECE_NAMES: Record<string, string> = {
+  p: 'pawn', n: 'knight', b: 'bishop', r: 'rook', q: 'queen', k: 'king',
+}
+
+/**
+ * A short plain-language reason why `uci` is strong in this position, built
+ * from the instant detectors. Returns '' when nothing concrete stands out.
+ */
+export function explainMove(fen: string, uci: string): string {
+  const game = new Chess(fen)
+  let move
+  try {
+    move = game.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci[4] })
+  } catch {
+    return ''
+  }
+  if (game.isCheckmate()) return 'it is checkmate'
+  const reasons: string[] = []
+  const mates = mateInOneMoves(game.fen())
+  if (mates.length > 0 && !game.inCheck()) reasons.push(`it threatens mate (${mates[0]})`)
+  if (move.isCapture() && move.captured) {
+    const net = captureNet(fen, uci, move.captured)
+    if (net > 0) reasons.push(`it wins the ${PIECE_NAMES[move.captured]} outright`)
+    else if (net === 0) reasons.push(`it trades off the ${PIECE_NAMES[move.captured]}`)
+  }
+  const fork = detectFork(fen, move.san)
+  if (fork) reasons.push(`it forks ${fork.targets.join(' and ')}`)
+  if (move.isPromotion()) reasons.push('it promotes')
+  if (game.inCheck()) reasons.push('it comes with check')
+  if (move.san.startsWith('O-O')) reasons.push('it gets the king safe')
+  if (reasons.length === 0) {
+    const enemy: Color = move.color === 'w' ? 'b' : 'w'
+    const nowHanging = hangingPieces(game.fen(), enemy)
+    if (nowHanging.length > 0) {
+      reasons.push(`it leaves their ${PIECE_NAMES[nowHanging[0].piece]} on ${nowHanging[0].square} attackable`)
+    }
+  }
+  return reasons.slice(0, 2).join(' and ')
+}
+
+/** Net value of capturing on the target square, counting recaptures. */
+function captureNet(fen: string, uci: string, captured: string): number {
+  const game = new Chess(fen)
+  const to = uci.slice(2, 4) as Square
+  const mover = game.get(uci.slice(0, 2) as Square)
+  game.move({ from: uci.slice(0, 2), to, promotion: uci[4] })
+  const defenders = game.attackers(to, game.turn())
+  if (defenders.length === 0) return PIECE_VALUE[captured]
+  return PIECE_VALUE[captured] - PIECE_VALUE[mover?.type ?? 'p']
+}
+
 // ---------------------------------------------------------------- phases & won game
 
 export type Phase = 'opening' | 'middlegame' | 'endgame'

@@ -13,6 +13,8 @@ export function Play() {
   const game = useCoachedGame()
   const [hintArrow, setHintArrow] = useState<CoachArrow | null>(null)
   const [hintText, setHintText] = useState('')
+  const [hintBusy, setHintBusy] = useState(false)
+  const [gatePulse, setGatePulse] = useState(0)
 
   const strict = profile.settings.strictMode
   const presetId = profile.settings.opponentPresetId
@@ -33,14 +35,20 @@ export function Play() {
     return `${m}:${s.toString().padStart(2, '0')}`
   }
 
-  function showHint() {
-    const h = game.hint()
-    if (h) {
-      setHintArrow({ from: h.from, to: h.to, color: '#c9a227' })
-      setHintText(h.note)
-    } else {
-      setHintArrow(null)
-      setHintText('Out of book — no repertoire hint here. Run the scan: checks, captures, threats.')
+  async function showHint() {
+    if (hintBusy) return
+    setHintBusy(true)
+    try {
+      const h = await game.engineHint()
+      if (h) {
+        setHintArrow({ from: h.from, to: h.to, color: '#c9a227' })
+        setHintText(h.note)
+      } else {
+        setHintArrow(null)
+        setHintText('No hint right now — run the scan: checks, captures, threats.')
+      }
+    } finally {
+      setHintBusy(false)
     }
   }
 
@@ -112,36 +120,21 @@ export function Play() {
       {game.status !== 'idle' && (
         <div className="board-page">
           <div>
-            {game.engineFailed && (
-              <div className="alert">
-                The engine worker stopped responding. <button onClick={() => location.reload()}>Reload</button>
-              </div>
-            )}
-            {game.wonGame && game.status === 'playing' && (
-              <div className="won-banner">
-                <strong>WON-GAME PROTOCOL.</strong> You are winning. Every move: ① scan mate-in-1 — yours
-                AND theirs ② trade pieces, not pawns ③ slow down. There is no rush.
-              </div>
-            )}
-            {game.threatPrompt && (
-              <div className="alert">
-                <strong>Before you move:</strong> {game.threatPrompt.hint} Click the square under
-                threat to continue.{' '}
-                <button className="ghost small" onClick={game.skipThreatPrompt}>
-                  I see it — skip
-                </button>
-              </div>
-            )}
-            {hintText && <div className="notice">{hintText}</div>}
-            {game.status === 'over' && (
-              <div className="notice">
-                <strong>{game.resultText}</strong>
-              </div>
-            )}
+            <CoachStrip
+              game={game}
+              hintText={hintText}
+              gatePulse={gatePulse}
+            />
             <Board
               fen={game.fen}
               orientation={game.playerColor === 'w' ? 'white' : 'black'}
               onMove={(from, to, promotion) => {
+                if (game.threatPrompt) {
+                  // The strict-mode gate is on: pulse the banner instead of
+                  // silently swallowing the move.
+                  setGatePulse((p) => p + 1)
+                  return false
+                }
                 setHintArrow(null)
                 setHintText('')
                 return game.playerMove(from, to, promotion)
@@ -149,13 +142,16 @@ export function Play() {
               onSquareClick={(sq: Square) => game.resolveThreatClick(sq)}
               arrows={hintArrow ? [hintArrow] : []}
               highlights={highlights}
-              interactive={game.status === 'playing' && !game.thinking}
+              interactive={game.status === 'playing'}
             />
             <div className="row" style={{ marginTop: '0.7rem' }}>
               {game.status === 'playing' && (
                 <>
-                  <button onClick={showHint}>Book hint</button>
+                  <button onClick={() => void showHint()} disabled={hintBusy}>
+                    {hintBusy ? 'Thinking…' : 'Hint'}
+                  </button>
                   <button onClick={game.resign}>Resign</button>
+                  {game.wonGame && <span className="tag good">WINNING — protocol on</span>}
                   <span className="muted small">
                     eval <span className="mono">{evalLabel}</span>
                     {game.thinking ? ' · bot thinking…' : ''}
@@ -184,6 +180,66 @@ export function Play() {
           />
         </div>
       )}
+    </div>
+  )
+}
+
+// Fixed-height message slot above the board: content swaps, the board NEVER
+// moves. One message at a time, by priority.
+function CoachStrip({
+  game,
+  hintText,
+  gatePulse,
+}: {
+  game: ReturnType<typeof useCoachedGame>
+  hintText: string
+  gatePulse: number
+}) {
+  let content: React.ReactNode
+  let cls = 'coach-tip'
+  if (game.engineFailed) {
+    cls = 'alert'
+    content = (
+      <>
+        The engine worker stopped responding.{' '}
+        <button onClick={() => location.reload()}>Reload</button>
+      </>
+    )
+  } else if (game.status === 'over') {
+    cls = 'notice'
+    content = <strong>{game.resultText}</strong>
+  } else if (game.threatPrompt) {
+    cls = 'alert'
+    content = (
+      <>
+        <strong>Before you move:</strong> {game.threatPrompt.hint} Click the highlighted square to
+        continue.{' '}
+        <button className="ghost small" onClick={game.skipThreatPrompt}>
+          I see it — skip
+        </button>
+      </>
+    )
+  } else if (hintText) {
+    cls = 'notice'
+    content = hintText
+  } else if (game.wonGame) {
+    cls = 'won-banner'
+    content = (
+      <>
+        <strong>WON-GAME PROTOCOL.</strong> Every move: ① scan mate-in-1 — yours AND theirs ② trade
+        pieces, not pawns ③ slow down. There is no rush.
+      </>
+    )
+  } else {
+    content = (
+      <span className="muted">
+        The scan, every move: checks, captures, threats — theirs first, then yours.
+      </span>
+    )
+  }
+  return (
+    <div className="coach-strip" key={gatePulse}>
+      <div className={`${cls} ${gatePulse > 0 ? 'gate-pulse' : ''}`}>{content}</div>
     </div>
   )
 }

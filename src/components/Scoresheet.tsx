@@ -44,6 +44,17 @@ export function Scoresheet({ entries, title, subtitle, onTakeback, allowTakeback
   const glyphClass = (e?: SheetEntry) =>
     e?.judgment ? `glyph-${e.judgment}` : ''
 
+  const fmtEval = (cp?: number): string => {
+    if (cp === undefined) return ''
+    if (cp >= 9000) return '+M'
+    if (cp <= -9000) return '-M'
+    const p = cp / 100
+    return `${p > 0 ? '+' : ''}${p.toFixed(1)}`
+  }
+
+  const verdictClass = (e: SheetEntry): string =>
+    e.judgment === 'good' ? 'good' : e.judgment === 'blunder' || e.judgment === 'mistake' ? 'bad' : ''
+
   return (
     <div className="scoresheet">
       <header>
@@ -63,17 +74,28 @@ export function Scoresheet({ entries, title, subtitle, onTakeback, allowTakeback
                 {row.black ? row.black.san + (JUDGMENT_GLYPH[row.black.judgment ?? 'ok'] ?? '') : ''}
               </span>
             </div>
-            {[row.white, row.black].map((e) =>
-              e?.notes.map((note) => (
-                <div key={note.id} className={`margin-note ${NOTE_CLASS[note.kind]}`}>
-                  {note.text}
-                  {allowTakeback && note.takebackTo !== undefined && onTakeback && (
-                    <div className="actions">
-                      <button onClick={() => onTakeback(note.takebackTo!)}>Take back & retry</button>
-                    </div>
-                  )}
-                </div>
-              )),
+            {[row.white, row.black].map(
+              (e) =>
+                e && (
+                  <div key={`x${e.ply}`}>
+                    {e.verdict && (
+                      <div className={`verdict ${verdictClass(e)}`}>
+                        {e.evalAfter !== undefined && <span className="eval-chip">{fmtEval(e.evalAfter)}</span>}
+                        <span className="who">{e.ply % 2 === 1 ? '' : '… '}{e.san}:</span> {e.verdict}
+                      </div>
+                    )}
+                    {e.notes.map((note) => (
+                      <div key={note.id} className={`margin-note ${NOTE_CLASS[note.kind]}`}>
+                        {note.text}
+                        {allowTakeback && note.takebackTo !== undefined && onTakeback && (
+                          <div className="actions">
+                            <button onClick={() => onTakeback(note.takebackTo!)}>Take back & retry</button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ),
             )}
           </div>
         ))}

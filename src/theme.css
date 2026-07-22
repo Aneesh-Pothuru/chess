@@ -224,7 +224,7 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--sienna); ou
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  max-height: 560px;
+  max-height: 700px;
 }
 .scoresheet header {
   padding: 0.7rem 1rem 0.55rem;
@@ -251,18 +251,81 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--sienna); ou
 .sheet .glyph-mistake { color: var(--claret); }
 .sheet .glyph-inaccuracy { color: var(--gold); }
 .sheet .glyph-good { color: var(--laurel); }
-.sheet .margin-note {
-  border-left: 2px solid var(--sienna);
-  margin: 0.25rem 0 0.45rem 0.6rem;
-  padding: 0.15rem 0 0.15rem 0.7rem;
+.sheet .verdict {
   font-family: var(--font-body);
   font-size: 0.84rem;
+  color: var(--boxwood-dim);
+  margin: 0.1rem 0 0.35rem 0.6rem;
+  padding-left: 0.7rem;
+  line-height: 1.45;
+}
+.sheet .verdict .who {
+  font-family: var(--font-mono);
+  color: var(--boxwood);
+}
+.sheet .verdict.good { color: var(--boxwood-dim); }
+.sheet .verdict.good .eval-chip { border-color: var(--laurel); color: var(--laurel); }
+.sheet .verdict.bad { color: var(--claret); }
+.sheet .verdict.bad .eval-chip { border-color: var(--claret); color: var(--claret); }
+.sheet .eval-chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  margin-right: 0.45rem;
+  color: var(--boxwood-dim);
+}
+
+.sheet .margin-note {
+  border-left: 2px solid var(--sienna);
+  margin: 0.25rem 0 0.55rem 0.6rem;
+  padding: 0.2rem 0 0.2rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.87rem;
+  line-height: 1.5;
   color: var(--boxwood);
 }
 .sheet .margin-note.bad { border-left-color: var(--claret); }
 .sheet .margin-note.good { border-left-color: var(--laurel); }
 .sheet .margin-note .actions { margin-top: 0.3rem; }
 .sheet .margin-note .actions button { font-size: 0.78rem; padding: 0.25rem 0.6rem; }
+
+/* ------------------------------------------------- coach strip (fixed height) */
+
+/* One message slot above the board. Its height NEVER changes, so the board
+   never jumps when banners appear or disappear. */
+.coach-strip {
+  min-height: 5.4rem;
+  max-height: 5.4rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.coach-strip > * {
+  margin-bottom: 0 !important;
+  max-height: 5.4rem;
+  overflow-y: auto;
+}
+.coach-strip .coach-tip {
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+
+@keyframes gate-pulse {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.gate-pulse {
+  animation: gate-pulse 320ms ease;
+}
 
 /* ------------------------------------------------- banners & misc */
 

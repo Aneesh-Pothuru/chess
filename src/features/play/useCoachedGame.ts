@@ -9,6 +9,7 @@ import { opponentMove } from '../../engine/opponent'
 import { presetById, ANALYST } from '../../engine/presets'
 import type { Score } from '../../engine/uci'
 import {
+  explainMove,
   f7f2Danger,
   hangingPieces,
   judgeMove,
@@ -16,6 +17,7 @@ import {
   moveAllowsMateInOne,
   opponentMobility,
   queenRaidWarning,
+  scoreToCp,
   wonGameActive,
   type MoveJudgment,
 } from '../../chess/coach'
@@ -36,6 +38,10 @@ export interface SheetEntry {
   ply: number
   san: string
   judgment?: MoveJudgment
+  /** One-line coach verdict shown under the move (player moves only). */
+  verdict?: string
+  /** Eval after the move, centipawns from White's perspective. */
+  evalAfter?: number
   notes: CoachNote[]
 }
 
@@ -67,6 +73,7 @@ export interface CoachedGame {
   takeback: (to: number) => void
   resign: () => void
   hint: () => { from: string; to: string; note: string } | null
+  engineHint: () => Promise<{ from: string; to: string; note: string } | null>
 }
 
 let noteId = 0
@@ -133,16 +140,30 @@ export function useCoachedGame(): CoachedGame {
     setEntries((prev) => [...prev, entry])
   }, [])
 
-  const attachToEntry = useCallback((ply: number, judgment?: MoveJudgment, note?: CoachNote) => {
-    if (judgment) judgmentsRef.current.set(ply, judgment)
-    setEntries((prev) =>
-      prev.map((e) =>
-        e.ply === ply
-          ? { ...e, judgment: judgment ?? e.judgment, notes: note ? [...e.notes, note] : e.notes }
-          : e,
-      ),
-    )
-  }, [])
+  const attachToEntry = useCallback(
+    (
+      ply: number,
+      judgment?: MoveJudgment,
+      note?: CoachNote,
+      extra?: { verdict?: string; evalAfter?: number },
+    ) => {
+      if (judgment) judgmentsRef.current.set(ply, judgment)
+      setEntries((prev) =>
+        prev.map((e) =>
+          e.ply === ply
+            ? {
+                ...e,
+                judgment: judgment ?? e.judgment,
+                verdict: extra?.verdict ?? e.verdict,
+                evalAfter: extra?.evalAfter ?? e.evalAfter,
+                notes: note ? [...e.notes, note] : e.notes,
+              }
+            : e,
+        ),
+      )
+    },
+    [],
+  )
 
   const note = useCallback(
     (ply: number, kind: CoachNote['kind'], text: string, takebackTo?: number) => {
@@ -244,20 +265,33 @@ export function useCoachedGame(): CoachedGame {
         if (won) wonEverRef.current = true
         if (gameOverAfter) return
         const judgment = judgeMove(before.score, afterScore, color)
+        const evalAfter = scoreToCp(afterScore)
+        const bestSan = uciToSan(fenBefore, before.bestMove)
+        const playedBest = san === bestSan || san.replace(/[+#]/, '') === bestSan.replace(/[+#]/, '')
+        const reason = playedBest ? '' : explainMove(fenBefore, before.bestMove)
+        const why = reason ? ` — ${reason}` : ''
+        let verdict: string
+        if (judgment === 'good') {
+          verdict = playedBest ? "The engine's top choice." : 'Good — keeps everything you had.'
+        } else if (judgment === 'ok') {
+          verdict = `Fine. Engine slightly prefers ${bestSan}${why}.`
+        } else if (judgment === 'inaccuracy') {
+          verdict = `Inaccuracy — ${bestSan} was stronger${why}.`
+        } else {
+          verdict = judgment === 'mistake' ? 'Mistake — see the note.' : 'Blunder — see the note.'
+        }
+        attachToEntry(ply, judgment, undefined, { verdict, evalAfter })
         if (judgment === 'blunder' || judgment === 'mistake') {
-          const bestSan = uciToSan(fenBefore, before.bestMove)
           const takebackTo = fenHistoryLengthAt(ply)
           attachToEntry(ply, judgment, {
             id: ++noteId,
             kind: judgment,
             text:
               judgment === 'blunder'
-                ? `${san} loses ground fast. The position had ${bestSan} — pause, run checks-captures-threats, and find why.`
-                : `${san} slips. Stronger was ${bestSan}.`,
+                ? `${san} loses ground fast. The position had ${bestSan}${why}. Pause, run checks-captures-threats, and find it next time.`
+                : `${san} slips. Stronger was ${bestSan}${why}.`,
             takebackTo: strictRef.current ? takebackTo : undefined,
           })
-        } else {
-          attachToEntry(ply, judgment)
         }
       } catch {
         if (gen === genRef.current) setEngineFailed(true)
@@ -541,6 +575,29 @@ export function useCoachedGame(): CoachedGame {
     }
   }, [])
 
+  /** Book hint when in book; otherwise ask the analyst and explain its choice. */
+  const engineHint = useCallback(async (): Promise<{ from: string; to: string; note: string } | null> => {
+    const book = hint()
+    if (book) return book
+    if (statusRef.current !== 'playing' || gameRef.current.turn() !== playerColorRef.current) return null
+    const gen = genRef.current
+    try {
+      const analyst = await getAnalyst()
+      const fen = gameRef.current.fen()
+      const res = await analyst.search(fen, 'go depth 12 movetime 900')
+      if (gen !== genRef.current || !res.bestMove || res.bestMove === '(none)') return null
+      const san = uciToSan(fen, res.bestMove)
+      const reason = explainMove(fen, res.bestMove)
+      return {
+        from: res.bestMove.slice(0, 2),
+        to: res.bestMove.slice(2, 4),
+        note: `Out of book, so this is analysis, not repertoire: ${san}${reason ? ` — ${reason}` : ''}.`,
+      }
+    } catch {
+      return null
+    }
+  }, [hint])
+
   return {
     fen,
     status,
@@ -560,6 +617,7 @@ export function useCoachedGame(): CoachedGame {
     takeback,
     resign,
     hint,
+    engineHint,
   }
 }
 
