@@ -79,6 +79,9 @@ export async function fetchBriefing(now: Date = new Date()): Promise<CoachBriefi
   const [local, remote] = await Promise.all([tryFetch(LOCAL_URL), remoteBriefing()])
   const fresh = [local, remote].filter((b): b is CoachBriefing => b !== null && isFresh(b, now))
   if (fresh.length === 0) return null
-  fresh.sort((a, b) => (a.date < b.date ? 1 : -1))
+  // Newest date wins; on a same-day tie prefer the copy with a task list.
+  fresh.sort(
+    (a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : (b.tasks?.length ?? 0) - (a.tasks?.length ?? 0)),
+  )
   return fresh[0]
 }
