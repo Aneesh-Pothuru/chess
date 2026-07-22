@@ -105,6 +105,7 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--sienna); ou
   display: grid;
   grid-template-columns: 208px 1fr;
   min-height: 100vh;
+  min-height: 100dvh; /* iOS: track the real viewport as the URL bar collapses */
 }
 
 .rail {
@@ -412,7 +413,10 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--sienna); ou
 .clock.low { color: var(--claret); border-color: var(--claret); }
 
 @media (max-width: 900px) {
-  .shell { grid-template-columns: 1fr; }
+  /* Rows must be auto + 1fr: with the default (both auto, align-content
+     stretch), any page SHORTER than the screen gets the leftover height
+     distributed into the nav row — a giant dead band around the nav. */
+  .shell { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
   .rail {
     flex-direction: row;
     overflow-x: auto;
