@@ -9,11 +9,11 @@
  },
  "weakness": {
   "conversion": 0.8599999999999999,
-  "hangingPiece": 0.7099999999999997,
+  "hangingPiece": 0.8699999999999999,
   "fork": 0.7299999999999999,
-  "mateThreats": 0.37999999999999956,
+  "mateThreats": 0.3999999999999996,
   "f7f2": 0.8,
-  "openingD4": 0.9500000000000001,
+  "openingD4": 0.9700000000000001,
   "openingE4": 0.55,
   "endgameTechnique": 0.9099999999999999,
   "timeUsage": 0.8200000000000001,
@@ -949,6 +949,35 @@
  ],
  "imported": [
   {
+   "url": "https://www.chess.com/game/live/171909452040",
+   "at": 1784709942000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Caro Kann Defense Exchange Variation 3...cxd5",
+   "firstWhiteMove": "e4",
+   "castleMove": 9,
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ]
+  },
+  {
+   "url": "https://www.chess.com/game/live/171907946324",
+   "at": 1784707005000,
+   "color": "w",
+   "result": "win",
+   "opening": "Queens Pawn Opening Accelerated London System 2...e6 3.e3",
+   "firstWhiteMove": "d4",
+   "castleMove": 15,
+   "scanned": true,
+   "blunders": 0,
+   "motifs": [
+    "hangingPiece"
+   ]
+  },
+  {
    "url": "https://www.chess.com/game/live/171897584172",
    "at": 1784680751000,
    "color": "w",
@@ -1367,8 +1396,8 @@
    "opening": "Queens Pawn Opening",
    "firstWhiteMove": "d4",
    "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 3,
    "motifs": []
   },
   {
@@ -1379,9 +1408,12 @@
    "opening": "Four Knights Game Scotch Variation Accepted 5.Nxd4 Bb4",
    "firstWhiteMove": "e4",
    "castleMove": 12,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 3,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171683703836",
@@ -1391,9 +1423,11 @@
    "opening": "Pirc Defense Maroczy Defense",
    "firstWhiteMove": "e4",
    "castleMove": 13,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 5,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171672024054",
@@ -1403,9 +1437,11 @@
    "opening": "Van t Kruijs Opening 1...e5",
    "firstWhiteMove": "e3",
    "castleMove": 7,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
-   "motifs": []
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171671610708",
@@ -1415,7 +1451,7 @@
    "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.Bf4",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": []
   },
@@ -1427,8 +1463,8 @@
    "opening": "Queens Pawn Opening Accelerated London System",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": []
   },
   {
@@ -1439,9 +1475,11 @@
    "opening": "Indian Game 2.Bf4 e6 3.e3 d5 4.Nf3",
    "firstWhiteMove": "d4",
    "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171667713824",
@@ -1451,9 +1489,11 @@
    "opening": "Van t Kruijs Opening 1...e5",
    "firstWhiteMove": "e3",
    "castleMove": 12,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 4,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171656248442",
@@ -1463,8 +1503,8 @@
    "opening": "Queens Pawn Opening Accelerated London System 2...c6 3.e3",
    "firstWhiteMove": "d4",
    "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 5,
    "motifs": []
   },
   {
@@ -1475,8 +1515,8 @@
    "opening": "Modern Defense with 1 d4 2.Bf4 Bg7 3.e3 d6",
    "firstWhiteMove": "d4",
    "castleMove": 13,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": []
   },
   {
@@ -1487,7 +1527,7 @@
    "opening": "Kings Pawn Opening Leonardis Variation 2...Nf6",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": []
   },
@@ -1499,9 +1539,11 @@
    "opening": "Queens Pawn Opening Accelerated London System",
    "firstWhiteMove": "d4",
    "castleMove": 7,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 7,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171546964998",
@@ -1511,9 +1553,11 @@
    "opening": "Pirc Defense Classical Variation 4...Bg7 5.Bc4 O O",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171539651510",
@@ -1523,7 +1567,7 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": []
   },
@@ -1535,9 +1579,11 @@
    "opening": "Italian Game Two Knights Modern Bishops Opening",
    "firstWhiteMove": "e4",
    "castleMove": 14,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171538140044",
@@ -1547,9 +1593,11 @@
    "opening": "Four Knights Game Spanish Variation Ranken Variation",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171536497938",
@@ -1559,9 +1607,11 @@
    "opening": "Caro Kann Defense Karpov Variation 5.Bc4",
    "firstWhiteMove": "e4",
    "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171535931490",
@@ -1571,8 +1621,8 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": []
   },
   {
@@ -1583,8 +1633,8 @@
    "opening": "Queens Gambit Accepted Central Variation",
    "firstWhiteMove": "d4",
    "castleMove": 13,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 1,
    "motifs": []
   },
   {
@@ -1595,8 +1645,8 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 4,
    "motifs": []
   },
   {
@@ -1607,8 +1657,8 @@
    "opening": "English Opening Reversed Sicilian Closed 3.g3 Nf6 4.Bg2 Bc5 ",
    "firstWhiteMove": "c4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 1,
    "motifs": []
   },
   {
@@ -1619,9 +1669,11 @@
    "opening": "Queens Pawn Opening Blackmar Gambit 2...dxe4",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171405493482",
@@ -1631,9 +1683,11 @@
    "opening": "Scandinavian Defense Closed 2...d4",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "missedMateIn1"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171400925830",
@@ -1643,9 +1697,11 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 4,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171400601878",
@@ -1655,9 +1711,11 @@
    "opening": "Scotch Game 3...exd4",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 5,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171399386756",
@@ -1667,7 +1725,7 @@
    "opening": "Caro Kann Defense Main Line 4...Nf6",
    "firstWhiteMove": "e4",
    "castleMove": 9,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": []
   },
@@ -1679,8 +1737,8 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 1,
    "motifs": []
   },
   {
@@ -1691,9 +1749,11 @@
    "opening": "Van t Kruijs Opening 1...e5",
    "firstWhiteMove": "e3",
    "castleMove": 12,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ]
   },
   {
    "url": "https://www.chess.com/game/live/171358369846",
@@ -2414,30 +2474,6 @@
    "scanned": false,
    "blunders": 0,
    "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121727518472",
-   "at": 1735248383000,
-   "color": "w",
-   "result": "win",
-   "opening": "Scotch Game 3...exd4 4.Nxd4 d6 5.Nc3",
-   "firstWhiteMove": "e4",
-   "castleMove": 15,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
-  },
-  {
-   "url": "https://www.chess.com/game/live/121727322830",
-   "at": 1735248034000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Kings Pawn Opening Kings Knight Variation 2...Nc6",
-   "firstWhiteMove": "e4",
-   "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": []
   }
  ],
  "drills": {
@@ -2526,5 +2562,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-22",
- "updatedAt": 1784735838723
+ "updatedAt": 1784735861668
 }
