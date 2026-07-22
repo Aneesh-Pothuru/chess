@@ -9,9 +9,9 @@
  },
  "weakness": {
   "conversion": 0.8599999999999999,
-  "hangingPiece": 0.8599999999999999,
+  "hangingPiece": 0.7099999999999997,
   "fork": 0.7299999999999999,
-  "mateThreats": 0.5799999999999997,
+  "mateThreats": 0.5699999999999997,
   "f7f2": 0.8,
   "openingD4": 0.9500000000000001,
   "openingE4": 0.55,
@@ -19,7 +19,7 @@
   "timeUsage": 0.78,
   "castling": 0.76,
   "boardVision": 0.7,
-  "coordinates": 0.55
+  "coordinates": 0.5700000000000001
  },
  "srs": {
   "puzzle:Cfv1F": {
@@ -2300,6 +2300,12 @@
    "successes": 0,
    "bestMoves": null,
    "lastAt": 1784705420911
+  },
+  "coord-sprint": {
+   "attempts": 2,
+   "successes": 2,
+   "bestMoves": 6,
+   "lastAt": 1784709395412
   }
  },
  "puzzleStats": {
@@ -2338,5 +2344,5 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-21-seed",
- "updatedAt": 1784708695340
+ "updatedAt": 1784709410370
 }
