@@ -1,14 +1,14 @@
 {
   "id": "2026-07-23",
   "date": "2026-07-23",
-  "headline": "Up a rook, mated in the center — and 11 games after 10 p.m.",
-  "note": "18 rapid games since the last briefing: 7W-11L, rating 705 to 677. The one to study: vs unknowngirl181910 you won a clean knight with 15.Bxc6 and stood +6 — but the king never castled, 18...Qb4+ forced Kd1, and 24.Qxc7 grabbed a pawn while Qd3# was the only reply that mattered. Seven allowed mate-in-1s today against a 60/60 mate-in-1 puzzle record — the scan exists, it just isn't being run on real moves, especially king moves and captures. Eleven of the 18 games came between 21:54 and 00:28 and went 3W-8L; the schedule lost more points than the openings did. Bright spots: 2W-0L vs 1.d4 as Black (the KID work is landing), and clean mating wins vs genglish71 and bhkspurs. New rule: three games max, none after 22:00, and before every king move or capture ask one question — what is their next check or capture?",
+  "headline": "Up a rook, mated in the center — and an 11-game night block",
+  "note": "18 rapid games since the last briefing: 7W-11L, rating 705 to 677. The one to study: vs unknowngirl181910 you won a clean knight with 15.Bxc6 and stood +6 — but the king never castled, 18...Qb4+ forced Kd1, and 24.Qxc7 grabbed a pawn while Qd3# was the only reply that mattered. Seven allowed mate-in-1s today against a 60/60 mate-in-1 puzzle record — the scan exists, it just isn't being run on real moves, especially king moves and captures. Eleven of the 18 games came between 21:54 and 00:28 and went 3W-8L; the schedule lost more points than the openings did. Bright spots: 2W-0L vs 1.d4 as Black (the KID work is landing), and mating wins vs genglish71 and bhkspurs. New rule: three games max, none after 22:00, and before every king move or capture ask one question — what is their next check or capture?",
   "tasks": [
     {
       "route": "puzzles",
       "target": "hangingPiece",
       "title": "Stop the free-piece tithe",
-      "detail": "15 pieces hung in 18 games — 19.Qxh7+ vs TempestumEffector gave a whole queen for a pawn, and 10-move losses to HicoshOP and Jonat5957 were single hangs.",
+      "detail": "15 pieces hung in 18 games — 19.Qxh7+ vs TempestumEffector gave a whole queen for a pawn, and sub-15-move losses to HicoshOP (10 moves) and Jonat5957 (13) were single hangs.",
       "minutes": 10
     },
     {
