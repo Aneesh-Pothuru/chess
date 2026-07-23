@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "postinstall": "node scripts/copy-stockfish.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "coach:setup": "node tools/coach-review/setup.cjs",
+    "coach:analyze": "node tools/coach-review/analyze.cjs",
+    "coach:review": "node tools/coach-review/build.cjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",

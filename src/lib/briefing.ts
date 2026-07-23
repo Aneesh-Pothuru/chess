@@ -27,6 +27,8 @@ export interface CoachBriefing {
   /** Weakness weight deltas, applied once. Clamped to +-0.1 per key. */
   adjustments?: Partial<Record<WeaknessKey, number>>
   stats?: { gamesAnalyzed?: number; record?: string; blunders?: number }
+  /** Site-relative path of the day's deep-review page, e.g. "coach/review/2026-07-23.html". */
+  review?: string
 }
 
 const LOCAL_URL = `${import.meta.env.BASE_URL}coach/briefing.json`

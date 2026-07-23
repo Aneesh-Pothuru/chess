@@ -1,0 +1,723 @@
+{
+ "date": "2026-07-23",
+ "headline": "Where the losses actually begin",
+ "dek": "Every one of the 12 losses, replayed with Stockfish 18 to depth 20 at the turning points. The pattern is blunt: the openings mostly held. The games died in the six moves after first contact — and they died in four repeatable ways.",
+ "stats": [
+  {
+   "n": "7/12",
+   "l": "losses where you stood equal or better at move 10"
+  },
+  {
+   "n": "6–25",
+   "l": "the move range where every decisive mistake happened (median: move 13)"
+  },
+  {
+   "n": "5",
+   "l": "losses ending in an allowed mate-in-one — with 2:08 to 6:53 still on the clock"
+  },
+  {
+   "n": "3W–0L",
+   "l": "King's Indian as Black. The course work is landing — protect it"
+  }
+ ],
+ "openings": {
+  "london": "You said it yourself: when the exact line does not appear, the opening falls apart. Two shapes did the damage. <b>Early ...Nc6 went 1W–4L</b> — and the tree already has the patch: c3 the moment ...Nc6 exists, Be2 if ...Nb4 already attacks the bishop. <b>2...Bf5 went 0W–2L and is a genuine tree gap</b>: the bishop abandons b7, so 3.c4 and Qb3 punish it. Rules travel between move orders; lines do not.",
+  "caro-kann": "All four losses came in anti-Caro sidelines — but the sidelines did not beat you, the middlegame lashes did (twice the identical ...e5? break). Exchange-structure rule: <b>...e5 is banned until castled and developed</b>; meet Bb5 with ...a6 or ignore the pin; one-square pawn moves. Proof drilling works: the Two Knights appeared twice in one night — improvised 3...Nf6 lost (Triss83), the drilled 3...Bg4 won (Matstreet).",
+  "kings-indian": "3W–0L, including opponents who avoided your exact lines (2.Nc3, 3.f3, Fianchetto). You adapt fine here because the KID is a shape, not a line: fianchetto, castle, strike with ...e5/...c5. Port that skill to the other two openings."
+ },
+ "games": {
+  "keroRoma": {
+   "tagline": "The lash that started a theme",
+   "opening": "Caro-Kann, 2.Nc3 exchange — out of book move 4, and that was fine",
+   "moments": [
+    {
+     "ply": 12,
+     "title": "Move 7: the state to recognize — quiet, symmetric, nobody threatening anything",
+     "board": {
+      "fen": "r2qkb1r/pp1bpppp/2n2n2/1B1p4/8/2NP1N2/PPP2PPP/R1BQ1RK1",
+      "flip": true,
+      "arrows": [
+       {
+        "from": "e7",
+        "to": "e5",
+        "kind": "bad"
+       },
+       {
+        "from": "a7",
+        "to": "a6",
+        "kind": "best"
+       }
+      ],
+      "caption": "Before 7...e5? — Black to move, dead equal"
+     },
+     "prose": "White has the harmless Bb5 pin and nothing else going on. This is a <em>quiet</em> position — the state where your losses actually begin. You played <b>7...e5?</b>, and the engine eval fell from 0.0 to −1.3 on the spot: the pawn abandons d5's support, opens the e-file while your king still sits on e8, and gives White's pieces the e5 and d5 squares. You had already tried the same idea two moves earlier (5...Bd7 instead of the active 5...Bg4 pin).",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−1.3",
+       "line": "7...e5? 8.Re1 Be7 9.Nxe5 — the file opens onto your king"
+      },
+      {
+       "tag": "Better",
+       "eval": "0.0",
+       "line": "7...a6 8.Bxc6 Bxc6 9.Ne5 e6 — ask the bishop the question first, then play ...e6"
+      },
+      {
+       "tag": "Or",
+       "eval": "0.0",
+       "line": "7...e6 — one square, not two. d5 stays protected, the file stays closed"
+      }
+     ],
+     "fix": "In a quiet position, pawn moves need a reason. ...e6 develops the same bishop; ...e5 creates four new weaknesses. When you cannot name what a pawn push wins, push one square, not two."
+    }
+   ],
+   "also": "The end was the familiar one: 18...g5? loosened everything with 7:31 left, and 20...Kf8?? allowed 21.Rxd7 and 22.Re8#. 20...Rxe7 held out longer — but the game was decided back on move 7."
+  },
+  "callmetaide": {
+   "tagline": "Same square, same day",
+   "opening": "Caro-Kann Exchange, 5.Bb5 — out of book move 4",
+   "moments": [
+    {
+     "ply": 11,
+     "title": "Move 6: the identical decision, four hours later",
+     "board": {
+      "fen": "r2qkbnr/pp1bpppp/2n5/1B1p4/3P4/5N2/PPP2PPP/RNBQ1RK1",
+      "flip": true,
+      "arrows": [
+       {
+        "from": "e7",
+        "to": "e5",
+        "kind": "bad"
+       },
+       {
+        "from": "a7",
+        "to": "a6",
+        "kind": "best"
+       }
+      ],
+      "caption": "Before 6...e5? — the keroRoma position with colors of paint changed"
+     },
+     "prose": "Compare this with the keroRoma board above. Different opponent, same state: symmetric structure, Bb5 pinning, nothing on fire. And the same reflex: <b>6...e5?</b> (0.0 → −2.0). After 7.dxe5 you followed with <b>7...f6?</b> — a second pawn lash to justify the first — and the king never found safety again. The game ended 17...Qd6?? allowing 18.Qxg7#, but it was lost to two pawn moves in the opening.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−2.0",
+       "line": "6...e5? 7.dxe5 f6? 8.Re1 — two pawns gone forward, zero pieces developed"
+      },
+      {
+       "tag": "Better",
+       "eval": "−0.3",
+       "line": "6...a6 7.Be2 Nf6 8.c4 e6 — kick, develop, castle. Boring wins"
+      },
+      {
+       "tag": "Or",
+       "eval": "−0.4",
+       "line": "6...Nf6 7.c4 e6 — knights before pawn breaks, always"
+      }
+     ],
+     "fix": "This is your Caro-Kann rule now: in Exchange structures (pawns on d5/d4), ...e5 is banned until you are castled AND better developed. The break is a reward for finishing development, never a substitute for it."
+    }
+   ],
+   "also": null
+  },
+  "sri456chess": {
+   "tagline": "A known line, skipped — then the h-file opened onto your own rook",
+   "opening": "London vs the Chigorin ...Nc6 — your tree says 3.c3 here; you played 3.e3",
+   "moments": [
+    {
+     "ply": 24,
+     "title": "Move 13: king in the center, and a pawn grab that costs a rook",
+     "board": {
+      "fen": "r2qkbn1/2p5/p1p1p2r/3pB1p1/3P2bp/2N1PNP1/PPP2P2/R2QK2R",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "d1",
+        "to": "d3",
+        "kind": "bad"
+       },
+       {
+        "from": "g3",
+        "to": "h4",
+        "kind": "best"
+       },
+       {
+        "from": "g4",
+        "to": "f3",
+        "kind": "threat"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "h1",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Before 13.Qd3? — Black's Bg4 is aimed through f3 at h1"
+     },
+     "prose": "Black lunged with ...f6, ...g5, ...h5 and you met it well at first (+1.8 at the peak). But 12.g3? and <b>13.Qd3?</b> ignored the one thing that mattered: your king is still on e1, and the moment f3 falls, the h1-rook falls with it. 13...Bxf3 14.gxh4 <b>Bxh1</b> — exchange and pawn gone, and you resigned a few moves later with 8:13 still on your clock.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−3.5",
+       "line": "13.Qd3? Bxf3 14.gxh4 Bxh1 — the long diagonal was loaded"
+      },
+      {
+       "tag": "Better",
+       "eval": "+0.5",
+       "line": "13.gxh4! Nf6 14.Qe2 Ne4 15.Rg1 — take the pawn, keep f3 defended twice"
+      },
+      {
+       "tag": "The rule",
+       "eval": "",
+       "line": "Uncastled king → count the pieces defending f3/f2 before ANY other plan"
+      }
+     ],
+     "fix": "Two fixes. Opening: against any early ...Nc6 in the London, 3.c3 immediately — it is the exact line in your repertoire, and it exists because these ...Nc6 games keep costing you. Middlegame: while your king is uncastled, every move must pass one filter first — \"does this keep f2/f3 safe?\""
+    }
+   ],
+   "also": null
+  },
+  "TempestumEffector": {
+   "tagline": "One attacker, one defender — and the queen took anyway",
+   "opening": "London vs ...c6/...Bg4 — solid out of the opening, +0.7 by move 13",
+   "moments": [
+    {
+     "ply": 36,
+     "title": "Move 19: the board-math moment",
+     "board": {
+      "fen": "r4rk1/pp3ppp/4p3/1q1p1bNQ/1P6/2n1P2P/P2N1PP1/R4RK1",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "h5",
+        "to": "h7",
+        "kind": "bad"
+       },
+       {
+        "from": "f5",
+        "to": "h7",
+        "kind": "threat"
+       },
+       {
+        "from": "a2",
+        "to": "a3",
+        "kind": "best"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "f5",
+        "kind": "good"
+       }
+      ],
+      "caption": "Before 19.Qxh7+?? — the f5-bishop guards h7"
+     },
+     "prose": "Two moves earlier, 17.Ng5? sent one knight at a castled king with no support — already the attack of one piece. Then <b>19.Qxh7+??</b>: h7 has one attacker (your queen) and one defender (the f5-bishop). That is not a sacrifice, it is a donation — 19...Bxh7 and the queen is gone for a pawn. You fought on a queen down for 6 more moves.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−5.6",
+       "line": "19.Qxh7+?? Bxh7 — one attacker into one defender never works"
+      },
+      {
+       "tag": "Better",
+       "eval": "−2.6",
+       "line": "19.a3 a5 20.Qh4 f6 21.Ngf3 — retreat, regroup, still a game"
+      },
+      {
+       "tag": "The rule",
+       "eval": "",
+       "line": "Attacks need attackers ≥ defenders + 1. One piece is a visit, not an attack"
+      }
+     ],
+     "fix": "Before any capture near the enemy king: count attackers, count defenders, out loud if needed. Your board-math drill in the app trains exactly this — it has to fire in real games, on every capture, not just in the drill."
+    }
+   ],
+   "also": null
+  },
+  "unknowngirl181910": {
+   "tagline": "Up a rook — the wrong piece took c7",
+   "opening": "London vs 3...Nc6 — you won a clean piece and stood +4.8",
+   "moments": [
+    {
+     "ply": 46,
+     "title": "Move 24: both your heavy pieces attack c7. Only one of them keeps you alive.",
+     "board": {
+      "fen": "2Q5/p1p2pkp/1p4p1/6P1/3PrP2/q3P3/P6P/2RKR3",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "c8",
+        "to": "c7",
+        "kind": "bad"
+       },
+       {
+        "from": "c1",
+        "to": "c7",
+        "kind": "best"
+       },
+       {
+        "from": "a3",
+        "to": "d3",
+        "kind": "threat"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "d3",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Before 24.Qxc7?? — Black's Qa3 + Re4 are one move from d3"
+     },
+     "prose": "The deepest lesson of the day. Black's queen and rook are aimed at d3, and your king on d1 is fenced in by <em>your own rooks</em> on c1 and e1. <b>24.Qxc7??</b> grabs a pawn and gets mated: 24...Qd3#, supported by the e4-rook. But <b>24.Rxc7!</b> — same pawn, same capture — wins on the spot, because the rook <em>leaving c1 opens the door</em>: after 24...Qd3+ your king slips to c1 and the attack is over. The difference between +4.8 and checkmate was which piece took.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "#",
+       "line": "24.Qxc7?? Qd3# — the c1-rook seals its own king in"
+      },
+      {
+       "tag": "Better",
+       "eval": "+4.8",
+       "line": "24.Rxc7! Rxe3 25.Rxe3 Qxe3 26.Qd7 — up a rook, king breathing"
+      },
+      {
+       "tag": "The scan",
+       "eval": "",
+       "line": "Before every capture: \"what is their next check?\" Qd3 was the only one. One look finds it"
+      }
+     ],
+     "fix": "The two-question scan (can I be mated? can I mate?) is not for \"dangerous\" positions — this position looked totally winning. It is for every move where the opponent has a queen within range of your king, which is most moves. Six seconds. You had five minutes."
+    }
+   ],
+   "also": "The coach log annotated this game in full — this board is the moment to burn in."
+  },
+  "Triss83": {
+   "tagline": "Two lessons: the line you forgot, and the passer you ignored",
+   "opening": "Caro-Kann Two Knights — your drilled move is 3...Bg4. You played 3...Nf6",
+   "moments": [
+    {
+     "ply": 5,
+     "title": "Move 3: the drilled answer vs the improvised one",
+     "board": {
+      "fen": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/2N2N2/PPPP1PPP/R1BQKB1R",
+      "flip": true,
+      "arrows": [
+       {
+        "from": "c8",
+        "to": "g4",
+        "kind": "best"
+       },
+       {
+        "from": "g8",
+        "to": "f6",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Two Knights Attack — 3...Bg4 is your repertoire move"
+     },
+     "prose": "Against the Two Knights (Nf3+Nc3), your course line is <b>3...Bg4</b>, pinning the knight before it supports e5. You played 3...Nf6?! and after 4.e5 the knight went straight back to g8 — two tempi gone. Proof the drill works: <em>the very same night</em>, Matstreet played the identical Two Knights against you, you remembered 3...Bg4, and you won.",
+     "lines": [
+      {
+       "tag": "Drilled",
+       "eval": "=",
+       "line": "3...Bg4 4.h3 Bxf3 5.Qxf3 e6 — the Mindeno; e5 is stopped forever"
+      },
+      {
+       "tag": "Played",
+       "eval": "−0.8",
+       "line": "3...Nf6?! 4.e5 Ng8 — back home, two moves poorer"
+      }
+     ],
+     "fix": null
+    },
+    {
+     "ply": 79,
+     "title": "Move 40: winning by +4.4 — and the b-pawn queens anyway",
+     "board": {
+      "fen": "8/6p1/1PK5/6kp/n7/6P1/7P/8",
+      "flip": true,
+      "arrows": [
+       {
+        "from": "a4",
+        "to": "b6",
+        "kind": "best"
+       },
+       {
+        "from": "g5",
+        "to": "g4",
+        "kind": "bad"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "b6",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Before 40...Kg4?? — the b6-pawn is one move from unstoppable"
+     },
+     "prose": "You had ground out a completely winning knight endgame (+4.4, and you got here from a lost opening — real resilience). One rule decides positions like this: <b>passed pawns before everything</b>. 40...Nxb6! removes the passer; your king then walks over and collects every White pawn. Instead <b>40...Kg4??</b> went pawn-hunting, 41.b7 and the pawn cannot be caught: +4.4 became −7.4 in one move, with 2:29 on your clock.",
+     "lines": [
+      {
+       "tag": "Only move",
+       "eval": "+7.0",
+       "line": "40...Nxb6! 41.h3 Kf5 42.Kxb6 Ke4 — knight kills the passer, king eats the rest"
+      },
+      {
+       "tag": "Played",
+       "eval": "−7.4",
+       "line": "40...Kg4?? 41.b7 Nc3 42.b8=Q — the knight can never catch it from behind"
+      }
+     ],
+     "fix": "Endgame filter, every move: \"can any passer run right now?\" If yes, that pawn is the whole game — stop it or win the race, never graze. This is the conversion drill leak, live."
+    }
+   ],
+   "also": null
+  },
+  "Jonat5957": {
+   "tagline": "The recapture was a fork",
+   "opening": "London vs 2...Bf5 — a tree gap (see the openings chapter)",
+   "moments": [
+    {
+     "ply": 20,
+     "title": "Move 11: before you capture, look at what recaptures",
+     "board": {
+      "fen": "r2q1rk1/1pp2ppp/p1n1p3/3pPb2/4n3/2PBPN2/PP1N1PPP/R2Q1RK1",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "d2",
+        "to": "e4",
+        "kind": "bad"
+       },
+       {
+        "from": "d2",
+        "to": "b3",
+        "kind": "best"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "d3",
+        "kind": "bad"
+       },
+       {
+        "sq": "f3",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Before 11.Nxe4? — the pawn that recaptures will fork d3 and f3"
+     },
+     "prose": "Black's knight sat on e4 looking scary, so you traded it off. But run the exchange one step further: <b>11.Nxe4 dxe4</b> — and the recapturing <em>pawn</em> now attacks your bishop on d3 and your knight on f3 at the same time. A piece is lost by force. 12.Ng5? (hoping for tricks) just hung the knight to 12...Qxg5. Ten moves in, you resigned with 8:00 on the clock.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−3.5",
+       "line": "11.Nxe4? dxe4 — the pawn forks; 12.Bxe4 Bxe4 and f3 still falls"
+      },
+      {
+       "tag": "Better",
+       "eval": "−0.2",
+       "line": "11.Nb3 Bg6 12.Qc2 h6 — sidestep, keep the tension, equal game"
+      },
+      {
+       "tag": "The rule",
+       "eval": "",
+       "line": "A capture is not over when you take — it is over after THEIR recapture. Ask what the recapturing unit attacks"
+      }
+     ],
+     "fix": "This is the app's exchange drill in the wild: count the full sequence, including what the last recapturing piece does next. \"Captures are moves too\" — for both sides."
+    }
+   ],
+   "also": null
+  },
+  "Tuco00": {
+   "tagline": "The pawn you stopped counting",
+   "opening": "Caro-Kann, 4.Bb5+ sideline — you handled it correctly (4...Bd7)",
+   "moments": [
+    {
+     "ply": 27,
+     "title": "Move 14: f6 has been weak for four moves — someone has to babysit it",
+     "board": {
+      "fen": "r3k2r/pp3p2/3qpp1p/3p4/3P4/5Q2/PPP2PPP/R4RK1",
+      "flip": true,
+      "arrows": [
+       {
+        "from": "a8",
+        "to": "c8",
+        "kind": "bad"
+       },
+       {
+        "from": "f6",
+        "to": "f5",
+        "kind": "best"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "f6",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Before 14...Rc8? — Qf3 is staring at f6"
+     },
+     "prose": "After the earlier ...gxf6 recapture your structure carried a permanent tenant: the f6-pawn, attackable on the long diagonal and the f-file. <b>14...Rc8?</b> developed a rook and dropped the pawn — 15.Qxf6 and with it the h6/g7 complex collapsed. The end came at move 38: down two exchanges, <b>38...Kxa6??</b> grabbed a poisoned pawn into 39.Ra1#, the fifth allowed mate-in-one of the day.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−2.2",
+       "line": "14...Rc8? 15.Qxf6 Rh7 16.c3 — pawn gone, king stuck in the middle"
+      },
+      {
+       "tag": "Better",
+       "eval": "−0.2",
+       "line": "14...f5! — push it once, and it is no longer a target on f6"
+      },
+      {
+       "tag": "Or",
+       "eval": "−0.2",
+       "line": "14...Ke7 — connect rooks, defend f6 laterally, accept a slightly worse but solid game"
+      }
+     ],
+     "fix": "When a recapture leaves you a lasting weak pawn (f6, h6, doubled anything), it goes on a mental sticky note: every move, one glance — \"is it still defended?\" Weak pawns don't announce when the count changes."
+    }
+   ],
+   "also": null
+  },
+  "HicoshOP": {
+   "tagline": "Your book had the answer — one move later than you drilled it",
+   "opening": "London main line, 5 moves of book — then ...Nc6 arrived by transposition",
+   "moments": [
+    {
+     "ply": 14,
+     "title": "Move 8: the ...Nb4 problem, exactly as your notes describe it",
+     "board": {
+      "fen": "r1b1k2r/pppq1ppp/3bpn2/3p4/1n1P4/3BPNB1/PPPN1PPP/R2QK2R",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "c2",
+        "to": "c3",
+        "kind": "bad"
+       },
+       {
+        "from": "d3",
+        "to": "e2",
+        "kind": "best"
+       },
+       {
+        "from": "b4",
+        "to": "d3",
+        "kind": "threat"
+       }
+      ],
+      "caption": "Before 8.c3?? — the knight already attacks the d3-bishop"
+     },
+     "prose": "Your repertoire's watch-list says it word for word: <em>\"...Nb4 hopping at your Bd3 when you skipped c3. If it happens anyway: retreat Be2 and kick the knight with a3 next move.\"</em> The position arrived — one move later than the drilled order, via ...Nc6 first — and the rule didn't fire. <b>8.c3??</b> attacks the knight but it simply takes: 8...Nxd3+ 9.Kf1 (your own d2-knight blocks Qxd3, so the king must move — castling gone) and 9...Nxb2 forked queen and rook on the way out. Ten moves, resign, 8:02 left.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−4.6",
+       "line": "8.c3?? Nxd3+ 9.Kf1 Nxb2 — the knight eats two pawns and a bishop on the way home"
+      },
+      {
+       "tag": "Your book",
+       "eval": "+0.7",
+       "line": "8.Be2! c5 9.dxc5 Bxc5 10.O-O — retreat, then a3 evicts the knight with tempo"
+      }
+     ],
+     "fix": "This is the move-order lesson of the whole review: you drill LINES, but opponents deliver SHAPES. The rule is not \"after 2...Nc6 play 3.c3\" — it is \"the moment ...Nc6 exists and I am not castled, c3; and if ...Nb4 is already attacking Bd3, Be2.\" Rules travel between move orders. Lines don't."
+    }
+   ],
+   "also": null
+  },
+  "sindovald": {
+   "tagline": "A queen check is not an attack",
+   "opening": "London vs 2...Bf5 again — the second tree-gap game of the night",
+   "moments": [
+    {
+     "ply": 18,
+     "title": "Move 10: the lone queen sortie",
+     "board": {
+      "fen": "rn2k2r/ppp3pp/3qpp2/3pN3/3Pb3/2P1P3/PP3PPP/RN1QK2R",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "d1",
+        "to": "h5",
+        "kind": "bad"
+       },
+       {
+        "from": "e5",
+        "to": "f3",
+        "kind": "best"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "e5",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Before 10.Qh5+? — the e5-knight is attacked and about to be abandoned"
+     },
+     "prose": "Your knight on e5 was attacked by ...f6. Instead of the calm retreat, <b>10.Qh5+?</b> — a check with no follow-up. After 10...g6, the queen must retreat and the e5-knight falls anyway: the check <em>cost</em> a tempo and the piece. You kept fighting for 38 more moves and eventually walked the king into mate at 2:08 — but the game was decided by a queen going to war alone at move 10.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−3.0",
+       "line": "10.Qh5+? g6 11.Qh4 fxe5 — check, retreat, piece gone"
+      },
+      {
+       "tag": "Better",
+       "eval": "−0.4",
+       "line": "10.Nf3 Nd7 11.O-O O-O-O — retreat is a move. Equal game"
+      },
+      {
+       "tag": "The rule",
+       "eval": "",
+       "line": "A check must DO something — win material, force a weakness, or gain a real tempo. \"Check because I can\" usually loses one"
+      }
+     ],
+     "fix": "Attacked piece? The first candidate is always the retreat. Compare everything else against it. Retreats feel passive at 700 — the engine says they are usually the strongest move on the board."
+    }
+   ],
+   "also": null
+  },
+  "PRO_Poro": {
+   "tagline": "A holdable endgame, spent 28 seconds at a time",
+   "opening": "London vs KID setup — you skipped the drilled 4.h3, but the opening was fine",
+   "moments": [
+    {
+     "ply": 80,
+     "title": "Move 41: rook endgame, −0.7, one minute left — the passers race",
+     "board": {
+      "fen": "8/1R3pk1/1N6/4b1rp/1P6/8/8/5K2",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "b4",
+        "to": "b5",
+        "kind": "bad"
+       },
+       {
+        "from": "b7",
+        "to": "d7",
+        "kind": "best"
+       },
+       {
+        "from": "h5",
+        "to": "h2",
+        "kind": "threat"
+       }
+      ],
+      "marks": [
+       {
+        "sq": "h5",
+        "kind": "bad"
+       }
+      ],
+      "caption": "Before 41.b5? — their h-pawn is faster than your b-pawn"
+     },
+     "prose": "You defended a long, worse middlegame into a genuinely holdable R+N vs R+B ending (−0.7). Then the clock took over: <b>41.b5?</b> starts a pawn race your b-pawn loses — their h-pawn has a rook <em>behind</em> it and yours doesn't. Best was 41.Rd7 or 41.Nc4, rerouting to stop the h-pawn first (that rule again). The cascade 42.Nd7? 44.Rc7?? followed at under a minute, and mate came with 0:28 left — the only true clock-death loss of the day.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−4.0",
+       "line": "41.b5? h4 42.Rd7 h3 — the h-pawn runs; yours is three tempi slow"
+      },
+      {
+       "tag": "Better",
+       "eval": "−0.8",
+       "line": "41.Rd7 h4 42.Rd3 — rook swings BEHIND the passer; the fortress holds"
+      }
+     ],
+     "fix": "Two takeaways. Blockade before you race: the side whose rook gets behind the passer wins these. And the clock: this game left you 1:07 for a 20-move endgame because moves 22–25 in a quiet position ate three minutes. Budget: known-shape moves fast, contact moves slow — not the reverse."
+    }
+   ],
+   "also": null
+  },
+  "aadityanandrekar": {
+   "tagline": "The landing square nobody checked",
+   "opening": "London vs 3...Nc6 — the third ...Nc6 game of the set, the third loss to it",
+   "moments": [
+    {
+     "ply": 24,
+     "title": "Move 13: a knight jumps to a square only the opponent covers",
+     "board": {
+      "fen": "r2q1rk1/2pn1ppp/p1p1p1b1/3pP3/6P1/2P1PN1P/PP1N1P2/R2QK2R",
+      "flip": false,
+      "arrows": [
+       {
+        "from": "f3",
+        "to": "h4",
+        "kind": "bad"
+       },
+       {
+        "from": "d8",
+        "to": "h4",
+        "kind": "threat"
+       },
+       {
+        "from": "e1",
+        "to": "g1",
+        "kind": "best"
+       }
+      ],
+      "caption": "Before 13.Nh4?? — the d8-queen sees h4; nothing of yours does"
+     },
+     "prose": "The plan (12.g4 then 13.Nh4, trapping the g6-bishop) had real logic — but the execution move landed on an <em>undefended square in the enemy queen's sight</em>. 13...Qxh4 took the knight for free, and 16.Kd1?? two moves later turned bad into lost (16...Nxb2+ forking). With the king still on e1 for 13 moves, everything tactical worked for Black.",
+     "lines": [
+      {
+       "tag": "Played",
+       "eval": "−4.4",
+       "line": "13.Nh4?? Qxh4 — free knight; the g4 idea needed Kg2/Rg1 prep first"
+      },
+      {
+       "tag": "Better",
+       "eval": "−1.2",
+       "line": "13.O-O — castle FIRST. Then Nh4 next move is a real threat"
+      },
+      {
+       "tag": "The rule",
+       "eval": "",
+       "line": "Before a piece lands anywhere: who covers that square? Count for the landing square like it were a capture"
+      }
+     ],
+     "fix": "Castle-by-8 was the audit habit that had been improving — this window it slipped in exactly the games you lost. Uncastled + launching pawns at their king = every tactic favors them."
+    }
+   ],
+   "also": null
+  }
+ },
+ "rules": [
+  {
+   "rn": "R1",
+   "html": "<b>Any ...Nc6 → c3 now.</b> Any ...Nb4 hitting Bd3 → Be2, then a3. This single rule refunds four losses. (London)"
+  },
+  {
+   "rn": "R2",
+   "html": "<b>...e5 in Caro Exchange structures is banned</b> until castled and developed. One-square pawn moves; breaks are a reward. (Caro-Kann)"
+  },
+  {
+   "rn": "R3",
+   "html": "<b>Attacks need attackers ≥ defenders + 1.</b> One piece near their king is a visit. Queen checks must do something concrete or they cost a tempo."
+  },
+  {
+   "rn": "R4",
+   "html": "<b>A capture ends after their recapture.</b> Ask what the recapturing unit attacks next — pawns fork, files open, defenders vanish."
+  },
+  {
+   "rn": "R5",
+   "html": "<b>The two-question scan on every king move and every capture</b> — can I be mated in one, can I mate in one. Five losses ended by skipping it, all with minutes on the clock."
+  },
+  {
+   "rn": "R6",
+   "html": "<b>Convert lines into rules.</b> After every game: which drilled line almost appeared, and what rule covers the difference?"
+  }
+ ],
+ "closing": "What is genuinely improving and worth protecting: the King&#39;s Indian (3W–0L), the Two Knights Caro when you remember it, fighting back from bad positions (Triss83 reached +4.6 from lost), and castle-by-8 in the wins. These rules are your existing drills applied at the board, on the six moves after contact."
+}

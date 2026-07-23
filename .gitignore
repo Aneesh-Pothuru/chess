@@ -3,3 +3,4 @@ dist
 public/stockfish/
 *.local
 .DS_Store
+tools/coach-review/.cache/

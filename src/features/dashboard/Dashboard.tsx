@@ -117,6 +117,13 @@ export function Dashboard({ go }: { go: (route: Route, target?: string) => void 
           </div>
           <h3>{briefing.headline}</h3>
           <p className="small" style={{ whiteSpace: 'pre-wrap' }}>{briefing.note}</p>
+          {briefing.review && (
+            <p className="small">
+              <a href={`${import.meta.env.BASE_URL}${briefing.review}`} target="_blank" rel="noopener noreferrer">
+                Read the full deep review — every loss, board by board →
+              </a>
+            </p>
+          )}
           {briefing.tasks && briefing.tasks.length > 0 ? (
             <div>
               <div className="eyebrow" style={{ marginTop: '0.4rem' }}>Coach&apos;s orders — in this order</div>

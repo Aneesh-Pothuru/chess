@@ -15,6 +15,26 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
    praise real improvements, call out avoided training ("three days since any conversion
    drill — and you just lost another won endgame"), and weigh adjustments with BOTH sources.
    This file is app-owned: NEVER write to it.
+1c. **Run the deep-review pipeline** (added 2026-07-23 — Aneesh wants this every morning):
+   ```bash
+   node tools/coach-review/setup.cjs
+   node tools/coach-review/analyze.cjs --since <last briefing date, ISO>
+   ```
+   `analyze.cjs` engine-checks every game (Stockfish sweep + depth-20 lines at each loss's
+   turning points + repertoire-tree comparison) and prints a digest. Read the digest, then
+   write `coach-log/review-annotations/YYYY-MM-DD.json` — per-loss coaching: the turning-point
+   board, played-vs-better lines, and the portable rule. Schema + quality bar:
+   `tools/coach-review/README.md`; reference example: `review-annotations/2026-07-23.json`.
+   Then build the page and link it from the briefing:
+   ```bash
+   node tools/coach-review/build.cjs --date YYYY-MM-DD
+   ```
+   This writes `public/coach/review/YYYY-MM-DD.html`. Set `"review": "coach/review/YYYY-MM-DD.html"`
+   in the briefing so the dashboard links to it. The builder works even with a minimal
+   annotations file — never skip the page. On a no-games day, skip this step entirely.
+   The digest also feeds your own analysis for the coach log — trust its engine lines over
+   hand analysis.
+
 2. **Analyze** each new game (PGN is embedded in the API response):
    - Result, color, opening (parse `[ECOUrl]` from the PGN) and whether it matches the
      repertoire: London as White; Caro-Kann vs 1.e4 and King's Indian otherwise as Black.
@@ -27,12 +47,12 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
      tags alone are valuable.
    - Was a won position (material +5 or clearly winning) lost or drawn? That is a conversion
      failure — the #1 leak.
-3. **Write** two things and commit + push them on whatever branch the session is on. Pushing
-   to `main` directly is fine when allowed, but cloud routine sessions can only push to their
-   own `claude/...` session branch — that is expected: the `promote-coach` GitHub workflow
-   watches those branches and ferries exactly these two paths onto `main` (and triggers the
-   Pages deploy). It keys on the `Coach briefing ...` commit-message prefix, so keep the
-   commit format below.
+3. **Write** the day's outputs and commit + push them on whatever branch the session is on.
+   Pushing to `main` directly is fine when allowed, but cloud routine sessions can only push to
+   their own `claude/...` session branch — that is expected: the `promote-coach` GitHub workflow
+   watches those branches and ferries the coach write surface (`coach-log/**` + `public/coach/**`)
+   onto `main` (and triggers the Pages deploy). It keys on the `Coach briefing ...`
+   commit-message prefix, so keep the commit format below.
    - `coach-log/YYYY-MM-DD.md` — the full analysis: per-game notes, patterns, honest coaching
      commentary. This is the long-term memory; read the last few entries before writing so
      advice builds instead of repeating. **Include one fully annotated game**: pick the most
@@ -62,9 +82,13 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
     }
   ],
   "adjustments": { "<weaknessKey>": 0.03 },
-  "stats": { "gamesAnalyzed": 3, "record": "1W-2L", "blunders": 5 }
+  "stats": { "gamesAnalyzed": 3, "record": "1W-2L", "blunders": 5 },
+  "review": "coach/review/2026-07-23.html"
 }
 ```
+
+   `review` is the site-relative path of the day's deep-review page (step 1c); the dashboard
+   renders it as a "read the full review" link. Omit it only on no-games days.
 
    `tasks` is the day's assignment list: give **2-4 items, ordered by priority**, each tied to a
    specific finding from the games (never generic filler). A good day mixes one repair drill for
@@ -86,8 +110,8 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
 - JSON must validate against the schema above — the app silently ignores malformed briefings.
 - `id` must be unique per briefing (use the date; suffix `-2` if re-running the same day).
 - Do not modify app source code, tests, or puzzle data. The routine's write surface is exactly
-  `coach-log/` and `public/coach/briefing.json`. `progress/profile.json` is read-only for the
-  routine (the app owns it).
+  `coach-log/` (logs + `review-annotations/`) and `public/coach/` (briefing + `review/` pages).
+  `progress/profile.json` is read-only for the routine (the app owns it).
 - If tests exist and you touched anything beyond the write surface by mistake, run `npm test`
   and revert whatever broke.
 - Commit message format: `Coach briefing YYYY-MM-DD (N games analyzed)`. This exact prefix is

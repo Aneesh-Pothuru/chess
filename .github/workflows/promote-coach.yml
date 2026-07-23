@@ -18,7 +18,7 @@ on:
     branches: ['claude/**']
     paths:
       - 'coach-log/**'
-      - 'public/coach/briefing.json'
+      - 'public/coach/**'
   workflow_dispatch:
     inputs:
       ref:
@@ -83,10 +83,12 @@ jobs:
             # rebase could conflict on briefing.json; this never can.
             git fetch origin main
             git reset --hard origin/main
-            # rm-then-restore gives directory-sync semantics for coach-log, so
-            # a rename/delete on the session branch propagates to main.
-            git rm -rq --ignore-unmatch coach-log
-            git checkout "$SRC_SHA" -- coach-log public/coach/briefing.json
+            # rm-then-restore gives directory-sync semantics, so a rename or
+            # delete on the session branch propagates to main. public/coach is
+            # restored whole (briefing + review pages); the gitignored
+            # public/stockfish is never in the tree, so it is unaffected.
+            git rm -rq --ignore-unmatch coach-log public/coach
+            git checkout "$SRC_SHA" -- coach-log public/coach
             # Enforce the write surface's shape: the pathspecs above would
             # happily ferry a directory or symlink planted at these paths.
             if [ ! -f public/coach/briefing.json ] || [ -L public/coach/briefing.json ]; then
@@ -94,16 +96,16 @@ jobs:
               exit 1
             fi
             jq -e . public/coach/briefing.json > /dev/null
-            if [ -n "$(find coach-log -type l)" ]; then
-              echo 'symlink under coach-log on the source branch' >&2
+            if [ -n "$(find coach-log public/coach -type l)" ]; then
+              echo 'symlink in the coach write surface on the source branch' >&2
               exit 1
             fi
-            if [ -z "$(git status --porcelain -- coach-log public/coach/briefing.json)" ]; then
+            if [ -z "$(git status --porcelain -- coach-log public/coach)" ]; then
               echo 'Nothing to promote — main already has these files.'
               noop=true
               break
             fi
-            git add -A coach-log public/coach/briefing.json
+            git add -A coach-log public/coach
             git commit -m "$MSG"
             if git push origin HEAD:main; then
               pushed=true
