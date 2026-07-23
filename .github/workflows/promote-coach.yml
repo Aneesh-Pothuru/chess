@@ -1,0 +1,121 @@
+# The daily coach routine runs in a Claude cloud session, and those sessions
+# can only push to their own claude/* session branch — never to main. Without
+# help, the briefing + coach log strand there: the app fetches the briefing from
+# main and Pages deploys from main, so the site never updates. This workflow
+# ferries the routine's two write-surface paths from those branches onto main,
+# then dispatches the Pages deploy explicitly (a push made with the built-in
+# GITHUB_TOKEN does not fire deploy.yml's push trigger).
+#
+# This file must live on main: push runs use the workflow file from the pushed
+# branch, which forks from main, and workflow_dispatch resolves against main.
+# Recovery path if a promotion is ever missed (branch deleted mid-run, >20
+# commits in one push, etc.): dispatch this workflow manually with ref set to
+# the branch name or full 40-char SHA to promote from.
+name: Promote coach briefing to main
+
+on:
+  push:
+    branches: ['claude/**']
+    paths:
+      - 'coach-log/**'
+      - 'public/coach/briefing.json'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch name or full 40-char SHA to promote coach files from'
+        required: true
+
+permissions:
+  contents: write
+  actions: write
+
+# No concurrency group on purpose: GitHub keeps only the newest pending run per
+# group, so a queued promotion could be silently dropped. Concurrent runs are
+# safe here — each push attempt rebuilds the promotion on top of fresh main.
+
+jobs:
+  promote:
+    # Convenience filter, not a security boundary (the shape checks below are):
+    # only ferry pushes carrying a real briefing commit — message prefix
+    # "Coach briefing " per docs/coach-routine.md; toJSON quotes each message,
+    # so the leading quote anchors the match to the start — so interactive
+    # sessions editing these paths for development don't auto-land on main.
+    if: github.event_name == 'workflow_dispatch' || contains(toJSON(github.event.commits.*.message), '"Coach briefing ')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Copy coach files onto main and push
+        env:
+          SRC: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # The REST API does not enforce required inputs, and a flag-like ref
+          # would be parsed by git as an option — reject both up front.
+          if [ -z "$SRC" ] || [ "$SRC" = main ]; then
+            echo "ref input required (branch or full SHA to promote from)" >&2
+            exit 1
+          fi
+          case "$SRC" in -*) echo "invalid ref: $SRC" >&2; exit 1 ;; esac
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # If the session branch was deleted between push and run start, the
+          # pushed commit itself is still fetchable by SHA.
+          if ! git fetch origin "$SRC"; then
+            [ "$GITHUB_EVENT_NAME" = push ] && git fetch origin "$GITHUB_SHA"
+          fi
+          SRC_SHA=$(git rev-parse FETCH_HEAD)
+          # Sync commits may sit on top of the briefing commit; take the most
+          # recent real briefing subject, else a generic promoted message.
+          # (No pipe here: grep -m1 exiting early would SIGPIPE git log and
+          # trip pipefail into taking the fallback as well.)
+          git log --format=%s -20 "$SRC_SHA" > "$RUNNER_TEMP/subjects"
+          MSG=$(grep -m1 '^Coach briefing' "$RUNNER_TEMP/subjects" \
+            || echo "Coach briefing (promoted from ${SRC_SHA:0:7})")
+          pushed=false
+          noop=false
+          for i in 1 2 3 4 5; do
+            # Rebuild the promotion on top of fresh main each attempt instead
+            # of rebasing: progress-sync pushes land on main constantly, and a
+            # rebase could conflict on briefing.json; this never can.
+            git fetch origin main
+            git reset --hard origin/main
+            # rm-then-restore gives directory-sync semantics for coach-log, so
+            # a rename/delete on the session branch propagates to main.
+            git rm -rq --ignore-unmatch coach-log
+            git checkout "$SRC_SHA" -- coach-log public/coach/briefing.json
+            # Enforce the write surface's shape: the pathspecs above would
+            # happily ferry a directory or symlink planted at these paths.
+            if [ ! -f public/coach/briefing.json ] || [ -L public/coach/briefing.json ]; then
+              echo 'briefing.json is not a regular file on the source branch' >&2
+              exit 1
+            fi
+            jq -e . public/coach/briefing.json > /dev/null
+            if [ -n "$(find coach-log -type l)" ]; then
+              echo 'symlink under coach-log on the source branch' >&2
+              exit 1
+            fi
+            if [ -z "$(git status --porcelain -- coach-log public/coach/briefing.json)" ]; then
+              echo 'Nothing to promote — main already has these files.'
+              noop=true
+              break
+            fi
+            git add -A coach-log public/coach/briefing.json
+            git commit -m "$MSG"
+            if git push origin HEAD:main; then
+              pushed=true
+              break
+            fi
+            sleep $((i * 2))
+          done
+          if [ "$pushed" != true ] && [ "$noop" != true ]; then
+            echo 'push to main failed after 5 attempts' >&2
+            exit 1
+          fi
+          # Always dispatch, even on a no-op run: a rerun after a push that
+          # succeeded but whose dispatch failed must still heal the deploy.
+          # deploy.yml's own concurrency group coalesces redundant runs.
+          gh workflow run deploy.yml --ref main

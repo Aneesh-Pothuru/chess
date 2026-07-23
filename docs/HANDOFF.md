@@ -33,15 +33,21 @@ Goal: climb 705 → 850 → 900+ by fixing measured leaks. Everything below is b
 1. **App** (any device) → pushes training progress to `progress/profile.json` via GitHub contents API
    (fine-grained PAT stored in browser localStorage only — "Cloud sync" panel in My games; auto-push
    90s after last action + catch-up push on open; cross-device restore banner on the dashboard).
-2. **Daily routine** `daily-chess-coach` (local scheduled task, 7:05am, prompt at
-   `~/.claude/scheduled-tasks/daily-chess-coach/SKILL.md`; runs when the Claude app is open) →
-   pulls repo, fetches new chess.com games, reads `progress/profile.json` (READ-ONLY for it), writes
+2. **Daily routine** `daily-chess-coach` (cloud Routine, 7:05am; runs as a Claude cloud session
+   on its own `claude/*` session branch — it CANNOT push to `main`) → pulls repo, fetches new
+   chess.com games, reads `progress/profile.json` (READ-ONLY for it), writes
    `coach-log/YYYY-MM-DD.md` (with one fully annotated game in prose) + replaces
    `public/coach/briefing.json` (**`tasks` array of 2–4 assignments**, weakness `adjustments`
-   applied once per briefing `id`), commits ONLY those two paths, pushes.
+   applied once per briefing `id`), commits ONLY those two paths with the `Coach briefing ...`
+   message prefix, pushes its session branch.
+2b. **Promotion**: the `promote-coach` workflow (`.github/workflows/promote-coach.yml`) fires on
+   `claude/**` pushes touching the coach paths, ferries exactly those two paths onto `main`, and
+   dispatches the Pages deploy (a GITHUB_TOKEN push fires no `push` triggers on its own). The
+   `Coach briefing ` commit-message prefix is load-bearing — it's the workflow's filter.
 3. **Dashboard** fetches the briefing (local file, else GitHub raw/API) → renders "Coach's orders"
-   checklist, applies adjustments once. Every push auto-deploys, so the hosted app always has the
-   latest briefing. Progress-sync/coach-log-only commits skip deploys (`paths-ignore`).
+   checklist, applies adjustments once. Human/app pushes to `main` auto-deploy; promoted briefings
+   deploy via the workflow's dispatch. Progress-sync/coach-log-only pushes skip deploys
+   (`paths-ignore`).
 
 ## Stats philosophy (settled with the user)
 

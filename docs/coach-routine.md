@@ -27,7 +27,12 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
      tags alone are valuable.
    - Was a won position (material +5 or clearly winning) lost or drawn? That is a conversion
      failure — the #1 leak.
-3. **Write** two things and commit them to `main`:
+3. **Write** two things and commit + push them on whatever branch the session is on. Pushing
+   to `main` directly is fine when allowed, but cloud routine sessions can only push to their
+   own `claude/...` session branch — that is expected: the `promote-coach` GitHub workflow
+   watches those branches and ferries exactly these two paths onto `main` (and triggers the
+   Pages deploy). It keys on the `Coach briefing ...` commit-message prefix, so keep the
+   commit format below.
    - `coach-log/YYYY-MM-DD.md` — the full analysis: per-game notes, patterns, honest coaching
      commentary. This is the long-term memory; read the last few entries before writing so
      advice builds instead of repeating. **Include one fully annotated game**: pick the most
@@ -85,5 +90,8 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
   routine (the app owns it).
 - If tests exist and you touched anything beyond the write surface by mistake, run `npm test`
   and revert whatever broke.
-- Commit message format: `Coach briefing YYYY-MM-DD (N games analyzed)`.
+- Commit message format: `Coach briefing YYYY-MM-DD (N games analyzed)`. This exact prefix is
+  load-bearing: the `promote-coach` workflow only ferries pushes whose commits carry it — that
+  includes any follow-up correction to a coach log or briefing (use the same prefix, or the fix
+  never reaches `main`).
 - Tone: the coach is direct, specific, and references real moves — never generic pep talk.

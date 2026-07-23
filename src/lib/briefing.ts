@@ -74,14 +74,23 @@ function remoteBriefing(): Promise<CoachBriefing | null> {
   return tryFetch(RAW_URL)
 }
 
+/**
+ * Newest date wins; on a same-day tie prefer the copy with a task list, then
+ * the higher id, so a same-day re-run ("2026-07-23-2") beats the stale local
+ * copy baked into the deployed bundle before the redeploy lands.
+ */
+export function newestBriefing(candidates: CoachBriefing[]): CoachBriefing | null {
+  if (candidates.length === 0) return null
+  return [...candidates].sort(
+    (a, b) =>
+      (a.date < b.date ? 1 : a.date > b.date ? -1 : 0) ||
+      (b.tasks?.length ?? 0) - (a.tasks?.length ?? 0) ||
+      (a.id < b.id ? 1 : a.id > b.id ? -1 : 0),
+  )[0]
+}
+
 /** Newest fresh briefing from the local copy or the GitHub repo, if any. */
 export async function fetchBriefing(now: Date = new Date()): Promise<CoachBriefing | null> {
   const [local, remote] = await Promise.all([tryFetch(LOCAL_URL), remoteBriefing()])
-  const fresh = [local, remote].filter((b): b is CoachBriefing => b !== null && isFresh(b, now))
-  if (fresh.length === 0) return null
-  // Newest date wins; on a same-day tie prefer the copy with a task list.
-  fresh.sort(
-    (a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : (b.tasks?.length ?? 0) - (a.tasks?.length ?? 0)),
-  )
-  return fresh[0]
+  return newestBriefing([local, remote].filter((b): b is CoachBriefing => b !== null && isFresh(b, now)))
 }

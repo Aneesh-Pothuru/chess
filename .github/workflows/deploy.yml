@@ -1,13 +1,15 @@
 # Build and deploy the app to GitHub Pages on every push to main.
-# The daily coach routine's commits (briefing + coach-log) also trigger this,
-# so the hosted app always serves the latest briefing.
+# Coach briefings land on main via promote-coach.yml, whose GITHUB_TOKEN push
+# cannot fire this push trigger — it dispatches this workflow explicitly
+# instead, so the hosted app still always serves the latest briefing.
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
     # Progress syncs and coach logs aren't part of the built site — don't
-    # redeploy for them. Briefing commits touch public/coach/, so they still deploy.
+    # redeploy for them (this filter only sees human/app pushes; promoted
+    # briefing commits arrive via workflow_dispatch above it).
     paths-ignore:
       - 'progress/**'
       - 'coach-log/**'
