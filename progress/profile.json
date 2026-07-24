@@ -8,7 +8,7 @@
   "tenSecondFloor": true
  },
  "weakness": {
-  "conversion": 0.8799999999999999,
+  "conversion": 0.7299999999999998,
   "hangingPiece": 0.8699999999999999,
   "fork": 0.7299999999999999,
   "mateThreats": 0.2499999999999994,
@@ -3067,6 +3067,18 @@
    "successes": 1,
    "bestMoves": 16,
    "lastAt": 1784752625074
+  },
+  "conv-rook-up-checks": {
+   "attempts": 3,
+   "successes": 3,
+   "bestMoves": 3,
+   "lastAt": 1784879559969
+  },
+  "conv-exchange-up": {
+   "attempts": 2,
+   "successes": 2,
+   "bestMoves": 2,
+   "lastAt": 1784879598545
   }
  },
  "puzzleStats": {
@@ -3107,7 +3119,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784879310713,
+ "updatedAt": 1784879598546,
  "ratingHistory": [
   {
    "at": 1784758889213,
