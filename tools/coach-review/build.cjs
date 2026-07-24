@@ -222,6 +222,108 @@ const stats = ann.stats || [
 
 const rules = (ann.rules || []).map(r => `<li><span class="rn">${esc(r.rn)}</span>${r.html}</li>`).join('');
 
+// Embedded via String.raw so regex backslashes survive the template literal.
+const PLAYER_RUNTIME = String.raw`
+<script>
+(function () {
+  var SQ = 44, M = 16;
+  function xy(file, rank, flip) { var x = flip ? 7 - file : file, y = flip ? rank : 7 - rank; return [M + x * SQ, M / 2 + y * SQ]; }
+  function sqXY(sq, flip) { return xy(sq.charCodeAt(0) - 97, +sq[1] - 1, flip); }
+  function piecesFromFen(fen) {
+    var rows = fen.split(' ')[0].split('/'), out = [];
+    for (var ri = 0; ri < 8; ri++) {
+      var f = 0;
+      for (var ci = 0; ci < rows[ri].length; ci++) {
+        var ch = rows[ri][ci];
+        if (/\d/.test(ch)) { f += +ch; continue; }
+        out.push({ code: (ch === ch.toUpperCase() ? 'w' : 'b') + ch.toUpperCase(), file: f, rank: 7 - ri });
+        f++;
+      }
+    }
+    return out;
+  }
+  function renderPieces(g, fen, flip) {
+    var h = '';
+    piecesFromFen(fen).forEach(function (p) {
+      var c = xy(p.file, p.rank, flip);
+      h += '<use href="#pc-' + p.code + '" x="' + c[0] + '" y="' + c[1] + '" width="' + SQ + '" height="' + SQ + '"/>';
+    });
+    g.innerHTML = h;
+  }
+  function arrowMarkup(from, to, flip) {
+    var a = sqXY(from, flip), b = sqXY(to, flip);
+    var x1 = a[0] + SQ / 2, y1 = a[1] + SQ / 2, x2 = b[0] + SQ / 2, y2 = b[1] + SQ / 2;
+    var ang = Math.atan2(y2 - y1, x2 - x1);
+    var tx = x2 - Math.cos(ang) * (SQ * 0.32), ty = y2 - Math.sin(ang) * (SQ * 0.32), hw = 7.5;
+    return '<g class="arrow-play"><line x1="' + x1 + '" y1="' + y1 + '" x2="' + tx + '" y2="' + ty + '"/><polygon points="' + x2 + ',' + y2 + ' ' + (tx - Math.sin(ang) * hw) + ',' + (ty + Math.cos(ang) * hw) + ' ' + (tx + Math.sin(ang) * hw) + ',' + (ty - Math.cos(ang) * hw) + '"/></g>';
+  }
+  document.querySelectorAll('.player').forEach(function (pl) {
+    var data = JSON.parse(pl.getAttribute('data-player'));
+    var fig = pl.closest('figure');
+    var svg = fig.querySelector('svg.board');
+    var piecesG = svg.querySelector('[data-layer=pieces]');
+    var overlayG = svg.querySelector('[data-layer=overlay]');
+    var home = { pieces: piecesG.innerHTML, overlay: overlayG.innerHTML };
+    var status = pl.querySelector('.pl-status');
+    var cur = null, idx = 0, timer = null;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function show() {
+      if (cur === null || idx === 0) {
+        piecesG.innerHTML = home.pieces; overlayG.innerHTML = home.overlay; svg.classList.remove('playing');
+        status.textContent = cur === null ? 'tap a line to watch it play out' : 'start position — step with ▶';
+      } else {
+        var st = data.lines[cur].steps[idx - 1];
+        svg.classList.add('playing');
+        renderPieces(piecesG, st.fen, data.flip);
+        overlayG.innerHTML = arrowMarkup(st.from, st.to, data.flip);
+        status.textContent = st.san + '  (' + idx + '/' + data.lines[cur].steps.length + ')';
+      }
+      pl.querySelectorAll('.pl-line').forEach(function (b, i) { b.classList.toggle('active', i === cur); });
+    }
+    function play() {
+      stop();
+      timer = setInterval(function () {
+        if (cur === null || idx >= data.lines[cur].steps.length) { stop(); return; }
+        idx++; show();
+      }, 950);
+    }
+    pl.querySelectorAll('.pl-line').forEach(function (btn, i) {
+      btn.addEventListener('click', function () { stop(); cur = i; idx = 1; show(); play(); });
+    });
+    pl.querySelector('.pl-reset').addEventListener('click', function () { stop(); cur = null; idx = 0; show(); });
+    pl.querySelector('.pl-prev').addEventListener('click', function () { stop(); if (cur === null) return; if (idx > 0) idx--; show(); });
+    pl.querySelector('.pl-next').addEventListener('click', function () { stop(); if (cur === null) { cur = 0; } if (idx < data.lines[cur].steps.length) idx++; show(); });
+  });
+})();
+</script>`;
+
+// Missed chances: moments (any game, wins included) where you stood clearly
+// better (>= +1.5) and the engine saw a much stronger continuation (>= 1.5
+// better than what was played) — excluding moments already featured above.
+const missed = [];
+for (const g of all) {
+  const isLoss = g.result === 'L';
+  const cardPlies = isLoss
+    ? new Set(((annGames[g.opp] || {}).moments || (g.deep || []).slice(0, 2)).map(m => m.ply))
+    : new Set();
+  for (const d of g.deep || []) {
+    if (!cardPlies.has(d.ply) && d.before >= 150 && d.drop >= 150) missed.push({ g, d });
+  }
+}
+missed.sort((a, b) => b.d.drop - a.d.drop);
+const missedHtml = missed.length === 0 ? '' : `<section class="chapter" id="missed">
+<span class="eyebrow">Chapter III</span>
+<h2>Missed chances — where a much stronger line was waiting</h2>
+<p class="lede">${ann.missedIntro || 'You stood clearly better in each of these positions, and Stockfish found a continuation at least a piece and a half stronger than the move played — including in games you went on to win. Tap the lines to watch the stronger idea play out.'}</p>
+${missed.slice(0, 6).map(({ g, d }) => `<article class="game">
+  <header class="game-head">
+    <div class="game-title"><span class="chip ${g.result === 'L' ? 'chip-l' : 'chip-w'}">${g.result}</span><h3>vs ${esc(g.opp)} <span class="rat">(${g.oppRating})</span></h3></div>
+    <div class="game-meta">${g.meIsWhite ? 'White' : 'Black'} \u00b7 you stood ${fmt(d.before)} \u00b7 best line was worth ${fmt(d.before)} vs ${fmt(d.after)} played \u00b7 <a href="${g.url}" target="_blank" rel="noopener">game \u2197</a></div>
+  </header>
+  ${momentBlock(autoMoment(g, d))}
+</article>`).join('\n')}
+</section>`;
+
 const videoFile = path.join(ROOT, 'public', 'coach', 'review', `${DATE}.mp4`);
 const hasVideo = fs.existsSync(videoFile);
 
@@ -364,85 +466,16 @@ ${openingsChapter()}
 ${(losses.length ? losses : all).map((g, i) => gameCard(g, i)).join('\n')}
 </section>
 
+${missedHtml}
+
 ${rules ? `<section class="chapter" id="rules">
-<span class="eyebrow">Chapter III</span>
+<span class="eyebrow">Chapter ${missedHtml ? 'IV' : 'III'}</span>
 <h2>The rules to play by</h2>
 <ul class="rules">${rules}</ul>
 ${ann.closing ? `<p class="lede" style="margin-top:20px">${ann.closing}</p>` : ''}
 </section>` : ''}
 </div>
-<script>
-(function () {
-  var SQ = 44, M = 16;
-  function xy(file, rank, flip) { var x = flip ? 7 - file : file, y = flip ? rank : 7 - rank; return [M + x * SQ, M / 2 + y * SQ]; }
-  function sqXY(sq, flip) { return xy(sq.charCodeAt(0) - 97, +sq[1] - 1, flip); }
-  function piecesFromFen(fen) {
-    var rows = fen.split(' ')[0].split('/'), out = [];
-    for (var ri = 0; ri < 8; ri++) {
-      var f = 0;
-      for (var ci = 0; ci < rows[ri].length; ci++) {
-        var ch = rows[ri][ci];
-        if (/\d/.test(ch)) { f += +ch; continue; }
-        out.push({ code: (ch === ch.toUpperCase() ? 'w' : 'b') + ch.toUpperCase(), file: f, rank: 7 - ri });
-        f++;
-      }
-    }
-    return out;
-  }
-  function renderPieces(g, fen, flip) {
-    var h = '';
-    piecesFromFen(fen).forEach(function (p) {
-      var c = xy(p.file, p.rank, flip);
-      h += '<use href="#pc-' + p.code + '" x="' + c[0] + '" y="' + c[1] + '" width="' + SQ + '" height="' + SQ + '"/>';
-    });
-    g.innerHTML = h;
-  }
-  function arrowMarkup(from, to, flip) {
-    var a = sqXY(from, flip), b = sqXY(to, flip);
-    var x1 = a[0] + SQ / 2, y1 = a[1] + SQ / 2, x2 = b[0] + SQ / 2, y2 = b[1] + SQ / 2;
-    var ang = Math.atan2(y2 - y1, x2 - x1);
-    var tx = x2 - Math.cos(ang) * (SQ * 0.32), ty = y2 - Math.sin(ang) * (SQ * 0.32), hw = 7.5;
-    return '<g class="arrow-play"><line x1="' + x1 + '" y1="' + y1 + '" x2="' + tx + '" y2="' + ty + '"/><polygon points="' + x2 + ',' + y2 + ' ' + (tx - Math.sin(ang) * hw) + ',' + (ty + Math.cos(ang) * hw) + ' ' + (tx + Math.sin(ang) * hw) + ',' + (ty - Math.cos(ang) * hw) + '"/></g>';
-  }
-  document.querySelectorAll('.player').forEach(function (pl) {
-    var data = JSON.parse(pl.getAttribute('data-player'));
-    var fig = pl.closest('figure');
-    var svg = fig.querySelector('svg.board');
-    var piecesG = svg.querySelector('[data-layer=pieces]');
-    var overlayG = svg.querySelector('[data-layer=overlay]');
-    var home = { pieces: piecesG.innerHTML, overlay: overlayG.innerHTML };
-    var status = pl.querySelector('.pl-status');
-    var cur = null, idx = 0, timer = null;
-    function stop() { if (timer) { clearInterval(timer); timer = null; } }
-    function show() {
-      if (cur === null || idx === 0) {
-        piecesG.innerHTML = home.pieces; overlayG.innerHTML = home.overlay; svg.classList.remove('playing');
-        status.textContent = cur === null ? 'tap a line to watch it play out' : 'start position — step with ▶';
-      } else {
-        var st = data.lines[cur].steps[idx - 1];
-        svg.classList.add('playing');
-        renderPieces(piecesG, st.fen, data.flip);
-        overlayG.innerHTML = arrowMarkup(st.from, st.to, data.flip);
-        status.textContent = st.san + '  (' + idx + '/' + data.lines[cur].steps.length + ')';
-      }
-      pl.querySelectorAll('.pl-line').forEach(function (b, i) { b.classList.toggle('active', i === cur); });
-    }
-    function play() {
-      stop();
-      timer = setInterval(function () {
-        if (cur === null || idx >= data.lines[cur].steps.length) { stop(); return; }
-        idx++; show();
-      }, 950);
-    }
-    pl.querySelectorAll('.pl-line').forEach(function (btn, i) {
-      btn.addEventListener('click', function () { stop(); cur = i; idx = 1; show(); play(); });
-    });
-    pl.querySelector('.pl-reset').addEventListener('click', function () { stop(); cur = null; idx = 0; show(); });
-    pl.querySelector('.pl-prev').addEventListener('click', function () { stop(); if (cur === null) return; if (idx > 0) idx--; show(); });
-    pl.querySelector('.pl-next').addEventListener('click', function () { stop(); if (cur === null) { cur = 0; } if (idx < data.lines[cur].steps.length) idx++; show(); });
-  });
-})();
-</script>`;
+${PLAYER_RUNTIME}`;
 
 const outDir = path.join(ROOT, 'public', 'coach', 'review');
 fs.mkdirSync(outDir, { recursive: true });

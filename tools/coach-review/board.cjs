@@ -27,7 +27,7 @@ function sqXY(file, rank, flip) {
 function boardSvg(fen, opts = {}) {
   const { flip = false, lastMove = null, arrows = [], marks = [], caption = null } = opts;
   const rows = fen.split(' ')[0].split('/');
-  const W = SQ * 8 + M * 1.5, H = SQ * 8 + M * 2;
+  const W = SQ * 8 + M * 1.5, H = SQ * 8 + M * 2.5;
   let s = `<svg class="board" viewBox="0 0 ${W} ${H}" role="img" aria-label="${caption || 'chess position'}">`;
   for (let r = 0; r < 8; r++) for (let f = 0; f < 8; f++) {
     const [x, y] = sqXY(f, r, flip);
@@ -43,7 +43,7 @@ function boardSvg(fen, opts = {}) {
   }
   for (let f = 0; f < 8; f++) {
     const [x] = sqXY(f, 0, flip);
-    s += `<text x="${x + SQ / 2}" y="${H - 7}" class="coord">${'abcdefgh'[f]}</text>`;
+    s += `<text x="${x + SQ / 2}" y="${H - 11}" class="coord">${'abcdefgh'[f]}</text>`;
   }
   for (let r = 0; r < 8; r++) {
     const [, y] = sqXY(0, r, flip);

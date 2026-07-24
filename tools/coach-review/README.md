@@ -38,6 +38,9 @@ pip3 install piper-tts            # neural voice; espeak-ng is the fallback
 - Every `lines` entry that starts with real SAN becomes a **playable line** on the page: the
   board animates through it move by move with arrows. Write lines so the moves come first and
   prose after an em-dash (`24.Rxc7! Rxe3 25.Rxe3 — up a rook`), or the animation can't parse.
+- The page auto-builds a **Missed chances** chapter from any game (wins included) where the
+  player stood >= +1.5 and the engine line was >= 1.5 stronger than the move played. Optional
+  `"missedIntro"` in the annotations replaces its lede. Nothing to hand-write per item.
 - After building, set `"review": "coach/review/<date>.html"` in `public/coach/briefing.json`
   so the dashboard links to it, and commit the review page + video + annotations with the
   briefing.
@@ -74,7 +77,8 @@ pip3 install piper-tts            # neural voice; espeak-ng is the fallback
       "also": "optional closing note, HTML allowed"
     }
   },
-  "rules": [{ "rn": "R1", "html": "..." }],   // optional chapter III
+  "rules": [{ "rn": "R1", "html": "..." }],   // optional final chapter
+  "missedIntro": "optional lede for the auto Missed-chances chapter",
   "closing": "optional closing paragraph, HTML allowed"
 }
 ```
@@ -100,7 +104,9 @@ The 2026-07-23 file is the reference example. Shape: `{ "scenes": [...] }` where
   "bullets": ["...", "..."],                  // text cards only; beats reveal them
   "beats": [                                  // narration time is split evenly across beats
     { "caption": "...", "arrows": [...], "marks": [...] },   // annotate the position
-    { "caption": "...", "moves": ["Qxh7+", "Bxh7"] },        // advance it — the board MOVES
+    { "caption": "...", "moves": ["Qxh7+", "Bxh7"] },        // advance it — EACH half-move
+                                                              // gets its own video frame, so
+                                                              // Black's replies land visibly
     { "reveal": 1 }                                          // text cards: show bullet #2
   ]
 }

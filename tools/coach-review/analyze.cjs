@@ -25,6 +25,7 @@ const argVal = (name, dflt) => {
 };
 const USER = (argVal('user', 'pots1125')).toLowerCase();
 const SINCE = Math.floor(new Date(argVal('since', new Date(Date.now() - 26 * 3600_000).toISOString())).getTime() / 1000);
+const UNTIL = argVal('until', null) ? Math.floor(new Date(argVal('until', null)).getTime() / 1000) : null;
 const ENGINES = Math.max(1, Math.min(8, +argVal('engines', 4)));
 const SWEEP_DEPTH = +argVal('depth', 12);
 
@@ -42,7 +43,7 @@ async function fetchArchives() {
     const data = await res.json();
     games.push(...(data.games || []));
   }
-  return games.filter(g => g.time_class === 'rapid' && g.end_time >= SINCE)
+  return games.filter(g => g.time_class === 'rapid' && g.end_time >= SINCE && (UNTIL == null || g.end_time <= UNTIL))
     .sort((a, b) => a.end_time - b.end_time);
 }
 
@@ -112,7 +113,7 @@ async function analyzeGame(engine, g) {
 
   const evals = [], fens = [];
   const replay = new Chess();
-  const sweepEnd = result === 'L' ? hist.length : Math.min(hist.length, 30);
+  const sweepEnd = hist.length; // full sweep for wins too — missed chances live there
   for (let i = 0; i <= sweepEnd; i++) {
     const fen = replay.fen();
     fens.push(fen);
@@ -144,7 +145,7 @@ async function analyzeGame(engine, g) {
   const targets = result === 'L'
     ? moments.filter(m => m.drop >= 120 && m.before > -600)
         .sort((a, b) => b.drop - a.drop).slice(0, 4).sort((a, b) => a.ply - b.ply)
-    : moments.sort((a, b) => b.drop - a.drop).slice(0, 1);
+    : moments.filter(m => m.drop >= 150).sort((a, b) => b.drop - a.drop).slice(0, 2).sort((a, b) => a.ply - b.ply);
   for (const m of targets) {
     const r = await engine.analyze(m.fen, 20, 3);
     const alts = Object.values(r.lines).map(l => ({

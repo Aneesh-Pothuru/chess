@@ -120,7 +120,7 @@ h2{font:600 34px/1.2 'Spectral',serif;margin-bottom:14px}
 .board{width:560px;height:auto;display:block;border-radius:6px}
 .sq-l{fill:#cdbd97}.sq-d{fill:#8c6f4e}
 .sq-last{fill:rgba(201,162,39,.45)}
-.coord{font:600 13.5px 'Plex Mono',monospace;fill:#b8ad9c;text-anchor:middle}
+.coord{font:600 15px 'Plex Mono',monospace;fill:#b8ad9c;text-anchor:middle}
 .mark-bad{fill:none;stroke:#e05a44;stroke-width:2.5}
 .mark-good{fill:none;stroke:#3fa06a;stroke-width:2.5}
 .arrow-best line{stroke:#3fa06a;stroke-width:7;opacity:.9;stroke-linecap:round}
@@ -190,21 +190,25 @@ function screenshot(html, outPng) {
     const frames = [];
     for (let bi = 0; bi < beats.length; bi++) {
       const beat = beats[bi];
-      let autoArrows = null;
-      if (game && beat.moves) {
-        for (const san of beat.moves) {
-          const mv = game.move(String(san).replace(/[?!]+$/, ''));
+      // A beat with N moves renders N sub-frames — every half-move (White's
+      // AND Black's) gets its own frame, so the viewer sees each reply land.
+      const beatMoves = game && beat.moves ? beat.moves : [null];
+      const subDur = beatDur / beatMoves.length;
+      for (let mi = 0; mi < beatMoves.length; mi++) {
+        let autoArrows = null;
+        if (beatMoves[mi] != null) {
+          const mv = game.move(String(beatMoves[mi]).replace(/[?!]+$/, ''));
           sans.push(mv.san);
           lastMove = { from: mv.from, to: mv.to };
           autoArrows = [{ from: mv.from, to: mv.to, kind: 'play' }];
         }
+        const tick = sans.length
+          ? sans.map((s, i) => (i === sans.length - 1 ? `<b>${esc(s)}</b>` : esc(s))).join(' · ')
+          : '';
+        const png = path.join(WORK, `s${si}b${bi}m${mi}.png`);
+        screenshot(frameHtml(scene, beat, { fen: game ? game.fen() : null, lastMove, autoArrows, tick }), png);
+        frames.push({ png, dur: subDur });
       }
-      const tick = sans.length
-        ? sans.map((s, i) => (i === sans.length - 1 ? `<b>${esc(s)}</b>` : esc(s))).join(' · ')
-        : '';
-      const png = path.join(WORK, `s${si}b${bi}.png`);
-      screenshot(frameHtml(scene, beat, { fen: game ? game.fen() : null, lastMove, autoArrows, tick }), png);
-      frames.push({ png, dur: beatDur });
       console.error(`scene ${si + 1}/${script.scenes.length} beat ${bi + 1}/${beats.length}`);
     }
 
