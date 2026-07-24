@@ -9,9 +9,9 @@
  },
  "weakness": {
   "conversion": 0.8799999999999999,
-  "hangingPiece": 0.8799999999999999,
+  "hangingPiece": 1,
   "fork": 0.7299999999999999,
-  "mateThreats": 0.23999999999999938,
+  "mateThreats": 0.2599999999999994,
   "f7f2": 0.8,
   "openingD4": 0.9500000000000001,
   "openingE4": 0.5900000000000001,
@@ -1158,6 +1158,195 @@
  ],
  "imported": [
   {
+   "url": "https://www.chess.com/game/live/171980290310",
+   "at": 1784834640000,
+   "color": "b",
+   "result": "win",
+   "opening": "Caro Kann Defense Two Knights Mindeno Variation",
+   "firstWhiteMove": "e4",
+   "castleMove": 20,
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "missedMateIn1"
+   ],
+   "myRating": 677
+  },
+  {
+   "url": "https://www.chess.com/game/live/171978894712",
+   "at": 1784832057000,
+   "color": "w",
+   "result": "loss",
+   "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.Bf4 Nf6 4",
+   "firstWhiteMove": "d4",
+   "castleMove": null,
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 669
+  },
+  {
+   "url": "https://www.chess.com/game/live/171955245654",
+   "at": 1784795598000,
+   "color": "b",
+   "result": "win",
+   "opening": "Caro Kann Defense",
+   "firstWhiteMove": "e4",
+   "castleMove": 14,
+   "scanned": true,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 677
+  },
+  {
+   "url": "https://www.chess.com/game/live/171953916594",
+   "at": 1784793282000,
+   "color": "w",
+   "result": "loss",
+   "opening": "Indian Game East Indian London System 3...Bg7 4.e3 O O",
+   "firstWhiteMove": "d4",
+   "castleMove": 8,
+   "scanned": true,
+   "blunders": 4,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 668
+  },
+  {
+   "url": "https://www.chess.com/game/live/171943454952",
+   "at": 1784766488000,
+   "color": "w",
+   "result": "loss",
+   "opening": "London System 3...Bf5 4.e3 e6",
+   "firstWhiteMove": "d4",
+   "castleMove": 20,
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [],
+   "myRating": 676
+  },
+  {
+   "url": "https://www.chess.com/game/live/171943170910",
+   "at": 1784765230000,
+   "color": "b",
+   "result": "win",
+   "opening": "Caro Kann Defense 2.Nc3 d5",
+   "firstWhiteMove": "e4",
+   "castleMove": null,
+   "scanned": true,
+   "blunders": 3,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 684
+  },
+  {
+   "url": "https://www.chess.com/game/live/171943096798",
+   "at": 1784764833000,
+   "color": "w",
+   "result": "loss",
+   "opening": "Indian Game...3.e3 d5 4.Nf3 Bd6 5.Bg3",
+   "firstWhiteMove": "d4",
+   "castleMove": null,
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 676
+  },
+  {
+   "url": "https://www.chess.com/game/live/171942883384",
+   "at": 1784764636000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Caro Kann Defense 2.Nf3 d5 3.exd5 cxd5",
+   "firstWhiteMove": "e4",
+   "castleMove": null,
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "allowedMate"
+   ],
+   "myRating": 684
+  },
+  {
+   "url": "https://www.chess.com/game/live/171942782048",
+   "at": 1784764083000,
+   "color": "w",
+   "result": "loss",
+   "opening": "London System 3...Bf5 4.e3 e6",
+   "firstWhiteMove": "d4",
+   "castleMove": 9,
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 692
+  },
+  {
+   "url": "https://www.chess.com/game/live/171942461282",
+   "at": 1784763751000,
+   "color": "b",
+   "result": "loss",
+   "opening": "Caro Kann Defense Two Knights Attack 3...Nf6 4.e5",
+   "firstWhiteMove": "e4",
+   "castleMove": 10,
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [],
+   "myRating": 699
+  },
+  {
+   "url": "https://www.chess.com/game/live/171942257842",
+   "at": 1784762903000,
+   "color": "w",
+   "result": "loss",
+   "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.Bf4 Nf6 4",
+   "firstWhiteMove": "d4",
+   "castleMove": null,
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "allowedMate"
+   ],
+   "myRating": 707
+  },
+  {
+   "url": "https://www.chess.com/game/live/171941246670",
+   "at": 1784761308000,
+   "color": "b",
+   "result": "win",
+   "opening": "Kings Indian Defense Fianchetto Yugoslav System 5.Nf3 O O 6.",
+   "firstWhiteMove": "c4",
+   "castleMove": 4,
+   "scanned": true,
+   "blunders": 3,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 715
+  },
+  {
+   "url": "https://www.chess.com/game/live/171941051014",
+   "at": 1784760109000,
+   "color": "w",
+   "result": "loss",
+   "opening": "London System 3...c6 4.e3 Bg4",
+   "firstWhiteMove": "d4",
+   "castleMove": 7,
+   "scanned": true,
+   "blunders": 0,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 706
+  },
+  {
    "url": "https://www.chess.com/game/live/171939953540",
    "at": 1784757757000,
    "color": "b",
@@ -1165,7 +1354,7 @@
    "opening": "Pirc Defense Lions Jaw Variation 3...g6",
    "firstWhiteMove": "d4",
    "castleMove": 5,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": [],
    "myRating": 714
@@ -1178,9 +1367,11 @@
    "opening": "Queens Pawn Opening Accelerated London System",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 706
   },
   {
@@ -1191,9 +1382,11 @@
    "opening": "Queens Pawn Opening Accelerated London System 2...Nf6 3.e3",
    "firstWhiteMove": "d4",
    "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 3,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 713
   },
   {
@@ -1204,9 +1397,11 @@
    "opening": "Indian Game 2.Bf4 g6 3.Nc3 Bg7",
    "firstWhiteMove": "d4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 705
   },
   {
@@ -1217,9 +1412,11 @@
    "opening": "Caro Kann Defense Exchange Variation 3...cxd5 4.Nf3 Nc6",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "allowedMate"
+   ],
    "myRating": 697
   },
   {
@@ -1230,9 +1427,11 @@
    "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.Bf4 Nf6 4",
    "firstWhiteMove": "d4",
    "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 705
   },
   {
@@ -1243,9 +1442,11 @@
    "opening": "Caro Kann Defense 2.Nc3 d5",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 697
   },
   {
@@ -2123,8 +2324,8 @@
    "opening": "Queens Gambit Declined Chigorin Defense 3.e3",
    "firstWhiteMove": "d4",
    "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": [],
    "myRating": 728
   },
@@ -2136,9 +2337,11 @@
    "opening": "Queens Pawn Opening Blackmar Blackmar Diemer Gambit 3...Nf6",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
-   "motifs": [],
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 720
   },
   {
@@ -2149,7 +2352,7 @@
    "opening": "Kings Pawn Opening 1...e5",
    "firstWhiteMove": "e4",
    "castleMove": 6,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": [],
    "myRating": 721
@@ -2162,9 +2365,11 @@
    "opening": "Kings Pawn Opening Leonardis Variation",
    "firstWhiteMove": "d3",
    "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 712
   },
   {
@@ -2175,8 +2380,8 @@
    "opening": "Scotch Game Schmidt Variation 5.Nxc6",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 3,
    "motifs": [],
    "myRating": 720
   },
@@ -2188,9 +2393,11 @@
    "opening": "Scandinavian Defense Closed 2...d4",
    "firstWhiteMove": "e4",
    "castleMove": 20,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 728
   },
   {
@@ -2201,7 +2408,7 @@
    "opening": "Kings Pawn Opening Leonardis Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": [],
    "myRating": 737
@@ -2214,9 +2421,12 @@
    "opening": "Four Knights Game",
    "firstWhiteMove": "e4",
    "castleMove": 12,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 4,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ],
    "myRating": 727
   },
   {
@@ -2227,9 +2437,11 @@
    "opening": "Four Knights Game",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
-   "motifs": [],
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 736
   },
   {
@@ -2240,9 +2452,11 @@
    "opening": "Petrovs Defense Classical Cozio Attack...6.d3 Nf6 7.Bg5 Qxe2",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 745
   },
   {
@@ -2634,175 +2848,6 @@
    "blunders": 0,
    "motifs": [],
    "myRating": 891
-  },
-  {
-   "url": "https://www.chess.com/game/live/121750551608",
-   "at": 1735339764000,
-   "color": "w",
-   "result": "win",
-   "opening": "Owens Defense 2.Nc3 Bb7",
-   "firstWhiteMove": "e4",
-   "castleMove": 7,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 898
-  },
-  {
-   "url": "https://www.chess.com/game/live/121739120230",
-   "at": 1735302891000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Queens Pawn Opening Zukertort Variation 2...e6 3.Bf4",
-   "firstWhiteMove": "d4",
-   "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 890
-  },
-  {
-   "url": "https://www.chess.com/game/live/121737997386",
-   "at": 1735297773000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Kings Pawn Opening Kings Knight Variation 2...Nc6",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 898
-  },
-  {
-   "url": "https://www.chess.com/game/live/121737841974",
-   "at": 1735297713000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Nimzowitsch Defense Kennedy Linksspringer Variation 3...Nce7",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 906
-  },
-  {
-   "url": "https://www.chess.com/game/live/121737649620",
-   "at": 1735297075000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Caro Kann Defense",
-   "firstWhiteMove": "e4",
-   "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 914
-  },
-  {
-   "url": "https://www.chess.com/game/live/121736276634",
-   "at": 1735291296000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Four Knights Game Scotch Variation Accepted 5.Nxd4 Bc5 6.Nxc",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 921
-  },
-  {
-   "url": "https://www.chess.com/game/live/121730750914",
-   "at": 1735264153000,
-   "color": "w",
-   "result": "draw",
-   "opening": "Alekhines Defense Scandinavian Variation 3.exd5 Nxd5",
-   "firstWhiteMove": "e4",
-   "castleMove": 14,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 929
-  },
-  {
-   "url": "https://www.chess.com/game/live/121730551224",
-   "at": 1735263079000,
-   "color": "b",
-   "result": "loss",
-   "opening": "Kings Pawn Opening 1...e5",
-   "firstWhiteMove": "e4",
-   "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 929
-  },
-  {
-   "url": "https://www.chess.com/game/live/121730522830",
-   "at": 1735262328000,
-   "color": "b",
-   "result": "win",
-   "opening": "Italian Game",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 937
-  },
-  {
-   "url": "https://www.chess.com/game/live/121730432950",
-   "at": 1735262138000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Kings Pawn Opening Kings Knight Variation",
-   "firstWhiteMove": "e4",
-   "castleMove": 13,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 929
-  },
-  {
-   "url": "https://www.chess.com/game/live/121730304482",
-   "at": 1735261632000,
-   "color": "b",
-   "result": "draw",
-   "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.e3",
-   "firstWhiteMove": "d4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 936
-  },
-  {
-   "url": "https://www.chess.com/game/live/121730074296",
-   "at": 1735260653000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Four Knights Game Spanish Variation Classical Variation",
-   "firstWhiteMove": "e4",
-   "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 936
-  },
-  {
-   "url": "https://www.chess.com/game/live/121729986790",
-   "at": 1735259535000,
-   "color": "b",
-   "result": "win",
-   "opening": "Italian Game Knight Attack Normal Variation 5.exd5",
-   "firstWhiteMove": "e4",
-   "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
-   "myRating": 944
   }
  ],
  "drills": {
@@ -2911,7 +2956,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784853669820,
+ "updatedAt": 1784853759058,
  "ratingHistory": [
   {
    "at": 1784758889213,
