@@ -9,7 +9,7 @@
  },
  "weakness": {
   "conversion": 0.8799999999999999,
-  "hangingPiece": 0.95,
+  "hangingPiece": 0.9299999999999999,
   "fork": 0.7299999999999999,
   "mateThreats": 0.2499999999999994,
   "f7f2": 0.8,
@@ -555,11 +555,11 @@
    "lastAt": 1784861004257
   },
   "puzzle:3Q2FZ": {
-   "level": 1,
-   "dueAt": 1784794350562,
-   "passes": 1,
+   "level": 2,
+   "dueAt": 1785138048721,
+   "passes": 2,
    "fails": 0,
-   "lastAt": 1784707950562
+   "lastAt": 1784878848721
   },
   "puzzle:1cGUK": {
    "level": 1,
@@ -1129,11 +1129,11 @@
    "lastAt": 1784861348699
   },
   "puzzle:6BZnq": {
-   "level": 0,
-   "dueAt": 1784861357383,
-   "passes": 0,
+   "level": 1,
+   "dueAt": 1784965229567,
+   "passes": 1,
    "fails": 1,
-   "lastAt": 1784861357383
+   "lastAt": 1784878829567
   }
  },
  "games": [
@@ -3008,8 +3008,8 @@
  },
  "puzzleStats": {
   "hangingPiece": {
-   "attempts": 65,
-   "correct": 63,
+   "attempts": 67,
+   "correct": 65,
    "workingRating": 1022
   },
   "mateIn1": {
@@ -3044,7 +3044,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784878615829,
+ "updatedAt": 1784878848722,
  "ratingHistory": [
   {
    "at": 1784758889213,
