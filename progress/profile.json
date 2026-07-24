@@ -9,11 +9,11 @@
  },
  "weakness": {
   "conversion": 0.8799999999999999,
-  "hangingPiece": 0.8799999999999999,
+  "hangingPiece": 1,
   "fork": 0.7299999999999999,
   "mateThreats": 0.2499999999999994,
   "f7f2": 0.8,
-  "openingD4": 0.9500000000000001,
+  "openingD4": 0.9700000000000001,
   "openingE4": 0.5900000000000001,
   "endgameTechnique": 0.9099999999999999,
   "timeUsage": 0.9300000000000002,
@@ -2467,9 +2467,12 @@
    "opening": "Kings Pawn Opening Kings Knight Variation 2...Nc6",
    "firstWhiteMove": "e4",
    "castleMove": 8,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 3,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ],
    "myRating": 735
   },
   {
@@ -2480,8 +2483,8 @@
    "opening": "Scandinavian Defense Closed 2...dxe4 3.Nxe4",
    "firstWhiteMove": "e4",
    "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 1,
    "motifs": [],
    "myRating": 746
   },
@@ -2493,8 +2496,8 @@
    "opening": "Owens Defense 2.Nc3 Bb7",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 1,
    "motifs": [],
    "myRating": 736
   },
@@ -2506,8 +2509,8 @@
    "opening": "Scotch Game 3...exd4 4.Nxd4",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": [],
    "myRating": 747
   },
@@ -2519,8 +2522,8 @@
    "opening": "Giuoco Piano Game 4.O O Nf6 5.Nc3 d6",
    "firstWhiteMove": "e4",
    "castleMove": 6,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 4,
    "motifs": [],
    "myRating": 758
   },
@@ -2532,9 +2535,11 @@
    "opening": "Three Knights Opening 3...Bc5",
    "firstWhiteMove": "e4",
    "castleMove": 15,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 769
   },
   {
@@ -2545,7 +2550,7 @@
    "opening": "Four Knights Game Spanish Variation Ranken Variation",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": [],
    "myRating": 780
@@ -2558,9 +2563,11 @@
    "opening": "Italian Game Two Knights Modern Bishops Opening",
    "firstWhiteMove": "e4",
    "castleMove": 6,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 768
   },
   {
@@ -2571,9 +2578,11 @@
    "opening": "Scotch Game Schmidt Variation",
    "firstWhiteMove": "e4",
    "castleMove": 18,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 6,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 755
   },
   {
@@ -2584,9 +2593,11 @@
    "opening": "Kings Pawn Opening 1...e5",
    "firstWhiteMove": "e4",
    "castleMove": 12,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "allowedMate"
+   ],
    "myRating": 769
   },
   {
@@ -2597,8 +2608,8 @@
    "opening": "Four Knights Game Spanish Variation",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": [],
    "myRating": 782
   },
@@ -2610,9 +2621,11 @@
    "opening": "Three Knights Opening 3...Bc5",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 767
   },
   {
@@ -2623,9 +2636,11 @@
    "opening": "Four Knights Game",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 752
   },
   {
@@ -2636,9 +2651,12 @@
    "opening": "Scandinavian Defense Closed 2...dxe4 3.Nxe4 Nf6 4.Nxf6",
    "firstWhiteMove": "e4",
    "castleMove": 11,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 4,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ],
    "myRating": 767
   },
   {
@@ -2649,8 +2667,8 @@
    "opening": "Three Knights Opening",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 1,
    "motifs": [],
    "myRating": 783
   },
@@ -2662,9 +2680,12 @@
    "opening": "Queens Pawn Opening Zukertort Chigorin Variation 3.e3",
    "firstWhiteMove": "d4",
    "castleMove": 6,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 5,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ],
    "myRating": 799
   },
   {
@@ -2675,9 +2696,11 @@
    "opening": "Scotch Game 3...d6",
    "firstWhiteMove": "e4",
    "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 817
   },
   {
@@ -2688,9 +2711,11 @@
    "opening": "Philidor Defense 3.Nc3",
    "firstWhiteMove": "e4",
    "castleMove": 9,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 799
   },
   {
@@ -2701,9 +2726,12 @@
    "opening": "Queens Pawn Opening Accelerated London System",
    "firstWhiteMove": "d4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ],
    "myRating": 818
   },
   {
@@ -2714,7 +2742,7 @@
    "opening": "Four Knights Game",
    "firstWhiteMove": "e4",
    "castleMove": 8,
-   "scanned": false,
+   "scanned": true,
    "blunders": 0,
    "motifs": [],
    "myRating": 839
@@ -2727,9 +2755,11 @@
    "opening": "Four Knights Game",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 816
   },
   {
@@ -2740,8 +2770,8 @@
    "opening": "Kings Pawn Opening 1...e5",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 1,
    "motifs": [],
    "myRating": 792
   },
@@ -2753,9 +2783,12 @@
    "opening": "Kings Pawn Opening 1...e5",
    "firstWhiteMove": "e4",
    "castleMove": 13,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 10,
+   "motifs": [
+    "hangingPiece",
+    "allowedMate"
+   ],
    "myRating": 766
   },
   {
@@ -2766,9 +2799,11 @@
    "opening": "Three Knights Opening",
    "firstWhiteMove": "e4",
    "castleMove": null,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 792
   },
   {
@@ -2779,8 +2814,8 @@
    "opening": "Kings Indian Attack 2...Nc6 3.Bg2 e5 4.O O",
    "firstWhiteMove": "g3",
    "castleMove": 7,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 7,
    "motifs": [],
    "myRating": 760
   },
@@ -2792,9 +2827,11 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 5,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 1,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 762
   },
   {
@@ -2805,8 +2842,8 @@
    "opening": "Four Knights Game Italian Variation",
    "firstWhiteMove": "e4",
    "castleMove": 10,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": [],
    "myRating": 799
   },
@@ -2818,8 +2855,8 @@
    "opening": "Four Knights Game Spanish Variation Classical Variation",
    "firstWhiteMove": "e4",
    "castleMove": 6,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": [],
    "myRating": 800
   },
@@ -2831,8 +2868,8 @@
    "opening": "Italian Game Two Knights Modern Bishops Opening 4...Be7 5.Nc",
    "firstWhiteMove": "e4",
    "castleMove": 6,
-   "scanned": false,
-   "blunders": 0,
+   "scanned": true,
+   "blunders": 2,
    "motifs": [],
    "myRating": 841
   },
@@ -2844,9 +2881,11 @@
    "opening": "Philidor Defense 3.Nc3",
    "firstWhiteMove": "e4",
    "castleMove": 19,
-   "scanned": false,
-   "blunders": 0,
-   "motifs": [],
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ],
    "myRating": 891
   }
  ],
@@ -2956,7 +2995,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784853912800,
+ "updatedAt": 1784854916373,
  "ratingHistory": [
   {
    "at": 1784758889213,
