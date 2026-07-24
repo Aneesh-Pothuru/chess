@@ -1113,6 +1113,27 @@
    "passes": 0,
    "fails": 1,
    "lastAt": 1784861103352
+  },
+  "puzzle:AZ32f": {
+   "level": 1,
+   "dueAt": 1784947738733,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784861338733
+  },
+  "puzzle:30ZGB": {
+   "level": 1,
+   "dueAt": 1784947748699,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784861348699
+  },
+  "puzzle:6BZnq": {
+   "level": 0,
+   "dueAt": 1784861357383,
+   "passes": 0,
+   "fails": 1,
+   "lastAt": 1784861357383
   }
  },
  "games": [
@@ -2987,9 +3008,9 @@
  },
  "puzzleStats": {
   "hangingPiece": {
-   "attempts": 61,
-   "correct": 60,
-   "workingRating": 1011
+   "attempts": 64,
+   "correct": 62,
+   "workingRating": 1022
   },
   "mateIn1": {
    "attempts": 61,
@@ -3023,7 +3044,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784861103353,
+ "updatedAt": 1784861394422,
  "ratingHistory": [
   {
    "at": 1784758889213,
