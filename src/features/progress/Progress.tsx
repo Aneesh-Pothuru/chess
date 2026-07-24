@@ -2,7 +2,7 @@
 // in one place — metrics vs the audit baseline, coached-game history, puzzle
 // accuracy by theme, drill mastery, and opening-line mastery.
 
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useProfile } from '../../hooks/useProfile'
 import { BASELINE } from '../../store/planner'
 import { areaTrends, latestRatings, ratingSeries, sampleRatingsIfStale, windowMetrics, ROLLING_WINDOW } from '../../store/stats'
@@ -14,6 +14,7 @@ import { REPERTOIRES } from '../../data/openings'
 import { enumerateLines } from '../../chess/repertoire'
 import { dueKeys } from '../../store/srs'
 import { getSyncStatus, getToken } from '../../lib/sync'
+import { fetchReviewIndex, type ReviewIndexEntry } from '../../lib/reviews'
 
 export function Progress() {
   const profile = useProfile()
@@ -24,6 +25,11 @@ export function Progress() {
 
   useEffect(() => {
     void sampleRatingsIfStale()
+  }, [])
+
+  const [reviews, setReviews] = useState<ReviewIndexEntry[]>([])
+  useEffect(() => {
+    void fetchReviewIndex().then(setReviews)
   }, [])
 
   const openingStats = useMemo(
@@ -80,6 +86,30 @@ export function Progress() {
         <div className="eyebrow">Rapid rating trend</div>
         <RatingChart series={series} baseline={BASELINE.rating} />
       </div>
+
+      {reviews.length > 0 && (
+        <div className="panel" style={{ marginTop: '0.9rem' }}>
+          <div className="eyebrow">Morning deep reviews</div>
+          <p className="muted small" style={{ margin: '0.3rem 0 0.5rem' }}>
+            Every day&apos;s engine-checked review — boards, lines, and the narrated summary.
+          </p>
+          {reviews.map((r) => (
+            <a
+              key={r.date}
+              className="option-btn"
+              href={`${import.meta.env.BASE_URL}${r.path}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'block', textDecoration: 'none' }}
+            >
+              <strong>{r.date}</strong> · {r.headline}
+              <div className="muted small">
+                {r.record ?? ''}{r.games ? ` · ${r.games} games analyzed` : ''}{r.video ? ' · 🎬 video summary' : ''}
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
 
       <div className="grid2" style={{ marginTop: '0.9rem' }}>
         <div className="panel">

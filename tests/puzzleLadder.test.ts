@@ -29,3 +29,51 @@ describe('puzzle difficulty ladder', () => {
     expect(Math.abs(avg(high) - 1100)).toBeLessThan(200)
   })
 })
+
+import {
+  MAX_REVIEWS_PER_SESSION,
+  PUZZLE_SRS_INTERVALS_MS,
+  SESSION_SIZE,
+  buildPuzzleQueue,
+} from '../src/chess/puzzleLadder'
+import { newSrsState, recordResult } from '../src/store/srs'
+import type { RawPuzzle } from '../src/chess/calculation'
+
+const mk = (id: string, rating: number): RawPuzzle => ({ id, fen: '', moves: '', rating, themes: '' })
+
+describe('buildPuzzleQueue', () => {
+  it('caps due reviews so a backlog cannot crowd out new puzzles', () => {
+    const seen = Array.from({ length: 30 }, (_, i) => mk(`seen${i}`, 450))
+    const fresh = Array.from({ length: 30 }, (_, i) => mk(`new${i}`, 700 + i))
+    const queue = buildPuzzleQueue([...seen, ...fresh], (p) => p.id.startsWith('seen'), () => true, 700)
+    expect(queue).toHaveLength(SESSION_SIZE)
+    expect(queue.filter((p) => p.id.startsWith('seen'))).toHaveLength(MAX_REVIEWS_PER_SESSION)
+    expect(queue.filter((p) => p.id.startsWith('new'))).toHaveLength(SESSION_SIZE - MAX_REVIEWS_PER_SESSION)
+  })
+
+  it('fills entirely with unseen material when nothing is due', () => {
+    const pool = Array.from({ length: 20 }, (_, i) => mk(`p${i}`, 400 + i * 50))
+    const queue = buildPuzzleQueue(pool, () => false, () => false, 550)
+    expect(queue).toHaveLength(SESSION_SIZE)
+  })
+
+  it('unseen portion is served nearest the working rating', () => {
+    const pool = [mk('low', 500), mk('near', 890), mk('above', 910), mk('high', 1300)]
+    const queue = buildPuzzleQueue(pool, () => false, () => false, 900)
+    expect(queue.map((p) => p.id)).toEqual(['above', 'near', 'high', 'low'])
+  })
+})
+
+describe('puzzle SRS intervals', () => {
+  it('first successful review waits a full day, not four hours', () => {
+    const now = 1_000_000
+    const s = recordResult(newSrsState(now), true, now, PUZZLE_SRS_INTERVALS_MS)
+    expect(s.dueAt - now).toBe(24 * 3600_000)
+  })
+
+  it('failing still brings the puzzle back immediately within the session', () => {
+    const now = 1_000_000
+    const s = recordResult(newSrsState(now), false, now, PUZZLE_SRS_INTERVALS_MS)
+    expect(s.dueAt).toBe(now)
+  })
+})

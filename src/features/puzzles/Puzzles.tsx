@@ -3,11 +3,16 @@ import { Chess, type Square } from 'chess.js'
 import { Board } from '../../components/Board'
 import { BUCKET_INFO, puzzlesFor } from '../../data/puzzles'
 import type { RawPuzzle } from '../../chess/calculation'
-import { dueKeys, newSrsState, recordResult } from '../../store/srs'
+import { isDue, newSrsState, recordResult } from '../../store/srs'
 import { update, bumpWeakness, type WeaknessKey } from '../../store/profile'
 import { useProfile } from '../../hooks/useProfile'
 import { pickPuzzleBuckets, seededRng } from '../../store/planner'
-import { LADDER_START, nextWorkingRating, orderUnseenByLadder } from '../../chess/puzzleLadder'
+import {
+  LADDER_START,
+  PUZZLE_SRS_INTERVALS_MS,
+  buildPuzzleQueue,
+  nextWorkingRating,
+} from '../../chess/puzzleLadder'
 
 const BUCKET_WEAKNESS: Record<string, WeaknessKey> = {
   hangingPiece: 'hangingPiece',
@@ -65,17 +70,16 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
 
   function startSession(bucketId: string) {
     const pool = puzzlesFor(bucketId)
-    const srsKeys = pool.map((p) => `puzzle:${p.id}`)
-    const due = new Set(dueKeys(profile.srs, srsKeys))
-    // Due-for-review first, then unseen served around the bucket's working
-    // rating — difficulty climbs as you solve (see puzzleLadder.ts).
+    // A few due reviews for retention, then unseen puzzles served around the
+    // bucket's working rating — difficulty climbs as you solve. Reviews are
+    // capped so a review backlog can never crowd out new, harder material.
     const working = profile.puzzleStats[bucketId]?.workingRating ?? LADDER_START
-    const dueP = pool.filter((p) => due.has(`puzzle:${p.id}`) && profile.srs[`puzzle:${p.id}`])
-    const unseen = orderUnseenByLadder(
-      pool.filter((p) => !profile.srs[`puzzle:${p.id}`]),
+    const queue = buildPuzzleQueue(
+      pool,
+      (p) => !!profile.srs[`puzzle:${p.id}`],
+      (p) => isDue(profile.srs[`puzzle:${p.id}`]),
       working,
     )
-    const queue = [...dueP, ...unseen].slice(0, 12)
     if (queue.length === 0) {
       return
     }
@@ -107,12 +111,15 @@ export function Puzzles({ initialTarget }: { initialTarget?: string }) {
     if (!session || !active) return
     update((p) => {
       const key = `puzzle:${active.puzzle.id}`
-      p.srs[key] = recordResult(p.srs[key] ?? newSrsState(), pass)
+      // The ladder only moves on first-time puzzles: reviews maintain memory,
+      // they are not evidence you're ready for harder material.
+      const firstAttempt = !p.srs[key]
+      p.srs[key] = recordResult(p.srs[key] ?? newSrsState(), pass, Date.now(), PUZZLE_SRS_INTERVALS_MS)
       const stats = p.puzzleStats[session.bucketId] ?? { attempts: 0, correct: 0 }
       p.puzzleStats[session.bucketId] = {
         attempts: stats.attempts + 1,
         correct: stats.correct + (pass ? 1 : 0),
-        workingRating: nextWorkingRating(stats.workingRating, pass),
+        workingRating: firstAttempt ? nextWorkingRating(stats.workingRating, pass) : stats.workingRating,
       }
     })
     const wk = BUCKET_WEAKNESS[session.bucketId]

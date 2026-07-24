@@ -25,13 +25,18 @@ export function newSrsState(now: number = Date.now()): SrsState {
   return { level: 0, dueAt: now, passes: 0, fails: 0, lastAt: 0 }
 }
 
-export function recordResult(state: SrsState, pass: boolean, now: number = Date.now()): SrsState {
-  const level = pass ? Math.min(state.level + 1, SRS_INTERVALS_MS.length - 1) : 0
+export function recordResult(
+  state: SrsState,
+  pass: boolean,
+  now: number = Date.now(),
+  intervals: number[] = SRS_INTERVALS_MS,
+): SrsState {
+  const level = pass ? Math.min(state.level + 1, intervals.length - 1) : 0
   return {
     level,
     // Failed items come back immediately within the session; passed items wait
     // out their ladder interval.
-    dueAt: pass ? now + SRS_INTERVALS_MS[level] : now,
+    dueAt: pass ? now + intervals[level] : now,
     passes: state.passes + (pass ? 1 : 0),
     fails: state.fails + (pass ? 0 : 1),
     lastAt: now,

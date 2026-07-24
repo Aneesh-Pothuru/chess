@@ -110,6 +110,16 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
    `attackingF2F7`, ...), `conversion`, repertoire ids (the openings page opens on its guided
    Course tab). The legacy single `focus` field still works but `tasks` is preferred.
 
+   **Reading puzzle stats (system updated 2026-07-24):** puzzle sessions now serve at most 4
+   spaced-repetition reviews, then fill with UNSEEN puzzles chosen near the bucket's
+   `workingRating`, which only moves on first-attempt results. Two consequences for coaching:
+   (1) accuracy in a bucket is expected to DIP as its difficulty climbs — a falling solve rate
+   with a rising `workingRating` is progress, not regression; judge trend by `workingRating`.
+   (2) A 60/60 record in a bucket no longer means mastery of the theme — it may predate the
+   fix, when sessions replayed the same easy reviews. Prefer assigning the bucket whose
+   workingRating is lowest relative to the player's needs, and rotate buckets freely: review
+   backlogs no longer crowd out new material, so repeat assignments stay productive.
+
    Valid weakness keys: `conversion`, `hangingPiece`, `fork`, `mateThreats`, `f7f2`,
    `openingD4`, `openingE4`, `endgameTechnique`, `timeUsage`, `castling`, `boardVision`,
    `coordinates`. Deltas are clamped to ±0.1 and applied once per briefing `id`. Raise a key

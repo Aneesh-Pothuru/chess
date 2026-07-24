@@ -481,4 +481,20 @@ const outDir = path.join(ROOT, 'public', 'coach', 'review');
 fs.mkdirSync(outDir, { recursive: true });
 const outPath = path.join(outDir, `${DATE}.html`);
 fs.writeFileSync(outPath, html);
+
+// Maintain the archive index that the app's Progress page lists.
+const indexPath = path.join(outDir, 'index.json');
+let reviewIndex = [];
+try { reviewIndex = JSON.parse(fs.readFileSync(indexPath, 'utf8')); } catch { /* first run */ }
+const indexEntry = {
+  date: DATE,
+  headline: ann.headline || `Deep review \u2014 ${DATE}`,
+  record,
+  games: all.length,
+  video: hasVideo,
+  path: `coach/review/${DATE}.html`,
+};
+reviewIndex = [indexEntry, ...reviewIndex.filter(e => e && e.date !== DATE)]
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+fs.writeFileSync(indexPath, JSON.stringify(reviewIndex, null, 1));
 console.log(`written ${outPath} (${(html.length / 1024).toFixed(0)}KB, ${losses.length} loss cards, annotations: ${fs.existsSync(annPath) ? 'yes' : 'auto'})`);
