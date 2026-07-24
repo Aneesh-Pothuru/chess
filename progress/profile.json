@@ -9,7 +9,7 @@
  },
  "weakness": {
   "conversion": 0.8799999999999999,
-  "hangingPiece": 0.9299999999999999,
+  "hangingPiece": 0.9099999999999999,
   "fork": 0.7299999999999999,
   "mateThreats": 0.2499999999999994,
   "f7f2": 0.8,
@@ -1134,6 +1134,41 @@
    "passes": 1,
    "fails": 1,
    "lastAt": 1784878829567
+  },
+  "puzzle:BDpsk": {
+   "level": 1,
+   "dueAt": 1784965342700,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784878942700
+  },
+  "puzzle:7kxYd": {
+   "level": 0,
+   "dueAt": 1784878970705,
+   "passes": 0,
+   "fails": 1,
+   "lastAt": 1784878970705
+  },
+  "puzzle:156KJ": {
+   "level": 1,
+   "dueAt": 1784965399356,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784878999356
+  },
+  "puzzle:2fZ3Y": {
+   "level": 1,
+   "dueAt": 1784965410662,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784879010662
+  },
+  "puzzle:8HmIQ": {
+   "level": 1,
+   "dueAt": 1784965416447,
+   "passes": 1,
+   "fails": 0,
+   "lastAt": 1784879016447
   }
  },
  "games": [
@@ -3008,9 +3043,9 @@
  },
  "puzzleStats": {
   "hangingPiece": {
-   "attempts": 67,
-   "correct": 65,
-   "workingRating": 1022
+   "attempts": 72,
+   "correct": 69,
+   "workingRating": 1069
   },
   "mateIn1": {
    "attempts": 61,
@@ -3044,7 +3079,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784878848722,
+ "updatedAt": 1784879016449,
  "ratingHistory": [
   {
    "at": 1784758889213,
