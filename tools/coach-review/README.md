@@ -13,7 +13,16 @@ example for annotation quality and format.
 node tools/coach-review/setup.cjs                       # bundles repertoire trees + piece SVGs
 node tools/coach-review/analyze.cjs --since <ISO>       # engine sweep; prints a digest, writes .cache/analysis.json
 # ...write coach-log/review-annotations/<date>.json based on the digest (see schema below)...
-node tools/coach-review/build.cjs --date <date>         # writes public/coach/review/<date>.html
+# ...write coach-log/review-annotations/<date>.video.json (the narrated-summary script)...
+node tools/coach-review/video.cjs --date <date>         # renders public/coach/review/<date>.mp4 (TTS + boards)
+node tools/coach-review/build.cjs --date <date>         # writes public/coach/review/<date>.html (embeds the mp4)
+```
+
+Video dependencies on a fresh container (skip the video, never the page, if these fail):
+
+```bash
+apt-get update && apt-get install -y ffmpeg
+pip3 install piper-tts            # neural voice; espeak-ng is the fallback
 ```
 
 - `--since` should be the previous briefing's date/time (default: 26 hours back).
@@ -24,8 +33,14 @@ node tools/coach-review/build.cjs --date <date>         # writes public/coach/re
   the eval graph and auto-selected engine moments (played move red, best move green).
   Annotations replace the auto content wherever provided. Never skip the page because
   writing annotations feels like too much — a partial annotations file is fine.
+- Run `video.cjs` BEFORE the final `build.cjs` — the page embeds the mp4 only if it already
+  exists. The video is committed alongside the page (target: 720p, under ~15MB; scenes ~20s).
+- Every `lines` entry that starts with real SAN becomes a **playable line** on the page: the
+  board animates through it move by move with arrows. Write lines so the moves come first and
+  prose after an em-dash (`24.Rxc7! Rxe3 25.Rxe3 — up a rook`), or the animation can't parse.
 - After building, set `"review": "coach/review/<date>.html"` in `public/coach/briefing.json`
-  so the dashboard links to it, and commit the review page + annotations with the briefing.
+  so the dashboard links to it, and commit the review page + video + annotations with the
+  briefing.
 
 ## Annotations schema (`coach-log/review-annotations/<date>.json`)
 
@@ -72,11 +87,38 @@ Annotation quality bar (match the 2026-07-23 example):
   where one exists (board math, exchange counting, mate-in-one scan, conversion).
 - Engine claims come from the digest's depth-20 lines — never invent evals or lines.
 
+## Video script schema (`coach-log/review-annotations/<date>.video.json`)
+
+The 2026-07-23 file is the reference example. Shape: `{ "scenes": [...] }` where each scene is
+
+```jsonc
+{
+  "eyebrow": "Pattern one · the pawn lash",
+  "title": "Quiet position, violent pawn move",
+  "narration": "spoken text — natural sentences, no dense SAN strings",
+  "board": { "fen": "...", "flip": true },   // omit for a text card
+  "bullets": ["...", "..."],                  // text cards only; beats reveal them
+  "beats": [                                  // narration time is split evenly across beats
+    { "caption": "...", "arrows": [...], "marks": [...] },   // annotate the position
+    { "caption": "...", "moves": ["Qxh7+", "Bxh7"] },        // advance it — the board MOVES
+    { "reveal": 1 }                                          // text cards: show bullet #2
+  ]
+}
+```
+
+Video quality bar: open with an overview scene (record + theme), then one scene per recurring
+mistake showing the pattern ON the board — annotate first (arrows), then play the punishment
+and the better line with `moves` beats so the board moves while the voice explains. Close with
+the day's rules. Narrate like a coach talking, not a caption reader: say "queen takes on h7"
+around the move beats. 6–9 scenes, 2–4 minutes total.
+
 ## Files
 
 - `setup.cjs` — builds `.cache/rep.cjs` (repertoire trees for Node) and `.cache/pieces.cjs`
   (react-chessboard piece SVGs) via rolldown. Rerun after `npm ci` (cheap, idempotent).
 - `analyze.cjs` — fetch + engine sweep → `.cache/analysis.json` + stdout digest.
-- `build.cjs` — analysis + annotations → the static review page.
+- `build.cjs` — analysis + annotations → the static review page (playable lines, coordinates
+  on every board, embedded video when present).
+- `video.cjs` — video script → narrated MP4 (piper/espeak TTS + chromium frames + ffmpeg).
 - `uci.cjs`, `board.cjs`, `jsx-shim.cjs` — engine driver, SVG boards, piece extraction shim.
 - `.cache/` — build products, gitignored.

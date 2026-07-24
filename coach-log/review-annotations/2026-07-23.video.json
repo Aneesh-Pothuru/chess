@@ -1,0 +1,104 @@
+{
+  "date": "2026-07-23",
+  "scenes": [
+    {
+      "eyebrow": "Morning deep review · July 22–23",
+      "title": "Twenty games, engine-checked",
+      "bullets": [
+        "20 rapid games: 7 wins, 12 losses",
+        "The openings mostly held",
+        "The losses were decided between moves 8 and 20"
+      ],
+      "beats": [{ "reveal": 0 }, { "reveal": 1 }, { "reveal": 2 }],
+      "narration": "Good morning. Here is your deep review. Yesterday you played twenty rapid games: seven wins and twelve losses. The engine checked every single one, and the story is very consistent. Your openings mostly held. The games were decided in the six moves after first contact, between move eight and move twenty. Let's look at the four mistakes that repeated, on the board."
+    },
+    {
+      "eyebrow": "The headline numbers",
+      "title": "Where the losses begin",
+      "bullets": [
+        "In 7 of 12 losses you stood equal or better at move 10",
+        "Median first big mistake: move 13",
+        "Five losses ended in an allowed mate in one — with minutes left"
+      ],
+      "beats": [{ "reveal": 0 }, { "reveal": 1 }, { "reveal": 2 }],
+      "narration": "First, the numbers. In seven of the twelve losses, you stood equal or better at move ten. The median first big mistake came at move thirteen. And five losses ended in a mate in one that you allowed — not because you were low on time. You had between two and seven minutes on the clock every single time. The problem is the speed of the individual move, not the clock."
+    },
+    {
+      "eyebrow": "Pattern one · the pawn lash",
+      "title": "Quiet position, violent pawn move",
+      "board": { "fen": "r2qkbnr/pp1bpppp/2n5/1B1p4/3P4/5N2/PPP2PPP/RNBQ1RK1", "flip": true },
+      "beats": [
+        { "caption": "The Caro-Kann Exchange against callmetaide. Nothing is on fire." },
+        { "arrows": [ { "from": "e7", "to": "e5", "kind": "bad" }, { "from": "a7", "to": "a6", "kind": "best" } ],
+          "caption": "The lash e5 versus the calm a6 — you chose the lash, twice in one day" },
+        { "moves": ["e5", "dxe5"], "caption": "White simply takes, and the e-file opens onto your king" },
+        { "moves": ["f6", "exf6"], "caption": "A second lash to justify the first — two pawns gone, nothing developed" }
+      ],
+      "narration": "Pattern one: the pawn lash. This is the Caro-Kann Exchange against callmetaide, and look at the board — it is completely quiet. Nobody is threatening anything. The right moves are simple: a6 to ask the bishop a question, or e6, one square, and then develop. Instead, the pawn lashed out to e5. White just takes it, and the e-file opens straight onto your king. Then f6 followed, a second lash to justify the first. You played this exact e5 break in two different games on the same day, and lost both. New rule: in these symmetric positions, e5 is banned until you are castled and fully developed."
+    },
+    {
+      "eyebrow": "Pattern two · the one-piece attack",
+      "title": "One attacker, one defender",
+      "board": { "fen": "r4rk1/pp3ppp/4p3/1q1p1bNQ/1P6/2n1P2P/P2N1PP1/R4RK1", "flip": false },
+      "beats": [
+        { "marks": [ { "sq": "f5", "kind": "good" } ],
+          "caption": "Against TempestumEffector. The bishop on f5 guards h7." },
+        { "arrows": [ { "from": "h5", "to": "h7", "kind": "bad" }, { "from": "f5", "to": "h7", "kind": "threat" } ],
+          "caption": "The queen wants h7 — but count: one attacker, one defender" },
+        { "moves": ["Qxh7+", "Bxh7"], "caption": "The bishop simply takes. Queen gone, for one pawn." }
+      ],
+      "narration": "Pattern two: the one-piece attack. Against TempestumEffector, your queen went hunting on h7. But look at the bishop on f5 — it guards that exact square. One attacker against one defender never works. Queen takes h7, check, bishop takes queen. A whole queen for one pawn. The same idea cost you in three other games: a lone knight jumping in, a queen check with no follow-up. The rule: an attack needs more attackers than defenders. One piece near their king is a visit, not an attack. Count out loud before every capture near the king."
+    },
+    {
+      "eyebrow": "Pattern three · the wrong piece",
+      "title": "Up a rook — mated in one move",
+      "board": { "fen": "2Q5/p1p2pkp/1p4p1/6P1/3PrP2/q3P3/P6P/2RKR3", "flip": false },
+      "beats": [
+        { "arrows": [ { "from": "a3", "to": "d3", "kind": "threat" }, { "from": "e4", "to": "d3", "kind": "threat" } ],
+          "marks": [ { "sq": "d3", "kind": "bad" } ],
+          "caption": "You are winning by nearly five points. But their queen and rook both aim at d3." },
+        { "arrows": [ { "from": "c1", "to": "c7", "kind": "best" } ],
+          "caption": "Rook takes c7 wins — because the rook LEAVING c1 gives your king a door" },
+        { "moves": ["Qxc7", "Qd3#"], "caption": "Queen takes c7 instead — and queen d3 is checkmate" }
+      ],
+      "narration": "Pattern three, and this is the position of the day, from the unknowngirl game. You are up a whole rook. Both your queen and your rook attack the pawn on c7 — but only one capture keeps you alive. Their queen and rook are both pointing at d3, right next to your king, and your own rooks on c1 and e1 have boxed the king in. Rook takes c7 wins on the spot, because when the rook leaves c1, your king finally has an escape square. Instead the queen took c7, and queen to d3 was checkmate. Before every capture, one question: what is their next check?"
+    },
+    {
+      "eyebrow": "Pattern four · the ignored passer",
+      "title": "Passed pawns before everything",
+      "board": { "fen": "8/6p1/1PK5/6kp/n7/6P1/7P/8", "flip": true },
+      "beats": [
+        { "marks": [ { "sq": "b6", "kind": "bad" } ],
+          "caption": "Against Triss83: winning by four points. But that b-pawn is one step from running." },
+        { "arrows": [ { "from": "a4", "to": "b6", "kind": "best" } ],
+          "caption": "Knight takes b6 kills it — then your king walks over and eats everything" },
+        { "moves": ["Kg4"], "caption": "Instead the king went pawn-hunting..." },
+        { "moves": ["b7", "Nc3", "b8=Q"], "caption": "...and the pawn can never be caught. Plus four became minus seven." }
+      ],
+      "narration": "Pattern four: the ignored passed pawn. Against Triss83 you had ground out a completely winning endgame — up more than four points. One rule decides this position: passed pawns before everything. Knight takes on b6 removes the runner, and then your king strolls over and collects every white pawn. Instead, the king went pawn hunting toward g4. The pawn ran to b7, and from there the knight can never catch it. It queened, and a winning game became a lost one in a single move. In every endgame, every move, ask first: can any passed pawn run right now?"
+    },
+    {
+      "eyebrow": "Openings · the one rule that refunds four games",
+      "title": "Knight to c6? Pawn to c3. Now.",
+      "board": { "fen": "r1bqkbnr/ppp1pppp/2n5/3p4/3P1B2/8/PPP1PPP1/RN1QKBNR", "flip": false },
+      "beats": [
+        { "caption": "The London against an early knight to c6 — this shape cost four games in one day" },
+        { "arrows": [ { "from": "c2", "to": "c3", "kind": "best" } ],
+          "caption": "c3, that move, in any move order — it blunts every knight trick before it exists" }
+      ],
+      "narration": "One opening rule before you go. In the London, whenever black develops the knight to c6 early — in any move order — the answer is pawn to c3, immediately. It stops the knight from ever jumping to b4 and harassing your bishop. This exact shape cost you four games in one day, and the fix is already in your repertoire notes. Remember: you drill lines, but opponents deliver shapes. Turn the line into a rule, and it travels with you."
+    },
+    {
+      "eyebrow": "Today's plan",
+      "title": "Carry these four",
+      "bullets": [
+        "Before any capture or king move: what is their next check?",
+        "Attacks need attackers greater than defenders",
+        "A capture ends after THEIR recapture — count it",
+        "Protect the good news: King's Indian went three and oh"
+      ],
+      "beats": [{ "reveal": 0 }, { "reveal": 1 }, { "reveal": 2 }, { "reveal": 3 }],
+      "narration": "That's the review. Four things to carry into today's games. Before any capture or any king move, ask what their next check is. Attacks need more attackers than defenders. A capture is not over until you have counted their recapture. And protect the good news — your King's Indian went three wins, no losses, including against players who dodged your exact lines. The full review with every game, every board, and every line is right below this video. Good luck out there."
+    }
+  ]
+}

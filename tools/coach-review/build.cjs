@@ -69,15 +69,52 @@ function evalStrip(g, featuredPlies = []) {
 <path d="${line}" class="curve" vector-effect="non-scaling-stroke"/>${dots}</svg>`;
 }
 
+/**
+ * Annotation FENs may be placement-only (enough to draw). For replay, fill in
+ * side to move (the annotated player = flip side), castling inferred from
+ * home squares, and default counters.
+ */
+function normalizeFen(fen, flip) {
+  const fields = String(fen).trim().split(/\s+/);
+  if (fields.length >= 6) return fields.slice(0, 6).join(' ');
+  const placement = fields[0];
+  const rows = placement.split('/');
+  const expand = r => r.replace(/\d/g, d => ' '.repeat(+d));
+  const r1 = expand(rows[7] || ''), r8 = expand(rows[0] || '');
+  let castle = '';
+  if (r1[4] === 'K') { if (r1[7] === 'R') castle += 'K'; if (r1[0] === 'R') castle += 'Q'; }
+  if (r8[4] === 'k') { if (r8[7] === 'r') castle += 'k'; if (r8[0] === 'r') castle += 'q'; }
+  const side = fields[1] || (flip ? 'b' : 'w');
+  return `${placement} ${side} ${castle || '-'} - 0 1`;
+}
+
+/** Replay the SAN tokens of an annotation line into animation steps. */
+function lineSteps(fen, flip, lineStr, max = 10) {
+  const text = String(lineStr).split('\u2014')[0]; // stop at the em-dash prose
+  const tokens = text.trim().split(/\s+/)
+    .map(t => t.replace(/^\d+\.+/, '').replace(/[?!]+$/, ''))
+    .filter(t => t && t !== '...' && !/^[0-9.]+$/.test(t));
+  let c;
+  try { c = new Chess(normalizeFen(fen, flip)); } catch { return []; }
+  const steps = [];
+  for (const tok of tokens.slice(0, max)) {
+    try {
+      const mv = c.move(tok);
+      steps.push({ fen: c.fen(), from: mv.from, to: mv.to, san: mv.san });
+    } catch { break; }
+  }
+  return steps;
+}
+
 function moveFromTo(fen, san) {
   try {
-    const mv = new Chess(fen).move(san.replace(/^\d+\.(\.\.\.)?/, ''));
+    const mv = new Chess(fen).move(san.replace(/^\d+\.+/, ''));
     return { from: mv.from, to: mv.to };
   } catch { return null; }
 }
 
 function firstSanOfLine(line) {
-  return (line.split(' ')[0] || '').replace(/^\d+\.(\.\.\.)?/, '').replace(/^\.+/, '');
+  return (line.split(' ')[0] || '').replace(/^\d+\.+/, '').replace(/^\.+/, '');
 }
 
 /** Auto-generate a featured moment from an analysis `deep` entry. */
@@ -109,10 +146,22 @@ function lineRows(lines) {
 
 function momentBlock(t) {
   const b = t.board;
+  const playable = (t.lines || [])
+    .map(l => ({ tag: l.tag, steps: lineSteps(b.fen, !!b.flip, l.line) }))
+    .filter(l => l.steps.length > 0);
+  const player = playable.length > 0 ? {
+    fen: b.fen, flip: !!b.flip,
+    lines: playable.map(l => ({ tag: l.tag, steps: l.steps })),
+  } : null;
+  const playerControls = player ? `<div class="player" data-player='${JSON.stringify(player).replace(/'/g, '&#39;')}'>
+      <div class="pl-lines">${player.lines.map((l, i) =>
+        `<button class="pl-line" data-line="${i}"><span class="pl-tag">\u25b6 ${esc(l.tag)}</span> ${esc(l.steps[0].san)}\u2026</button>`).join('')}</div>
+      <div class="pl-ctrl"><button class="pl-reset" title="back to the diagram">\u27f2</button><button class="pl-prev">\u25c0</button><button class="pl-next">\u25b6</button><span class="pl-status">tap a line to watch it play out</span></div>
+    </div>` : '';
   return `<div class="moment">
   <h4>${esc(t.title)}</h4>
   <div class="moment-grid">
-    <figure>${boardSvg(b.fen, { flip: b.flip, arrows: b.arrows || [], marks: b.marks || [], caption: b.caption })}<figcaption>${esc(b.caption || '')}</figcaption></figure>
+    <figure>${boardSvg(b.fen, { flip: b.flip, arrows: b.arrows || [], marks: b.marks || [], caption: b.caption })}${playerControls}<figcaption>${esc(b.caption || '')}</figcaption></figure>
     <div class="moment-notes">
       ${t.prose ? `<p>${t.prose}</p>` : ''}
       <div class="lines">${lineRows(t.lines || [])}</div>
@@ -172,6 +221,9 @@ const stats = ann.stats || [
 ].filter(Boolean);
 
 const rules = (ann.rules || []).map(r => `<li><span class="rn">${esc(r.rn)}</span>${r.html}</li>`).join('');
+
+const videoFile = path.join(ROOT, 'public', 'coach', 'review', `${DATE}.mp4`);
+const hasVideo = fs.existsSync(videoFile);
 
 const html = `<title>Deep Review — ${DATE}</title>
 <style>
@@ -244,7 +296,7 @@ b,strong{font-weight:600}
 .board{width:100%;height:auto;display:block;border-radius:4px}
 .sq-l{fill:var(--sq-l)}.sq-d{fill:var(--sq-d)}
 .sq-last{fill:var(--last)}
-.coord{font:500 10px 'Plex Mono',monospace;fill:var(--ink2);text-anchor:middle}
+.coord{font:600 12.5px 'Plex Mono',monospace;fill:var(--ink2);text-anchor:middle}
 .mark-bad{fill:none;stroke:var(--bad);stroke-width:2.5;opacity:.9}
 .mark-good{fill:none;stroke:var(--good);stroke-width:2.5;opacity:.9}
 .arrow-best line{stroke:var(--good);stroke-width:7;opacity:.85;stroke-linecap:round}
@@ -255,6 +307,19 @@ b,strong{font-weight:600}
 .arrow-bad polygon{fill:var(--bad);opacity:.8}
 .arrow-threat line{stroke:var(--ink);stroke-width:4.5;opacity:.55;stroke-dasharray:7 5}
 .arrow-threat polygon{fill:var(--ink);opacity:.55}
+.arrow-play line{stroke:var(--accent);stroke-width:7;opacity:.9;stroke-linecap:round}
+.arrow-play polygon{fill:var(--accent);opacity:.9}
+svg.playing .mark-bad,svg.playing .mark-good{display:none}
+.player{margin-top:8px}
+.pl-lines{display:flex;flex-wrap:wrap;gap:6px}
+.pl-line{font:400 12px/1.4 'Plex Mono',monospace;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:5px 9px;cursor:pointer;text-align:left}
+.pl-line .pl-tag{color:var(--accent);font-weight:500}
+.pl-line.active{border-color:var(--accent);background:var(--card);box-shadow:inset 0 0 0 1px var(--accent)}
+.pl-ctrl{display:flex;align-items:center;gap:6px;margin-top:6px}
+.pl-ctrl button{font:500 13px/1 'Plex Mono',monospace;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:6px 10px;cursor:pointer}
+.pl-ctrl button:disabled{opacity:.4;cursor:default}
+.pl-status{font:400 12px/1.4 'Plex Mono',monospace;color:var(--ink2)}
+.video-hero{margin-top:34px}
 .lines{display:grid;gap:6px;margin:0 0 14px}
 .ln{display:grid;grid-template-columns:76px 44px 1fr;gap:10px;align-items:baseline;font:400 13.5px/1.5 'Plex Mono',monospace}
 .ln-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
@@ -282,6 +347,10 @@ ${pieceDefs()}
 ${ann.dek ? `<p class="dek">${ann.dek}</p>` : ''}
 <div class="statrow">${stats.map(s => `<div class="stat"><div class="n">${esc(s.n)}</div><div class="l">${esc(s.l)}</div></div>`).join('')}</div>
 </header>
+${hasVideo ? `<section class="video-hero">
+<span class="eyebrow">Morning summary \u00b7 watch or just listen</span>
+<video controls preload="metadata" playsinline src="${DATE}.mp4" style="width:100%;border-radius:8px;display:block;margin-top:10px;background:#000"></video>
+</section>` : ''}
 
 <section class="chapter" id="openings">
 <span class="eyebrow">Chapter I</span>
@@ -301,7 +370,79 @@ ${rules ? `<section class="chapter" id="rules">
 <ul class="rules">${rules}</ul>
 ${ann.closing ? `<p class="lede" style="margin-top:20px">${ann.closing}</p>` : ''}
 </section>` : ''}
-</div>`;
+</div>
+<script>
+(function () {
+  var SQ = 44, M = 16;
+  function xy(file, rank, flip) { var x = flip ? 7 - file : file, y = flip ? rank : 7 - rank; return [M + x * SQ, M / 2 + y * SQ]; }
+  function sqXY(sq, flip) { return xy(sq.charCodeAt(0) - 97, +sq[1] - 1, flip); }
+  function piecesFromFen(fen) {
+    var rows = fen.split(' ')[0].split('/'), out = [];
+    for (var ri = 0; ri < 8; ri++) {
+      var f = 0;
+      for (var ci = 0; ci < rows[ri].length; ci++) {
+        var ch = rows[ri][ci];
+        if (/\d/.test(ch)) { f += +ch; continue; }
+        out.push({ code: (ch === ch.toUpperCase() ? 'w' : 'b') + ch.toUpperCase(), file: f, rank: 7 - ri });
+        f++;
+      }
+    }
+    return out;
+  }
+  function renderPieces(g, fen, flip) {
+    var h = '';
+    piecesFromFen(fen).forEach(function (p) {
+      var c = xy(p.file, p.rank, flip);
+      h += '<use href="#pc-' + p.code + '" x="' + c[0] + '" y="' + c[1] + '" width="' + SQ + '" height="' + SQ + '"/>';
+    });
+    g.innerHTML = h;
+  }
+  function arrowMarkup(from, to, flip) {
+    var a = sqXY(from, flip), b = sqXY(to, flip);
+    var x1 = a[0] + SQ / 2, y1 = a[1] + SQ / 2, x2 = b[0] + SQ / 2, y2 = b[1] + SQ / 2;
+    var ang = Math.atan2(y2 - y1, x2 - x1);
+    var tx = x2 - Math.cos(ang) * (SQ * 0.32), ty = y2 - Math.sin(ang) * (SQ * 0.32), hw = 7.5;
+    return '<g class="arrow-play"><line x1="' + x1 + '" y1="' + y1 + '" x2="' + tx + '" y2="' + ty + '"/><polygon points="' + x2 + ',' + y2 + ' ' + (tx - Math.sin(ang) * hw) + ',' + (ty + Math.cos(ang) * hw) + ' ' + (tx + Math.sin(ang) * hw) + ',' + (ty - Math.cos(ang) * hw) + '"/></g>';
+  }
+  document.querySelectorAll('.player').forEach(function (pl) {
+    var data = JSON.parse(pl.getAttribute('data-player'));
+    var fig = pl.closest('figure');
+    var svg = fig.querySelector('svg.board');
+    var piecesG = svg.querySelector('[data-layer=pieces]');
+    var overlayG = svg.querySelector('[data-layer=overlay]');
+    var home = { pieces: piecesG.innerHTML, overlay: overlayG.innerHTML };
+    var status = pl.querySelector('.pl-status');
+    var cur = null, idx = 0, timer = null;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function show() {
+      if (cur === null || idx === 0) {
+        piecesG.innerHTML = home.pieces; overlayG.innerHTML = home.overlay; svg.classList.remove('playing');
+        status.textContent = cur === null ? 'tap a line to watch it play out' : 'start position — step with ▶';
+      } else {
+        var st = data.lines[cur].steps[idx - 1];
+        svg.classList.add('playing');
+        renderPieces(piecesG, st.fen, data.flip);
+        overlayG.innerHTML = arrowMarkup(st.from, st.to, data.flip);
+        status.textContent = st.san + '  (' + idx + '/' + data.lines[cur].steps.length + ')';
+      }
+      pl.querySelectorAll('.pl-line').forEach(function (b, i) { b.classList.toggle('active', i === cur); });
+    }
+    function play() {
+      stop();
+      timer = setInterval(function () {
+        if (cur === null || idx >= data.lines[cur].steps.length) { stop(); return; }
+        idx++; show();
+      }, 950);
+    }
+    pl.querySelectorAll('.pl-line').forEach(function (btn, i) {
+      btn.addEventListener('click', function () { stop(); cur = i; idx = 1; show(); play(); });
+    });
+    pl.querySelector('.pl-reset').addEventListener('click', function () { stop(); cur = null; idx = 0; show(); });
+    pl.querySelector('.pl-prev').addEventListener('click', function () { stop(); if (cur === null) return; if (idx > 0) idx--; show(); });
+    pl.querySelector('.pl-next').addEventListener('click', function () { stop(); if (cur === null) { cur = 0; } if (idx < data.lines[cur].steps.length) idx++; show(); });
+  });
+})();
+</script>`;
 
 const outDir = path.join(ROOT, 'public', 'coach', 'review');
 fs.mkdirSync(outDir, { recursive: true });

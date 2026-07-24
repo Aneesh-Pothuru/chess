@@ -27,7 +27,7 @@ function sqXY(file, rank, flip) {
 function boardSvg(fen, opts = {}) {
   const { flip = false, lastMove = null, arrows = [], marks = [], caption = null } = opts;
   const rows = fen.split(' ')[0].split('/');
-  const W = SQ * 8 + M * 1.5, H = SQ * 8 + M * 1.5;
+  const W = SQ * 8 + M * 1.5, H = SQ * 8 + M * 2;
   let s = `<svg class="board" viewBox="0 0 ${W} ${H}" role="img" aria-label="${caption || 'chess position'}">`;
   for (let r = 0; r < 8; r++) for (let f = 0; f < 8; f++) {
     const [x, y] = sqXY(f, r, flip);
@@ -43,12 +43,13 @@ function boardSvg(fen, opts = {}) {
   }
   for (let f = 0; f < 8; f++) {
     const [x] = sqXY(f, 0, flip);
-    s += `<text x="${x + SQ / 2}" y="${H - 2}" class="coord">${'abcdefgh'[f]}</text>`;
+    s += `<text x="${x + SQ / 2}" y="${H - 7}" class="coord">${'abcdefgh'[f]}</text>`;
   }
   for (let r = 0; r < 8; r++) {
     const [, y] = sqXY(0, r, flip);
-    s += `<text x="${M / 2 - 2}" y="${y + SQ / 2 + 4}" class="coord">${r + 1}</text>`;
+    s += `<text x="${M / 2 - 1}" y="${y + SQ / 2 + 5}" class="coord">${r + 1}</text>`;
   }
+  s += '<g data-layer="pieces">';
   for (let ri = 0; ri < 8; ri++) {
     let f = 0;
     for (const ch of rows[ri]) {
@@ -59,6 +60,7 @@ function boardSvg(fen, opts = {}) {
       f += 1;
     }
   }
+  s += '</g><g data-layer="overlay">';
   for (const a of arrows) {
     const [x1, y1] = sqXY(a.from.charCodeAt(0) - 97, +a.from[1] - 1, flip);
     const [x2, y2] = sqXY(a.to.charCodeAt(0) - 97, +a.to[1] - 1, flip);
@@ -69,7 +71,7 @@ function boardSvg(fen, opts = {}) {
     s += `<g class="arrow-${a.kind || 'best'}"><line x1="${cx1}" y1="${cy1}" x2="${tx}" y2="${ty}"/>` +
       `<polygon points="${cx2},${cy2} ${tx - Math.sin(ang) * hw},${ty + Math.cos(ang) * hw} ${tx + Math.sin(ang) * hw},${ty - Math.cos(ang) * hw}"/></g>`;
   }
-  s += '</svg>';
+  s += '</g></svg>';
   return s;
 }
 

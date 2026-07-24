@@ -35,6 +35,19 @@ analyzes pots1125's chess.com games and adjusts the training plan. The routine's
    The digest also feeds your own analysis for the coach log — trust its engine lines over
    hand analysis.
 
+   **Also render the narrated morning-summary video** (Aneesh listens to it each morning).
+   Install deps (`apt-get update && apt-get install -y ffmpeg && pip3 install piper-tts`),
+   write the video script `coach-log/review-annotations/YYYY-MM-DD.video.json` (schema and
+   quality bar in `tools/coach-review/README.md`; `2026-07-23.video.json` is the reference:
+   overview scene → one scene per recurring mistake with the board MOVING through the lines
+   as the voice explains → closing rules), then run, IN THIS ORDER:
+   ```bash
+   node tools/coach-review/video.cjs --date YYYY-MM-DD    # -> public/coach/review/YYYY-MM-DD.mp4
+   node tools/coach-review/build.cjs --date YYYY-MM-DD    # embeds the video at the top of the page
+   ```
+   Commit the mp4 with the page. If the video deps cannot be installed that morning, ship the
+   page without the video rather than shipping nothing — but say so in the coach log.
+
 2. **Analyze** each new game (PGN is embedded in the API response):
    - Result, color, opening (parse `[ECOUrl]` from the PGN) and whether it matches the
      repertoire: London as White; Caro-Kann vs 1.e4 and King's Indian otherwise as Black.
