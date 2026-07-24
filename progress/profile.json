@@ -9,7 +9,7 @@
  },
  "weakness": {
   "conversion": 0.8799999999999999,
-  "hangingPiece": 0.95,
+  "hangingPiece": 0.96,
   "fork": 0.7299999999999999,
   "mateThreats": 0.2499999999999994,
   "f7f2": 0.8,
@@ -1206,6 +1206,34 @@
   }
  ],
  "imported": [
+  {
+   "url": "https://www.chess.com/game/live/171991160014",
+   "at": 1784856587000,
+   "color": "b",
+   "result": "win",
+   "opening": "Caro Kann Defense Two Knights Mindeno Variation",
+   "firstWhiteMove": "e4",
+   "castleMove": null,
+   "scanned": true,
+   "blunders": 0,
+   "motifs": [],
+   "myRating": 677
+  },
+  {
+   "url": "https://www.chess.com/game/live/171990814500",
+   "at": 1784855824000,
+   "color": "w",
+   "result": "loss",
+   "opening": "Queens Pawn Opening Mikenas Defense",
+   "firstWhiteMove": "d4",
+   "castleMove": null,
+   "scanned": true,
+   "blunders": 2,
+   "motifs": [
+    "hangingPiece"
+   ],
+   "myRating": 669
+  },
   {
    "url": "https://www.chess.com/game/live/171980290310",
    "at": 1784834640000,
@@ -2908,34 +2936,6 @@
    "blunders": 2,
    "motifs": [],
    "myRating": 800
-  },
-  {
-   "url": "https://www.chess.com/game/live/171271506346",
-   "at": 1783485452000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Italian Game Two Knights Modern Bishops Opening 4...Be7 5.Nc",
-   "firstWhiteMove": "e4",
-   "castleMove": 6,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [],
-   "myRating": 841
-  },
-  {
-   "url": "https://www.chess.com/game/live/121799270138",
-   "at": 1735538781000,
-   "color": "w",
-   "result": "loss",
-   "opening": "Philidor Defense 3.Nc3",
-   "firstWhiteMove": "e4",
-   "castleMove": 19,
-   "scanned": true,
-   "blunders": 2,
-   "motifs": [
-    "hangingPiece"
-   ],
-   "myRating": 891
   }
  ],
  "drills": {
@@ -3044,7 +3044,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784877243467,
+ "updatedAt": 1784877354541,
  "ratingHistory": [
   {
    "at": 1784758889213,
