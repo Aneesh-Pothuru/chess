@@ -3044,7 +3044,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784877243065,
+ "updatedAt": 1784877243467,
  "ratingHistory": [
   {
    "at": 1784758889213,
@@ -3066,6 +3066,12 @@
   },
   {
    "at": 1784854916495,
+   "rating": 677,
+   "best": 841,
+   "tactics": 1427
+  },
+  {
+   "at": 1784877243466,
    "rating": 677,
    "best": 841,
    "tactics": 1427
