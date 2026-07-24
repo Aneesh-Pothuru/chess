@@ -9,7 +9,7 @@
  },
  "weakness": {
   "conversion": 0.8799999999999999,
-  "hangingPiece": 0.96,
+  "hangingPiece": 0.95,
   "fork": 0.7299999999999999,
   "mateThreats": 0.2499999999999994,
   "f7f2": 0.8,
@@ -1108,11 +1108,11 @@
    "lastAt": 1784861053176
   },
   "puzzle:9Dt2i": {
-   "level": 0,
-   "dueAt": 1784861103352,
-   "passes": 0,
+   "level": 1,
+   "dueAt": 1784965015828,
+   "passes": 1,
    "fails": 1,
-   "lastAt": 1784861103352
+   "lastAt": 1784878615828
   },
   "puzzle:AZ32f": {
    "level": 1,
@@ -3008,8 +3008,8 @@
  },
  "puzzleStats": {
   "hangingPiece": {
-   "attempts": 64,
-   "correct": 62,
+   "attempts": 65,
+   "correct": 63,
    "workingRating": 1022
   },
   "mateIn1": {
@@ -3044,7 +3044,7 @@
  },
  "focusWeek": "conversion",
  "lastBriefingId": "2026-07-23",
- "updatedAt": 1784877354541,
+ "updatedAt": 1784878615829,
  "ratingHistory": [
   {
    "at": 1784758889213,
